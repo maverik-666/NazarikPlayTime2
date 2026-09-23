@@ -1,0 +1,50 @@
+namespace Project
+{
+    using UnityEditor;
+    using UnityEngine;
+
+    [CanEditMultipleObjects]
+    [CustomEditor(typeof(#SCRIPTNAME#))]
+    public sealed class #SCRIPTNAME# : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+
+            using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode))
+            {
+                if (GUILayout.Button("Button"))
+                {
+                    UpdateTargets();
+                }
+            }
+
+            DrawDefaultInspector();
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        private void UpdateTargets()
+        {
+            for (int i = 0; i < targets.Length; i++)
+            {
+                #SCRIPTNAME# target = (#SCRIPTNAME#)targets[i];
+
+                if (target == null)
+                {
+                    continue;
+                }
+
+                Undo.RecordObject(target, "Button");
+
+                // target.PublicMethod();
+
+                if (PrefabUtility.IsPartOfPrefabInstance(target))
+                {
+                    PrefabUtility.RecordPrefabInstancePropertyModifications(target);
+                }
+
+                EditorUtility.SetDirty(target);
+            }
+        }
+    }
+}
