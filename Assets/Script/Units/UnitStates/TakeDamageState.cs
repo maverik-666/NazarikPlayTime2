@@ -10,9 +10,11 @@ namespace Project
         private string _id;
         
         private Unit _unit;
+        private IStateMachine _stateMachine;
+
         private string _dieStateId;
         private string _afterDamageStateId;
-        private IStateMachine _stateMachine;
+        
         private JumpAnimator _jumpAnimator;
 
         public string ID => _id;
@@ -45,6 +47,10 @@ namespace Project
 
         public void Exit()
         {
+            if (_jumpAnimator.IsPlaying)
+            {
+                Debug.Log("aaaa inperupted", this);
+            }
             _unit.SetInvincible(false);
         }
 

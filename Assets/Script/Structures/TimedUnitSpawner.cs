@@ -1,6 +1,5 @@
 namespace Project
 {
-    using System;
     using DG.Tweening;
     using UnityEngine;
     using Random = UnityEngine.Random;
@@ -9,15 +8,6 @@ namespace Project
     [RequireComponent(typeof(Transform))]
     public class TimedUnitSpawner : MonoBehaviour
     {
-        [SerializeField]
-        private Team _team = Team.Blue;
-
-        [SerializeField]
-        private Team _enemyTeam = Team.Blue;
-        
-        [SerializeField]
-        private float _direction = 1;
-        
         [SerializeField]
         private float _startDelay = 10f;
 
@@ -33,13 +23,24 @@ namespace Project
         [SerializeField]
         private Vector2 _yOffsetRange = new Vector2(-0.25f, 0.25f);
 
+        private Team _team = Team.Blue;
+
+        private Team _enemyTeam = Team.Blue;
+        
+        private float _direction = 1;
+
+        
         private float _currentCooldown;
         
         private UnitFactory _unitFactory;
         private bool _isInitialized = false;
 
-        public void Init(UnitFactory unitFactory)
+        public void Init(Team team, Team enemyTeam, float direction, UnitFactory unitFactory)
         {
+            _team = team;
+            _enemyTeam = enemyTeam;
+            _direction = direction;
+            
             _unitFactory = unitFactory;
             _currentCooldown = _startDelay;
             _isInitialized = true;

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614fbb817c494caebe57a8b1d8cc01b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Unit
-  _moveSpeed: 0.3
+  _moveSpeed: 0.35
   _attack: 15
   _attackCooldown: 5
   _visionDistance: 0.6
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fc05bb4fa94ac2b474c40108bfe22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.UnitSkinRenderer
+  _shadow: {fileID: 4555103588184220840}
   _attackParticle: {fileID: 8868273317749228543}
   _dieParticle: {fileID: 7766231209723825605}
   _tiltRotation: 30
@@ -316,7 +317,7 @@ GameObject:
   - component: {fileID: 4555103588184220840}
   - component: {fileID: 4692155412376188544}
   m_Layer: 0
-  m_Name: shadow_medium
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

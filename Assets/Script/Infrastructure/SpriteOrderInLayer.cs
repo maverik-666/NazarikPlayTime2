@@ -19,10 +19,21 @@ namespace Project
 #pragma warning restore IDE0044
 
         private SpriteRenderer _sprite = null;
-        private int _factor = 10;
+        private readonly int _factor = 1000;
 
         private float Y => _baseValueOn ? _baseValueOn.position.y : transform.position.y;
+        
+        private void Start()
+        {
+            _sprite = GetComponent<SpriteRenderer>();
+        }
 
+        private void Update()
+        {
+            _layerId = _sprite.sortingLayerName;
+            _sprite.sortingOrder = -(int)(Y * _factor) + _addedValue;
+        }
+        
 #if UNITY_EDITOR
         private void Reset()
         {
@@ -32,17 +43,5 @@ namespace Project
             }
         }
 #endif
-
-        private void Start()
-        {
-            _sprite = GetComponent<SpriteRenderer>();
-            _factor = 100;
-        }
-
-        private void Update()
-        {
-            _layerId = _sprite.sortingLayerName;
-            _sprite.sortingOrder = -(int)(Y * _factor) + _addedValue;
-        }
     }
 }

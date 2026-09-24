@@ -24,9 +24,10 @@ namespace Project
 
         public void TakeDamage()
         {
+            _shakeTween?.Kill(true); 
+            _shakeTween = transform.DOShakePosition(0.15f, new Vector3(0.25f, 0, 0), 10, 90, false)
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable);
             
-            _shakeTween?.Kill();
-            _shakeTween = transform.DOShakePosition(0.2f, 1, 10, 90, false);
             UpdateHealthText();
         }
 
@@ -37,7 +38,11 @@ namespace Project
 
         public void Die()
         {
-            _shakeTween?.Kill();
+            _shakeTween?.Kill(true);
+            _shakeTween = transform.DOShakePosition(0.15f, new Vector3(0.25f, 0, 0), 10, 90, false)
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetLoops(-1, LoopType.Restart);
+            
             UpdateHealthText();
         }
 

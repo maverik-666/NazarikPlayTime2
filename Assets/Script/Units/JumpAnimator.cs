@@ -24,7 +24,9 @@ namespace Project
         private float _elapsed;
         private bool _playing;
         private Action _onComplete;
-        
+
+        public bool IsPlaying => _playing;
+
         public JumpAnimator(Transform transform)
         {
             _transform = transform;

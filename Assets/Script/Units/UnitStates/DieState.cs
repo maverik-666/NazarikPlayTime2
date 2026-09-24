@@ -10,8 +10,10 @@ namespace Project
         private string _id;
 
         private Unit _unit;
-        private Registry<IDamageable> _damageableRegistry;
         private IStateMachine _stateMachine;
+        
+        private Registry<IDamageable> _damageableRegistry;
+        
         private JumpAnimator _jumpAnimator;
 
         public string ID => _id;
@@ -27,6 +29,7 @@ namespace Project
 
         public void Enter()
         {
+            _unit.SetInvincible(true);
             _damageableRegistry.Remove(_unit);
             _jumpAnimator.Play(-_unit.Direction, _unit.Dispose);
         }

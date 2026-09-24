@@ -59,10 +59,6 @@ namespace Project
             _team = team;
             _enemyTeam = enemyTeam;
             SetDirection(direction);
-
-            _moveSpeed += Random.Range(-0.05f, 0.05f);
-            _attackCooldown += Random.Range(-0.15f, 0.15f);
-            _attack += Random.Range(-5, 5);
             
             _health = new Health(_heathPoints);
             

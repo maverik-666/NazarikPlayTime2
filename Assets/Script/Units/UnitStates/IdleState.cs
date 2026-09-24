@@ -10,11 +10,13 @@ namespace Project
         private string _id;
 
         private Unit _unit;
+        private IStateMachine _stateMachine;
+        
         private Registry<IDamageable> _enemies;
         private Registry<IDamageable> _attackTargets;
+        
         private IAttackState _attackState;
         private string _moveStateId;
-        private IStateMachine _stateMachine;
 
         public string ID => _id;
 

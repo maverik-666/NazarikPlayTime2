@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c4ae421fd749b6a5a07452e9ced8a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.StructureSkinRenderer
-  _healthText: {fileID: 0}
+  _healthText: {fileID: 4325582071963351012}
 --- !u!212 &7526691403857316154
 SpriteRenderer:
   serializedVersion: 2
@@ -106,6 +106,51 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &695359979554553130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7819822771849741652}
+  - component: {fileID: 22632220200254639}
+  m_Layer: 0
+  m_Name: Unit Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7819822771849741652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695359979554553130}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4, y: -1.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1475895502552775909}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &22632220200254639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695359979554553130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efe68959dfe4e47a1aebacf4e784663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.UnitFactory
+  _unitPf: {fileID: 1049892369827953802, guid: 5b7bcad12f5f3864086d21b023262e63, type: 3}
 --- !u!1 &5225077057084433818
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +163,7 @@ GameObject:
   - component: {fileID: 8685263932515296758}
   - component: {fileID: 4325582071963351012}
   m_Layer: 0
-  m_Name: text
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,14 +376,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc476c866b3749559f8e567a47898231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.TimedUnitSpawner
-  _team: 2
-  _enemyTeam: 1
-  _direction: -1
-  _startDelay: 10
+  _startDelay: 0
   _interval: 10
   _spawnCount: 1
   _singleInterval: 0.5
-  _yOffsetRange: {x: -0.25, y: 0.25}
+  _yOffsetRange: {x: -0.05, y: 0.05}
 --- !u!1 &7685678981990754314
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1475895502552775909}
   - component: {fileID: 8171826989576528262}
+  - component: {fileID: 8101988182625038644}
   m_Layer: 0
   m_Name: 'Blue Castle '
   m_TagString: Untagged
@@ -364,12 +407,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7685678981990754314}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7677413753727852391}
+  - {fileID: 7819822771849741652}
   - {fileID: 5362757860185991346}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -387,3 +431,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.Structure
   _heathPoints: 100
   _team: 2
+  _enemyTeam: 1
+  _direction: 1
+--- !u!114 &8101988182625038644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685678981990754314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a1933b7ba14459ac5e4f326f46e399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.EnemyStructure

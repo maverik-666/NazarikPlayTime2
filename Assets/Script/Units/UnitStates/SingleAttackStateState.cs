@@ -11,10 +11,14 @@ namespace Project
         private string _id;
         
         private Unit _unit;
+        private IStateMachine _stateMachine;
+
         private Registry<IDamageable> _targets;
+        
+        private Timer _afterAttackTimer;
         private float _attackDuration;
         private string _afterAttackStateId;
-        private IStateMachine _stateMachine;
+        
         private bool _isOnCooldown;
 
         public string ID => _id;
@@ -28,37 +32,55 @@ namespace Project
             _attackDuration = attackDuration;
             _afterAttackStateId = afterAttackStateId;
             _stateMachine = stateMachine;
+
+            _afterAttackTimer = new Timer();
         }
 
         public void Enter()
         {
-            _targets.Items[0].TakeDamage(_unit.Attack);
-
-            DOTween.Sequence()
-                .SetLink(_unit.gameObject, LinkBehaviour.KillOnDisable)
-                .AppendInterval(_attackDuration)
-                .AppendCallback(AfterAttack);
-
+            for (int i = 0; i < _targets.Count; i++)
+            {
+                if (_targets.Items[i].CanNotTakeDamage)
+                {
+                    continue;
+                }
+                
+                _targets.Items[i].TakeDamage(_unit.Attack);
+                break;
+            }
+            
+            _afterAttackTimer.Start(_attackDuration);
+            
             _isOnCooldown = true;
             DOTween.Sequence()
                 .SetLink(_unit.gameObject, LinkBehaviour.KillOnDisable)
                 .AppendInterval(_unit.AttackCooldown)
                 .AppendCallback(OnCooldownPass);
         }
-
-        private void AfterAttack()
-        {
-            _stateMachine.SetState(_afterAttackStateId);
-        }
-
+        
         private void OnCooldownPass()
         {
             _isOnCooldown = false;
         }
 
-        public void UpdateState() { }
+        public void UpdateState()
+        {
+            _afterAttackTimer.Tick(Time.deltaTime);
+            if (_afterAttackTimer.IsStopped)
+            {
+                AfterAttack();
+            }
+        }
+        
+        private void AfterAttack()
+        {
+            _stateMachine.SetState(_afterAttackStateId);
+        }
 
-        public void Exit() { }
+        public void Exit()
+        {
+            _afterAttackTimer.Reset();
+        }
 
         public void Dispose() { }
     }

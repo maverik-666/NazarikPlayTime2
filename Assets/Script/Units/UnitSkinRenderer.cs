@@ -11,6 +11,9 @@ namespace Project
         private static readonly int _saturationPhaseId = Shader.PropertyToID("_SaturationPhase");
         
         [SerializeField]
+        private SpriteRenderer _shadow;
+        
+        [SerializeField]
         private ParticleSystem _attackParticle;
 
         [SerializeField]
@@ -84,6 +87,7 @@ namespace Project
         private void Die()
         {
             _spriteRenderer.enabled = false;
+            _shadow.enabled = false;
             _dieParticle.Play();
         }
 
@@ -112,7 +116,9 @@ namespace Project
             _spriteRenderer.SetPropertyBlock(_propBlock);
 
             _flashTween?.Kill();
-            _flashTween = DOVirtual.Float(0f, maxValue, duration, SetFillPhase).SetLink(gameObject, LinkBehaviour.KillOnDisable).SetLoops(2, LoopType.Yoyo);
+            _flashTween = DOVirtual.Float(0f, maxValue, duration, SetFillPhase)
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetLoops(2, LoopType.Yoyo);
 
             void SetFillPhase(float phase)
             {

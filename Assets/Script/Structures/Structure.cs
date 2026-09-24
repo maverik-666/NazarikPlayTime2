@@ -12,16 +12,26 @@ namespace Project
         [SerializeField]
         private Team _team = Team.Red;
         
+        [SerializeField]
+        private Team _enemyTeam = Team.Blue;
+        
+        [SerializeField]
+        private int _direction = 1;
+        
         private Health _health;
 
         private StructureSkinRenderer _structureSkinRenderer;
+        private bool _canNotTakeDamage = false;
         private bool _isInitialized = false;
 
         public Vector2 Position => transform.position;
         public Health Health => _health;
         public Team Team => _team;
-        
-        public bool CanNotTakeDamage => true;
+
+        public Team EnemyTeam => _enemyTeam;
+        public int Direction => _direction;
+
+        public bool CanNotTakeDamage => _canNotTakeDamage;
         
         public void Init()
         {
@@ -34,11 +44,20 @@ namespace Project
         
         public void TakeDamage(int damage)
         {
+            _health.TakeDamage(damage);
+
+            if (_health.IsDead)
+            {
+                Die();
+            }
+            
             _structureSkinRenderer.TakeDamage();
         }
 
-        public void Die()
+        private void Die()
         {
+            _canNotTakeDamage = true;
+            
             _structureSkinRenderer.Die();
         }
      
