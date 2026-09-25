@@ -62,20 +62,18 @@ namespace Project
             
             _health = new Health(_heathPoints);
             
-            var attackTargets = new Registry<IDamageable>(8);
-            
-            _stateMachine = new StateMachine();
+            _stateMachine = GetComponentInChildren<StateMachine>();
 
-            var attackState = GetComponentInChildren<SingleAttackStateState>();
-            attackState.Init("Attack", this, attackTargets, 0.5f, "Idle", _stateMachine);
+            var attackState = GetComponentInChildren<SingleAttackState>();
+            attackState.Init("Attack", this, 0.15f, _visionDistance, "Idle", damageableRegistry, _stateMachine);
             _stateMachine.AddState(attackState);
 
             var idleState = GetComponentInChildren<IdleState>();
-            idleState.Init("Idle", this, damageableRegistry, attackTargets, attackState, "Move", _stateMachine);
+            idleState.Init("Idle", this, damageableRegistry, attackState, "Move", _stateMachine);
             _stateMachine.AddState(idleState);
 
             var moveState = GetComponentInChildren<MoveForwardState>();
-            moveState.Init("Move", this, damageableRegistry, attackTargets, attackState, "Idle", _stateMachine);
+            moveState.Init("Move", this, damageableRegistry, attackState, "Idle", _stateMachine);
             _stateMachine.AddState(moveState);
 
             var takeDamageState = GetComponentInChildren<TakeDamageState>();
@@ -86,7 +84,7 @@ namespace Project
             dieState.Init("Die", this, damageableRegistry, _stateMachine);
             _stateMachine.AddState(dieState);
             
-            GetComponentInChildren<UnitAnimatorSkinRenderer>().Init(this, _stateMachine);
+            GetComponentInChildren<CatSkinRenderer>().Init(this, _stateMachine);
             
             _stateMachine.SetState("Idle");
             
@@ -136,13 +134,6 @@ namespace Project
             transform.localScale = new Vector3(_direction, 1, 1);
         }
         
-        public bool IsEnemyInVision(IDamageable enemy)
-        {
-            return !enemy.IsDead 
-                   && enemy.Team == EnemyTeam 
-                   && Mathf.Abs(enemy.Position.x - Position.x) <= VisionDistance;
-        }
-
         public void Dispose()
         {
             Destroy(gameObject);

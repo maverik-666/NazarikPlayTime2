@@ -1,5 +1,8 @@
 namespace Project
 {
+    using System;
+
+    [Serializable]
     public class Timer
     { 
         private float _current = 0;

@@ -157,7 +157,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 76
-      y: 4
+      y: 60
       width: 27
       height: 30
     spriteID: 854db4e6d264e03439dcc51788d2f2dd
@@ -168,29 +168,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 4}
+    uvTransform: {x: 76, y: 60}
   - name: Frame
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 60
-      width: 64
-      height: 48
-    spriteID: c2f28775cbff4da40ac38bb533c0ad75
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 60}
-  - name: FrameLit
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -202,7 +181,7 @@ ScriptedImporter:
       y: 116
       width: 64
       height: 48
-    spriteID: 8ef504e9410309744b6ffd2eb871c2f6
+    spriteID: c2f28775cbff4da40ac38bb533c0ad75
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -211,6 +190,69 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 116}
+  - name: FrameLit
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 172
+      width: 64
+      height: 48
+    spriteID: 8ef504e9410309744b6ffd2eb871c2f6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 172}
+  - name: BackgroundDark
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 60
+      width: 64
+      height: 48
+    spriteID: 65fbb6dbcc6b2db49a74bda00bd546ae
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 60}
+  - name: Golem
+    originalName: 
+    pivot: {x: 0.4848485, y: -0.27272728}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 4
+      width: 33
+      height: 33
+    spriteID: 5d10511e3cc74494ea7694dc121b49cb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 4}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
@@ -241,6 +283,31 @@ ScriptedImporter:
     parentIndex: -1
   - layerIndex: 1
     uuid:
+      value0: 99270226
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: BackgroundDark
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: BackgroundDark
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 64
+        height: 48
+      spriteId: 65fbb6dbcc6b2db49a74bda00bd546ae
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 2
+    uuid:
       value0: 696030502
       value1: 0
       value2: 0
@@ -264,7 +331,32 @@ ScriptedImporter:
     tileCells: []
     tileSetIndex: 0
     parentIndex: -1
-  - layerIndex: 2
+  - layerIndex: 3
+    uuid:
+      value0: 1601828910
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Golem
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Golem
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 16
+        y: 9
+        width: 33
+        height: 33
+      spriteId: 5d10511e3cc74494ea7694dc121b49cb
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 4
     uuid:
       value0: 3154614793
       value1: 0
@@ -289,7 +381,7 @@ ScriptedImporter:
     tileCells: []
     tileSetIndex: 0
     parentIndex: -1
-  - layerIndex: 3
+  - layerIndex: 5
     uuid:
       value0: 4222019128
       value1: 0

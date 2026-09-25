@@ -1,7 +1,13 @@
 namespace Project
 {
+    using UnityEngine;
+
     public interface IIdler
-    {
-        public bool IsEnemyInVision(IDamageable enemy);
+    {        
+        public Vector2 Position { get; }
+        
+        float VisionDistance { get; }
+        
+        public Team EnemyTeam { get; }
     }
 }

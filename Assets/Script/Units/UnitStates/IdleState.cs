@@ -13,19 +13,17 @@ namespace Project
         private IStateMachine _stateMachine;
         
         private Registry<IDamageable> _enemies;
-        private Registry<IDamageable> _attackTargets;
         
         private IAttackState _attackState;
         private string _moveStateId;
 
         public string ID => _id;
 
-        public void Init(string id, IIdler idler, Registry<IDamageable> enemies, Registry<IDamageable> attackTargets, IAttackState attackState, string moveStateId, IStateMachine stateMachine)
+        public void Init(string id, IIdler idler, Registry<IDamageable> enemies, IAttackState attackState, string moveStateId, IStateMachine stateMachine)
         {
             _id = id;
             _idler = idler;
             _enemies = enemies;
-            _attackTargets = attackTargets;
             _attackState = attackState;
             _moveStateId = moveStateId;
             _stateMachine = stateMachine;
@@ -35,14 +33,12 @@ namespace Project
 
         public void UpdateState()
         {
-            _attackTargets.Clear();
             bool foundAny = false;
 
             foreach (var enemy in _enemies.Items)
             {
-                if (_idler.IsEnemyInVision(enemy))
+                if (IsInVision(enemy))
                 {
-                    _attackTargets.Add(enemy);
                     foundAny = true;
                 }
             }
@@ -52,6 +48,14 @@ namespace Project
             else
                 _stateMachine.SetState(_moveStateId);
         }
+        
+        private bool IsInVision(IDamageable enemy)
+        {
+            return !enemy.IsDead 
+                   && enemy.Team == _idler.EnemyTeam
+                   && Mathf.Abs(enemy.Position.x - _idler.Position.x) <= _idler.VisionDistance;
+        }
+
 
         private void FoundAny()
         {

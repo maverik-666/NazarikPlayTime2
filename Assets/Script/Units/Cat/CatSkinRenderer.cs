@@ -4,7 +4,7 @@ namespace Project
     using LudicWorlds;
     using UnityEngine;
 
-    public class UnitAnimatorSkinRenderer : MonoBehaviour
+    public class CatSkinRenderer : MonoBehaviour
     {
         private static readonly int _levelId = Shader.PropertyToID("_Level");
         private static readonly int _saturationColorId = Shader.PropertyToID("_SaturationColor");
@@ -29,7 +29,7 @@ namespace Project
         [SerializeField]
         private float _flashDuration = 0.15f;
         
-        private IUnit _unit;
+        private Cat _unit;
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
         private StateMachine _stateMachine;
@@ -39,7 +39,7 @@ namespace Project
         
         private bool _isInitialized = false;
 
-        public void Init(IUnit unit, StateMachine stateMachine)
+        public void Init(Cat unit, StateMachine stateMachine)
         {
             _unit = unit;
             _stateMachine = stateMachine;
@@ -138,7 +138,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(UnitAnimatorSkinRenderer)} not initialized", this);
+                Debug.LogError($"{nameof(CatSkinRenderer)} not initialized", this);
             }
         }
 #endif

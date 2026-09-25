@@ -12,8 +12,8 @@ namespace Project
         
         float VisionDistance { get; }
 
-        public float Direction { get; }
+        public Team EnemyTeam { get; }
         
-        bool IsEnemyInVision(IDamageable enemy);
+        public float Direction { get; }
     }
 }

@@ -44,15 +44,17 @@ namespace Project
         {
             _structure = structure;
             _moneyCounter = moneyCounter;
+            _cooldownTimer = new Timer();
+            
             _unitFactory = GetComponentInChildren<IUnitFactory>();
             _unitFactory.Init(damageableRegistry);
 
+            _cooldownTimer.Start(_cooldown);
+            
             _moneyCounter = moneyCounter;
             _moneyCounter.ValueChanged += OnMoneyCounterChange;
-            OnMoneyCounterChange(_moneyCounter.CurrentValue);
             
-            _cooldownTimer = new Timer();
-            _cooldownTimer.Start(_cooldown);
+            TryUpdateState();
             
             _isInitialized = true;
         }

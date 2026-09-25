@@ -47,10 +47,6 @@ namespace Project
 
         public void Exit()
         {
-            if (_jumpAnimator.IsPlaying)
-            {
-                Debug.Log("aaaa inperupted", this);
-            }
             _unit.SetInvincible(false);
         }
 

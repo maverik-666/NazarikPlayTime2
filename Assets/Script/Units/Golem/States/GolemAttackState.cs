@@ -4,19 +4,20 @@ namespace Project
     using LudicWorlds;
     using UnityEngine;
 
-    public class SingleAttackStateState : MonoBehaviour, IState, IAttackState
+    public class GolemAttackState : MonoBehaviour, IState, IAttackState
     { 
         [Header("Debug")]
         [SerializeField] 
         private string _id;
         
         private IAttacker _attacker;
+        private IDamageable _damageable; 
+        private Registry<IDamageable> _damageableRegistry;
         private IStateMachine _stateMachine;
 
-        private Registry<IDamageable> _targets;
-        
         private Timer _afterAttackTimer;
         private float _attackDuration;
+        private float _attackDistance;
         private string _afterAttackStateId;
         
         private bool _isOnCooldown;
@@ -24,12 +25,14 @@ namespace Project
         public string ID => _id;
         public bool CanAttack => !_isOnCooldown;
 
-        public void Init(string id, IAttacker attacker, Registry<IDamageable> targets, float attackDuration, string afterAttackStateId, IStateMachine stateMachine)
+        public void Init(string id, IAttacker attacker, IDamageable damageable, float attackDuration, float attackDistance, string afterAttackStateId, Registry<IDamageable> damageableRegistry, IStateMachine stateMachine)
         {
             _id = id;
             _attacker = attacker;
-            _targets = targets;
+            _damageable = damageable;
+            _damageableRegistry = damageableRegistry;
             _attackDuration = attackDuration;
+            _attackDistance = attackDistance;
             _afterAttackStateId = afterAttackStateId;
             _stateMachine = stateMachine;
 
@@ -38,16 +41,7 @@ namespace Project
 
         public void Enter()
         {
-            for (int i = 0; i < _targets.Count; i++)
-            {
-                if (_targets.Items[i].CanNotTakeDamage)
-                {
-                    continue;
-                }
-                
-                _targets.Items[i].TakeDamage(_attacker.Attack);
-                break;
-            }
+            _damageable.SetInvincible(true);
             
             _afterAttackTimer.Start(_attackDuration);
             
@@ -74,8 +68,27 @@ namespace Project
         
         private void AfterAttack()
         {
+            foreach (var damageable in _damageableRegistry.Items)
+            {
+                if (IsAttackable(damageable))
+                {
+                    damageable.TakeDamage(_attacker.Attack);
+                }
+            }
+            
             _stateMachine.SetState(_afterAttackStateId);
         }
+        
+        private bool IsAttackable(IDamageable damageable)
+        {
+            float distance = Mathf.Abs(damageable.Position.x - _attacker.Position.x);
+            
+            return !damageable.IsDead 
+                   && !damageable.CanNotTakeDamage
+                   && damageable.Team == _attacker.EnemyTeam 
+                   && distance <= _attackDistance;
+        }
+
 
         public void Exit()
         {

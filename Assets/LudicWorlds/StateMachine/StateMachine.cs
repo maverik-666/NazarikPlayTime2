@@ -1,80 +1,53 @@
-//Finite State Machine
-using System;
-using System.Collections.Generic;
-
-namespace LudicWorlds
-{
-	public class StateMachine : IStateMachine
+namespace LudicWorlds 
+{ 
+	using UnityEngine;
+	using System;
+	using System.Collections.Generic;
+	
+	public class StateMachine : MonoBehaviour, IStateMachine
 	{
-		protected IState currentState = null;
-		protected IState prevState;
-		protected Dictionary<string, IState> states = new Dictionary<string, IState>();
+		private IState _currentState = null;
+		
+		private IState _prevState;
+		private readonly Dictionary<string, IState> _states = new Dictionary<string, IState>();
 
-		public IState CurrentState
-		{
-			get{ return currentState; }
-		}
+		public IState CurrentState => _currentState;
 
-		public IState PreviousState
-		{
-			get{ return prevState; }
-		}
+		public IState PreviousState => _prevState;
 
 		public Action<IState> StateEntered;
 
 		public void Update()
-		{
-            if (currentState != null)
-            {
-                currentState.UpdateState();
-            }
-		}
+        {
+            _currentState?.UpdateState();
+        }
 
         public void AddState(IState state)
 		{
-			this.states.Add(state.ID, state);
+			_states.Add(state.ID, state);
 		}
 
-        public bool SetState(IState state)
+        public void SetState(IState state)
         {
-            if (state != null)
-            {
-                currentState?.Exit();
+            _currentState?.Exit();
 
-                prevState = currentState;
-                currentState = state;
-                currentState.Enter();
-                StateEntered?.Invoke(currentState);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            _prevState = _currentState;
+            _currentState = state;
+            _currentState.Enter();
+            StateEntered?.Invoke(_currentState);
         }
 
-        public bool SetState(string stateID)
-        {
-            if (currentState != null)
-            {
-                if (stateID.Equals(currentState.ID))
-                    return true;
-            }
-
-            return SetState(states[stateID]);
+        public void SetState(string stateID)
+        { 
+	        SetState(_states[stateID]);
         }
 
         public void ClearStates()
         {
-            foreach (var state in states.Values)
-            {
-                state?.Dispose();
-            }
+            _states.Clear();
 
-            states.Clear();
-
-            currentState = null;
-            prevState = null;
+            _currentState = null;
+            _prevState = null;
         }
     }
 }

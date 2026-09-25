@@ -6,8 +6,8 @@ namespace LudicWorlds
 		IState PreviousState { get; }
 
 		void AddState(IState state);
-		bool SetState(IState state);
-		bool SetState(string stateID);
+		void SetState(IState state);
+		void SetState(string stateID);
 		void ClearStates();
 	}
 }

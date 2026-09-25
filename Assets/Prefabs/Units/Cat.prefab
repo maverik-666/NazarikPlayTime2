@@ -213,6 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8736998595581744456}
+  - component: {fileID: 4078047128195282633}
   - component: {fileID: 8842658802734802946}
   - component: {fileID: 597304097126157547}
   - component: {fileID: 3223037254167220513}
@@ -240,6 +241,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6767558189574402644}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4078047128195282633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6339566913096609678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee1d0df355a60c449a8a30da193e5de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LudicWorlds.StateMachine
 --- !u!114 &8842658802734802946
 MonoBehaviour:
   m_ObjectHideFlags: 0

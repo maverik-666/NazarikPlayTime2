@@ -2,6 +2,7 @@ namespace Project
 {
     using LudicWorlds;
     using UnityEngine;
+    using UnityEngine.UIElements;
 
     public class MoveForwardState : MonoBehaviour, IState
     { 
@@ -13,19 +14,17 @@ namespace Project
         private IStateMachine _stateMachine;
         
         private Registry<IDamageable> _enemies;
-        private Registry<IDamageable> _attackTargets;
         
         private IAttackState _attackState;
         private string _idleStateId;
 
         public string ID => _id;
 
-        public void Init(string id, IMover mover, Registry<IDamageable> enemies, Registry<IDamageable> attackTargets, IAttackState attackState, string idleStateId, IStateMachine stateMachine)
+        public void Init(string id, IMover mover, Registry<IDamageable> enemies, IAttackState attackState, string idleStateId, IStateMachine stateMachine)
         {
             _id = id;
             _mover = mover;
             _enemies = enemies;
-            _attackTargets = attackTargets;
             _attackState = attackState;
             _idleStateId = idleStateId;
             _stateMachine = stateMachine;
@@ -35,14 +34,12 @@ namespace Project
 
         public void UpdateState()
         {
-            _attackTargets.Clear();
             bool foundAny = false;
 
             foreach (var enemy in _enemies.Items)
             {
-                if (_mover.IsEnemyInVision(enemy))
+                if (IsInVision(enemy))
                 {
-                    _attackTargets.Add(enemy);
                     foundAny = true;
                 }
             }
@@ -51,6 +48,13 @@ namespace Project
                 FoundEnemy();
             else
                 Move();
+        }
+
+        private bool IsInVision(IDamageable enemy)
+        {
+            return !enemy.IsDead 
+                   && enemy.Team == _mover.EnemyTeam
+                   && Mathf.Abs(enemy.Position.x - _mover.Position.x) <= _mover.VisionDistance;
         }
 
         private void FoundEnemy()

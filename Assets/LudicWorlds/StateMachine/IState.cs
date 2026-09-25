@@ -2,7 +2,7 @@ using System;
 
 namespace LudicWorlds
 {
-	public interface IState : IDisposable
+	public interface IState
 	{
 		string ID { get; }
 
