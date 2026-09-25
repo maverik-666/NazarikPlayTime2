@@ -29,7 +29,7 @@ namespace Project
         [SerializeField]
         private float _flashDuration = 0.15f;
         
-        private Unit _unit;
+        private IUnit _unit;
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
         private StateMachine _stateMachine;
@@ -39,7 +39,7 @@ namespace Project
         
         private bool _isInitialized = false;
 
-        public void Init(Unit unit, StateMachine stateMachine)
+        public void Init(IUnit unit, StateMachine stateMachine)
         {
             _unit = unit;
             _stateMachine = stateMachine;
@@ -138,7 +138,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(Unit)} not initialized", this);
+                Debug.LogError($"{nameof(UnitSkinRenderer)} not initialized", this);
             }
         }
 #endif

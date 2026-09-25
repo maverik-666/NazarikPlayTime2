@@ -1,13 +1,15 @@
 namespace Project
 {
     using UnityEngine;
+    using UnityEngine.Serialization;
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Transform))]
-    public class UnitFactory : MonoBehaviour
+    public class CatFactory : MonoBehaviour, IUnitFactory
     {
+        [FormerlySerializedAs("_unitPf")]
         [SerializeField]
-        private Unit _unitPf;
+        private Cat _catPf;
         
         private Registry<IDamageable> _damageableRegistry;
         private bool _isInitialized = false;
@@ -20,7 +22,7 @@ namespace Project
 
         public void Create(Vector3 position, Team team, Team enemyTeam, float direction)
         {
-            var unit = Instantiate(_unitPf, position, Quaternion.identity, transform);
+            var unit = Instantiate(_catPf, position, Quaternion.identity, transform);
             unit.Init(team, enemyTeam, direction, _damageableRegistry);
             _damageableRegistry.Add(unit);
         }
@@ -30,7 +32,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(UnitFactory)} not initialized", this);
+                Debug.LogError($"{nameof(CatFactory)} not initialized", this);
             }
         }
 #endif

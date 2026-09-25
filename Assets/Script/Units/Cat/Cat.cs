@@ -5,7 +5,7 @@ namespace Project
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Transform))]
-    public class Unit : MonoBehaviour, IDamageable
+    public class Cat : MonoBehaviour, IIdler, IMover, IAttacker, IUnit
     {
         [SerializeField]
         private float _moveSpeed = 1;
@@ -86,18 +86,23 @@ namespace Project
             dieState.Init("Die", this, damageableRegistry, _stateMachine);
             _stateMachine.AddState(dieState);
             
-            GetComponentInChildren<UnitSkinRenderer>().Init(this, _stateMachine);
+            GetComponentInChildren<UnitAnimatorSkinRenderer>().Init(this, _stateMachine);
             
             _stateMachine.SetState("Idle");
             
             _isInitialized = true;
         }
         
-        public void Update()
+        private void Update()
         {
             _stateMachine.Update();
         }
-        
+
+        public void SetInvincible(bool value)
+        {
+            _canNotTakeDamage = value;
+        }
+
         public void TakeDamage(int damage)
         {
             if (CanNotTakeDamage)
@@ -138,11 +143,6 @@ namespace Project
                    && Mathf.Abs(enemy.Position.x - Position.x) <= VisionDistance;
         }
 
-        public void SetInvincible(bool value)
-        {
-            _canNotTakeDamage = value;
-        }
-
         public void Dispose()
         {
             Destroy(gameObject);
@@ -153,7 +153,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(Unit)} not initialized", this);
+                Debug.LogError($"{nameof(Cat)} not initialized", this);
             }
         }
 
