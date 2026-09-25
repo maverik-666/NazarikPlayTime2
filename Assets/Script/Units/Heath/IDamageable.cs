@@ -13,6 +13,8 @@ namespace Project
         public bool IsDead => Health.IsDead;
 
         public bool CanNotTakeDamage { get; }
+
+        public void SetInvincible(bool value);
         
         public void TakeDamage(int damage);
     }

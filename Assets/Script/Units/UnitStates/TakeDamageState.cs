@@ -9,7 +9,7 @@ namespace Project
         [SerializeField] 
         private string _id;
         
-        private Unit _unit;
+        private IUnit _unit;
         private IStateMachine _stateMachine;
 
         private string _dieStateId;
@@ -19,7 +19,7 @@ namespace Project
 
         public string ID => _id;
 
-        public void Init(string id, Unit unit, string dieStateId, string afterDamageStateId, IStateMachine stateMachine)
+        public void Init(string id, IUnit unit, string dieStateId, string afterDamageStateId, IStateMachine stateMachine)
         {
             _id = id;
             _unit = unit;

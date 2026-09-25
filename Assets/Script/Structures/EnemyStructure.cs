@@ -17,7 +17,7 @@ namespace Project
             _structure.Init();
             damageableRegistry.Add(_structure);
             
-            var unitFactory = GetComponentInChildren<UnitFactory>(true);
+            var unitFactory = GetComponentInChildren<IUnitFactory>(true);
             unitFactory.Init(damageableRegistry);
 
             var unitSpawner = GetComponentInChildren<TimedUnitSpawner>(true);

@@ -9,7 +9,7 @@ namespace Project
         [SerializeField] 
         private string _id;
 
-        private Unit _unit;
+        private IIdler _idler;
         private IStateMachine _stateMachine;
         
         private Registry<IDamageable> _enemies;
@@ -20,10 +20,10 @@ namespace Project
 
         public string ID => _id;
 
-        public void Init(string id, Unit unit, Registry<IDamageable> enemies, Registry<IDamageable> attackTargets, IAttackState attackState, string moveStateId, IStateMachine stateMachine)
+        public void Init(string id, IIdler idler, Registry<IDamageable> enemies, Registry<IDamageable> attackTargets, IAttackState attackState, string moveStateId, IStateMachine stateMachine)
         {
             _id = id;
-            _unit = unit;
+            _idler = idler;
             _enemies = enemies;
             _attackTargets = attackTargets;
             _attackState = attackState;
@@ -40,7 +40,7 @@ namespace Project
 
             foreach (var enemy in _enemies.Items)
             {
-                if (_unit.IsEnemyInVision(enemy))
+                if (_idler.IsEnemyInVision(enemy))
                 {
                     _attackTargets.Add(enemy);
                     foundAny = true;

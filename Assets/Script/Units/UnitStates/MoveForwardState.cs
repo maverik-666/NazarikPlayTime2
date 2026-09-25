@@ -9,7 +9,7 @@ namespace Project
         [SerializeField] 
         private string _id;
         
-        private Unit _unit;
+        private IMover _mover;
         private IStateMachine _stateMachine;
         
         private Registry<IDamageable> _enemies;
@@ -20,10 +20,10 @@ namespace Project
 
         public string ID => _id;
 
-        public void Init(string id, Unit unit, Registry<IDamageable> enemies, Registry<IDamageable> attackTargets, IAttackState attackState, string idleStateId, IStateMachine stateMachine)
+        public void Init(string id, IMover mover, Registry<IDamageable> enemies, Registry<IDamageable> attackTargets, IAttackState attackState, string idleStateId, IStateMachine stateMachine)
         {
             _id = id;
-            _unit = unit;
+            _mover = mover;
             _enemies = enemies;
             _attackTargets = attackTargets;
             _attackState = attackState;
@@ -40,7 +40,7 @@ namespace Project
 
             foreach (var enemy in _enemies.Items)
             {
-                if (_unit.IsEnemyInVision(enemy))
+                if (_mover.IsEnemyInVision(enemy))
                 {
                     _attackTargets.Add(enemy);
                     foundAny = true;
@@ -63,7 +63,7 @@ namespace Project
 
         private void Move()
         {
-            _unit.transform.position += Vector3.right * (_unit.Direction * _unit.MoveSpeed * Time.deltaTime);
+            _mover.transform.position += Vector3.right * (_mover.Direction * _mover.MoveSpeed * Time.deltaTime);
         }
 
         public void Exit() { }

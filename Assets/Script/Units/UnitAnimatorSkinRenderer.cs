@@ -4,7 +4,7 @@ namespace Project
     using LudicWorlds;
     using UnityEngine;
 
-    public class UnitSkinRenderer : MonoBehaviour
+    public class UnitAnimatorSkinRenderer : MonoBehaviour
     {
         private static readonly int _levelId = Shader.PropertyToID("_Level");
         private static readonly int _saturationColorId = Shader.PropertyToID("_SaturationColor");
@@ -138,7 +138,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(UnitSkinRenderer)} not initialized", this);
+                Debug.LogError($"{nameof(UnitAnimatorSkinRenderer)} not initialized", this);
             }
         }
 #endif

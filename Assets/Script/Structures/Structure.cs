@@ -42,6 +42,11 @@ namespace Project
             _isInitialized = true;
         }
         
+        public void SetInvincible(bool value)
+        {
+            _canNotTakeDamage = value;
+        }
+        
         public void TakeDamage(int damage)
         {
             _health.TakeDamage(damage);

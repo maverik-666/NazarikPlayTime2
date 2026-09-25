@@ -32,10 +32,10 @@ namespace Project
         
         private float _currentCooldown;
         
-        private UnitFactory _unitFactory;
+        private IUnitFactory _unitFactory;
         private bool _isInitialized = false;
 
-        public void Init(Team team, Team enemyTeam, float direction, UnitFactory unitFactory)
+        public void Init(Team team, Team enemyTeam, float direction, IUnitFactory unitFactory)
         {
             _team = team;
             _enemyTeam = enemyTeam;

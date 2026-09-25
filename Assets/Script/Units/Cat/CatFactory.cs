@@ -1,13 +1,11 @@
 namespace Project
 {
     using UnityEngine;
-    using UnityEngine.Serialization;
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Transform))]
     public class CatFactory : MonoBehaviour, IUnitFactory
     {
-        [FormerlySerializedAs("_unitPf")]
         [SerializeField]
         private Cat _catPf;
         

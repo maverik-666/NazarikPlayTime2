@@ -10,7 +10,7 @@ namespace Project
         [SerializeField] 
         private string _id;
         
-        private Unit _unit;
+        private IAttacker _attacker;
         private IStateMachine _stateMachine;
 
         private Registry<IDamageable> _targets;
@@ -24,10 +24,10 @@ namespace Project
         public string ID => _id;
         public bool CanAttack => !_isOnCooldown;
 
-        public void Init(string id, Unit unit, Registry<IDamageable> targets, float attackDuration, string afterAttackStateId, IStateMachine stateMachine)
+        public void Init(string id, IAttacker attacker, Registry<IDamageable> targets, float attackDuration, string afterAttackStateId, IStateMachine stateMachine)
         {
             _id = id;
-            _unit = unit;
+            _attacker = attacker;
             _targets = targets;
             _attackDuration = attackDuration;
             _afterAttackStateId = afterAttackStateId;
@@ -45,7 +45,7 @@ namespace Project
                     continue;
                 }
                 
-                _targets.Items[i].TakeDamage(_unit.Attack);
+                _targets.Items[i].TakeDamage(_attacker.Attack);
                 break;
             }
             
@@ -53,8 +53,8 @@ namespace Project
             
             _isOnCooldown = true;
             DOTween.Sequence()
-                .SetLink(_unit.gameObject, LinkBehaviour.KillOnDisable)
-                .AppendInterval(_unit.AttackCooldown)
+                .SetLink(_attacker.gameObject, LinkBehaviour.KillOnDisable)
+                .AppendInterval(_attacker.AttackCooldown)
                 .AppendCallback(OnCooldownPass);
         }
         

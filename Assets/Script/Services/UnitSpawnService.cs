@@ -23,7 +23,7 @@ namespace Project
         private MoneyCounter _moneyCounter;
         private Timer _cooldownTimer;
         
-        private UnitFactory _unitFactory;
+        private IUnitFactory _unitFactory;
 
         private bool _isAvailable = false;
         private bool _isInitialized = false;
@@ -44,7 +44,7 @@ namespace Project
         {
             _structure = structure;
             _moneyCounter = moneyCounter;
-            _unitFactory = GetComponentInChildren<UnitFactory>();
+            _unitFactory = GetComponentInChildren<IUnitFactory>();
             _unitFactory.Init(damageableRegistry);
 
             _moneyCounter = moneyCounter;
