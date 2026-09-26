@@ -118,7 +118,7 @@ namespace Project
                 .SetRelative()
                 .SetEase(Ease.OutBack));
             
-            _menuSeq.Insert(0.45f, _character.DOAnchorPosX(-_slideOffset, 0.5f)
+            _menuSeq.Insert(0, _character.DOAnchorPosX(-_slideOffset, 1)
                 .SetRelative()
                 .SetEase(Ease.OutBack));
         }
@@ -144,7 +144,7 @@ namespace Project
                 .SetRelative()
                 .SetEase(Ease.InBack));
             
-            _menuSeq.Insert(0.45f, _character.DOAnchorPosX(_slideOffset, 0.5f)
+            _menuSeq.Insert(0, _character.DOAnchorPosX(_slideOffset, 1)
                 .SetRelative()
                 .SetEase(Ease.InBack));
         }
