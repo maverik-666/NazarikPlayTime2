@@ -56,7 +56,7 @@ MonoBehaviour:
   _attackDistance: 2
   _visionDistance: 0.75
   _heathPoints: 500
-  _knockPoints: 0000000032000000
+  _knockPoints: 32000000
 --- !u!1 &4539971602745553208
 GameObject:
   m_ObjectHideFlags: 0

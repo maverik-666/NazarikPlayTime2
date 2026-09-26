@@ -50,6 +50,7 @@ namespace Project
         {
             if (state.ID == "GolemDie")
             {
+                Die();
                 return;
             } 
             
@@ -88,6 +89,13 @@ namespace Project
             _attackParticle.Play();
         }
 
+        
+        private void GolemDie()
+        {
+            _spriteRenderer.enabled = false;
+            _shadow.enabled = false;
+        }
+        
         private void Die()
         {
             _spriteRenderer.enabled = false;

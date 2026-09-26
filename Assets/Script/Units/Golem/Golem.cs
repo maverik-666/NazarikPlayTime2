@@ -1,5 +1,6 @@
 namespace Project
 {
+    using DG.Tweening;
     using LudicWorlds;
     using UnityEngine;
 
@@ -142,15 +143,16 @@ namespace Project
             _direction = Mathf.Sign(direction);
             transform.localScale = new Vector3(_direction, 1, 1);
         }
-        
-        public bool IsEnemyInVision(IDamageable enemy)
-        {
-            return !enemy.IsDead 
-                   && enemy.Team == EnemyTeam 
-                   && Mathf.Abs(enemy.Position.x - Position.x) <= VisionDistance;
-        }
 
         public void Dispose()
+        {
+            var seq = DOTween.Sequence();
+            seq.SetLink(gameObject, LinkBehaviour.KillOnDestroy);
+            seq.AppendInterval(2);
+            seq.AppendCallback(DestroySelf);
+        }
+
+        private void DestroySelf()
         {
             Destroy(gameObject);
         }

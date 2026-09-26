@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.TimeScaler
   _reset: 0
-  _timeScale: 2.74
+  _timeScale: 1
 --- !u!114 &644393680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1553,6 +1553,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5522416600877768493, guid: 339bc5b3d45c557469120cd64e716bb1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975424909205081998, guid: 339bc5b3d45c557469120cd64e716bb1, type: 3}
+      propertyPath: _price
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975424909205081998, guid: 339bc5b3d45c557469120cd64e716bb1, type: 3}
+      propertyPath: _cooldown
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
