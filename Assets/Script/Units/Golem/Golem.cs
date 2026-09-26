@@ -105,11 +105,6 @@ namespace Project
             _isInitialized = true;
         }
         
-        private void Update()
-        {
-            _stateMachine.Update();
-        }
-
         public void SetInvincible(bool value)
         {
             _canNotTakeDamage = value;

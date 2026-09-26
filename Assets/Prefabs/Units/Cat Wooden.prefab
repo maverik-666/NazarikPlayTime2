@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.Unit
   _moveSpeed: 0.3
   _attack: 15
-  _attackCooldown: 4.5
+  _attackCooldown: 4
   _visionDistance: 0.6
   _heathPoints: 75
   _knockPoints: 1900000032000000

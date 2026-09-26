@@ -17,7 +17,7 @@ namespace LudicWorlds
 
 		public Action<IState> StateEntered;
 
-		public void Update()
+		private void Update()
         {
             _currentState?.UpdateState();
         }
