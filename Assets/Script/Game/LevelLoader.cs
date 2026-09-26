@@ -19,7 +19,7 @@ namespace Project
             _isInitialized = true;
         }
 
-        public void RestartCurrent()
+        public void LoadCurrent()
         { 
             _loadingScreen.Show(RestartCurrentAfterAnimation);
         }

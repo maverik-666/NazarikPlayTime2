@@ -7,6 +7,17 @@ namespace Project
     {
         private void Awake()
         {
+            var loadingScreen = GetComponentInChildren<LoadingScreen>(true);
+            loadingScreen.Init();
+            
+            var levelLoader = GetComponentInChildren<LevelLoader>(true);
+            levelLoader.Init(loadingScreen);
+            
+            var progress = GetComponentInChildren<Progress>(true);
+            progress.Init();
+
+            GetComponentInChildren<PauseMenu>(true).Init(levelLoader);
+            
             var damageableRegistry = new Registry<IDamageable>(200);
 
             var camera = GetComponentInChildren<Camera>(true);

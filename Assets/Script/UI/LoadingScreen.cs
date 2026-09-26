@@ -30,6 +30,7 @@ namespace Project
             _fadeTween?.Kill();
             _fadeTween = _canvasGroup.DOFade(1, 0.3f)
                 .SetEase(Ease.OutSine)
+                .SetUpdate(true)
                 .OnComplete(callback.Invoke);
         }
 

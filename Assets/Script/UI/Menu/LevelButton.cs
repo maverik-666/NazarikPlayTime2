@@ -95,8 +95,11 @@ namespace Project
             
             _seq = DOTween.Sequence();
             _seq.SetLink(gameObject, LinkBehaviour.KillOnDestroy);
-            _seq.Append(_wrap.DOAnchorPosY(_slideOffset, 0.5f).SetRelative().SetEase(Ease.InOutSine));
-            _seq.Join(_canvasGroup.DOFade(1, 0.5f).SetEase(Ease.InOutSine));
+            _seq.Append(_wrap.DOAnchorPosY(_slideOffset, 0.5f)
+                .SetRelative()
+                .SetEase(Ease.OutBack));
+            _seq.Join(_canvasGroup.DOFade(1, 0.3f)
+                .SetEase(Ease.InOutSine));
         }
 
         public void Hide()
@@ -107,8 +110,11 @@ namespace Project
             
             _seq = DOTween.Sequence();
             _seq.SetLink(gameObject, LinkBehaviour.KillOnDestroy);
-            _seq.Append(_wrap.DOAnchorPosY(-_slideOffset, 0.5f).SetRelative().SetEase(Ease.InOutSine));
-            _seq.Join(_canvasGroup.DOFade(0, 0.5f).SetEase(Ease.InOutSine));
+            _seq.Append(_wrap.DOAnchorPosY(-_slideOffset, 0.5f)
+                .SetRelative()
+                .SetEase(Ease.InBack));
+            _seq.Join(_canvasGroup.DOFade(0, 0.3f)
+                .SetEase(Ease.InOutSine));
             
             Deselect();
         }

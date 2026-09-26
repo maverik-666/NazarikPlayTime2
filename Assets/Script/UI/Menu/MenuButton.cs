@@ -9,7 +9,6 @@ namespace Project
     [RequireComponent(typeof(Transform))]
     public class MenuButton : MonoBehaviour, IPointerClickHandler
     {
-        
         private RectTransform _rectTransform;
         private Action _clickAction;
         private Tween _scaleTween;
