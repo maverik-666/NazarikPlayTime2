@@ -7,6 +7,9 @@ namespace Project
     {
         private void Awake()
         {
+            var timeSpeedHandler = GetComponentInChildren<TimeSpeedHandler>(true);
+            timeSpeedHandler.Init();
+            
             var loadingScreen = GetComponentInChildren<LoadingScreen>(true);
             loadingScreen.Init();
             
@@ -16,7 +19,7 @@ namespace Project
             var progress = GetComponentInChildren<Progress>(true);
             progress.Init();
 
-            GetComponentInChildren<PauseMenu>(true).Init(levelLoader);
+            GetComponentInChildren<PauseMenu>(true).Init(timeSpeedHandler, levelLoader);
             
             var damageableRegistry = new Registry<IDamageable>(200);
 
@@ -55,6 +58,12 @@ namespace Project
             
             serviceButtonPanel.Init();
             serviceButtonCreator.Init(services.ToArray(), serviceButtonPanel);
+            
+            var gameOverMenu = GetComponentInChildren<GameOverMenu>(true);
+            gameOverMenu.Init(levelLoader);
+            
+            var gameOverHandler = GetComponentInChildren<GameOverHandler>(true);
+            gameOverHandler.Init(playerStructure, enemyStructure, cameraMover, timeSpeedHandler, serviceButtonPanel, gameOverMenu, progress);
         }
     }
 }

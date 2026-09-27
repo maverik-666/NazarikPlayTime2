@@ -13,7 +13,7 @@ Shader "Custom/UI/GlowHighlight"
         _GlowIntensity ("Glow Intensity", Range(0, 5)) = 1.2
         _GlowFalloff ("Glow Falloff", Range(0.1, 4)) = 0.45
         _ShadowThreshold("Shadow Threshold", Range(0,1)) = 0.8
-        _Quality("Quality", Range(2, 12)) = 6
+        _Quality("Quality", Range(1, 12)) = 6
 
         [HideInInspector] _StencilComp ("Stencil Comparison", Float) = 8
         [HideInInspector] _Stencil ("Stencil ID", Float) = 0

@@ -24,15 +24,18 @@ namespace Project
         [SerializeField]
         private CanvasGroup _frameLit;
         
-        private IService _service; 
-        
+        private IService _service;
+
+        private RectTransform _rect;
         private Tween _jumpTween;
         private Tween _litTween;
 
         private bool _isInitialized = false;
-
+        
         public void Init(IService service)
         {
+            _rect = GetComponent<RectTransform>();
+            
             _service = service;
             _service.StateChanged += UpdateState;
             _frameLit.alpha = 0;
@@ -51,7 +54,7 @@ namespace Project
                 _service.Execute();
                 
                 _jumpTween?.Kill(true);
-                _jumpTween = transform.DOMoveY(10, 0.3f)
+                _jumpTween = _rect.DOAnchorPosY(10, 0.3f)
                     .SetRelative()
                     .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                     .SetEase(Ease.OutCubic)
@@ -60,7 +63,7 @@ namespace Project
             else
             {
                 _jumpTween?.Kill(true);
-                _jumpTween = transform.DOShakePosition(0.3f, Vector2.right * 2)
+                _jumpTween = _rect.DOShakeAnchorPos(0.3f, Vector2.right * 2)
                     .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                     .SetEase(Ease.OutCubic);
             }

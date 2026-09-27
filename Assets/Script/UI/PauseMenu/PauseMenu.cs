@@ -42,13 +42,15 @@ namespace Project
         [SerializeField]
         private float _slideOffset = 200;
 
+        private TimeSpeedHandler _timeSpeedHandler;
         private LevelLoader _levelLoader;
         private Sequence _seq;
         
         private bool _isInitialized = false;
 
-        public void Init(LevelLoader levelLoader)
+        public void Init(TimeSpeedHandler timeSpeedHandler, LevelLoader levelLoader)
         {
+            _timeSpeedHandler = timeSpeedHandler;
             _levelLoader = levelLoader;
             
             _pauseButton.Init(OnPauseClick);
@@ -91,7 +93,7 @@ namespace Project
 
         private void Show()
         {
-            StopTime();
+            _timeSpeedHandler.StopTime();
             _canvasGroup.blocksRaycasts = true;
             
             _seq?.Kill(true);
@@ -109,7 +111,7 @@ namespace Project
 
         private void Hide()
         {
-            RenewTime();
+            _timeSpeedHandler.RenewTime();
             _canvasGroup.blocksRaycasts = false;
             
             _seq?.Kill(true);
@@ -132,16 +134,6 @@ namespace Project
                 .SetRelative()
                 .SetEase(Ease.InOutSine)
                 .SetLoops(-1, LoopType.Yoyo);
-        }
-
-        private void StopTime()
-        {
-            Time.timeScale = 0;
-        }
-        
-        private void RenewTime()
-        {
-            Time.timeScale = 1;
         }
         
 #if UNITY_EDITOR

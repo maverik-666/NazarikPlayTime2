@@ -37,10 +37,10 @@ Material:
     - _GlowAlpha: 1
     - _GlowFalloff: 0.1
     - _GlowIntensity: 1
-    - _GlowSize: 8
+    - _GlowSize: 16
     - _NoiseScale: 8.08
     - _NoiseStrength: 0
-    - _Quality: 2
+    - _Quality: 1
     - _ShadowThreshold: 0.895
     - _Stencil: 0
     - _StencilComp: 8

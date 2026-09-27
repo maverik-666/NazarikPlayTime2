@@ -38,6 +38,7 @@ namespace Project
         {
             _panelHoverZone = GetComponentInChildren<PanelHoverZone>(true);
             _panelHoverZone.Init(this);
+            _panelHoverZone.enabled = false;
             
             _buttons = new List<ServiceButton>();
             
@@ -57,6 +58,7 @@ namespace Project
             _slideTween?.Kill();
             _slideTween = _panel.DOAnchorPosY(_shownPoint.anchoredPosition.y, _slideDuration)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetUpdate(true)
                 .SetEase(Ease.OutBack);
         }
 
@@ -65,6 +67,7 @@ namespace Project
             _slideTween?.Kill();
             _slideTween = _panel.DOAnchorPosY(_hiddenPoint.anchoredPosition.y, _slideDuration)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetUpdate(true)
                 .SetEase(Ease.OutBack);       
         }
 

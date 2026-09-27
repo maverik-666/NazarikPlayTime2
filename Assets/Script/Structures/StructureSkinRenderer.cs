@@ -10,6 +10,9 @@ namespace Project
     {
         [SerializeField]
         private TMP_Text _healthText;
+
+        [SerializeField]
+        private ParticleSystem _dieParticle;
         
         private Health _health; 
         private Tween _shakeTween;
@@ -39,11 +42,14 @@ namespace Project
         public void Die()
         {
             _shakeTween?.Kill(true);
-            _shakeTween = transform.DOShakePosition(0.15f, new Vector3(0.25f, 0, 0), 10, 90, false)
+            _shakeTween = transform.DOShakePosition(0.15f, new Vector3(0.25f, 0, 0))
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetUpdate(true)
                 .SetLoops(-1, LoopType.Restart);
             
             UpdateHealthText();
+            
+            _dieParticle.Play();
         }
 
 #if UNITY_EDITOR

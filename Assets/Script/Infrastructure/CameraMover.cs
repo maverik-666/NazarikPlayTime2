@@ -38,6 +38,7 @@ public class CameraMover : MonoBehaviour
     private Camera _camera;
     private float _targetOrthoSize;
     private Vector3 _targetPosition;
+    private bool _isLocked;
 
     private float _lastAspect;
 
@@ -46,6 +47,15 @@ public class CameraMover : MonoBehaviour
         _camera = GetComponent<Camera>();
         _lastAspect = _camera.aspect;
         SnapAll();
+    }
+
+    public void LockAt(Vector3 position, float orthoSize)
+    {
+        _isLocked = true;
+        _targetPosition = position;
+
+        _targetOrthoSize = ClampOrthoSize(orthoSize);
+        ClampTargetPosition();
     }
     
     private void SnapAll()
@@ -62,13 +72,16 @@ public class CameraMover : MonoBehaviour
     private void Update()
     {
         CheckAspectChanged();
-        HandleZoom();
-        HandleDrag();
+
+        if (!_isLocked)
+        {
+            HandleZoom(); 
+            HandleDrag();
+        }
+        
         ApplyMovement();
     }
-
-
-
+    
     private void CheckAspectChanged()
     {
         if (Mathf.Approximately(_camera.aspect, _lastAspect))
@@ -116,7 +129,7 @@ public class CameraMover : MonoBehaviour
 
     private void ApplyMovement()
     {
-        float t = Time.deltaTime;
+        float t = Time.unscaledDeltaTime;
         _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, _targetOrthoSize, _zoomSmoothSpeed * t);
 
         float halfH = _camera.orthographicSize;

@@ -1,5 +1,6 @@
 namespace Project
 {
+    using System;
     using UnityEngine;
 
     [DisallowMultipleComponent]
@@ -23,6 +24,8 @@ namespace Project
         private StructureSkinRenderer _structureSkinRenderer;
         private bool _canNotTakeDamage = false;
         private bool _isInitialized = false;
+
+        public Action Death;
 
         public Vector2 Position => transform.position;
         public Health Health => _health;
@@ -51,12 +54,12 @@ namespace Project
         {
             _health.TakeDamage(damage);
 
+            _structureSkinRenderer.TakeDamage();
+            
             if (_health.IsDead)
             {
                 Die();
             }
-            
-            _structureSkinRenderer.TakeDamage();
         }
 
         private void Die()
@@ -64,6 +67,8 @@ namespace Project
             _canNotTakeDamage = true;
             
             _structureSkinRenderer.Die();
+            
+            Death?.Invoke();
         }
      
 #if UNITY_EDITOR
