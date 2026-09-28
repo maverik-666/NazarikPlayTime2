@@ -12,6 +12,9 @@ namespace Project
 
         [SerializeField]
         private float _cooldown = 10;
+
+        [SerializeField]
+        private Unlockable _unlockable = Unlockable.None;
         
         [SerializeField]
         private ServiceButton _serviceButtonPf;
@@ -37,6 +40,7 @@ namespace Project
         public float CurrentCooldown => _cooldownTimer.Current;
         
         public bool IsAvailable => _isAvailable;
+        public Unlockable Unlockable => _unlockable;
 
         public ServiceButton ServiceButtonPf => _serviceButtonPf;
 

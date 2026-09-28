@@ -35,7 +35,7 @@ namespace Project
         private Health _health;
         private Team _team;
         private Team _enemyTeam;
-        private float _direction = -1;
+        private float _direction = 1;
         
         private StateMachine _stateMachine;
 

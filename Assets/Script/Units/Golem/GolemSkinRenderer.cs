@@ -50,7 +50,7 @@ namespace Project
         {
             if (state.ID == "GolemDie")
             {
-                Die();
+                GolemDie();
                 return;
             } 
             

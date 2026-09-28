@@ -11,14 +11,17 @@ namespace Project
         private ServiceButtonPanel _serviceButtonPanel = null;
         private bool _isInitialized = false;
 
-        public void Init(IService[] services, ServiceButtonPanel serviceButtonPanel)
+        public void Init(IService[] services, ServiceButtonPanel serviceButtonPanel, Progress progress)
         { 
             _services = services;
             _serviceButtonPanel = serviceButtonPanel;
             
             foreach (var service in _services)
             {
-                CreateButtonFor(service);
+                if (progress.IsUnlocked(service.Unlockable))
+                {
+                    CreateButtonFor(service);
+                }
             }
             
             _isInitialized = true;

@@ -1,7 +1,11 @@
 namespace Project
-{ 
+{
+    using System;
+
     public class MainMenuCompositionRoot : Context
     {
+        private LoadingScreen _loadingScreen;
+        
         private void Awake()
         {
             var loadingScreen = GetComponentInChildren<LoadingScreen>(true);
@@ -26,6 +30,13 @@ namespace Project
             }
             
             GetComponentInChildren<MenuCat>(true).Init();
+
+            _loadingScreen = loadingScreen;
+        }
+
+        private void Start()
+        {
+            _loadingScreen.Hide();
         }
     }
 }

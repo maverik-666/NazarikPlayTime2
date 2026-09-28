@@ -12,6 +12,8 @@ namespace Project
         
         public Team EnemyTeam { get; }
         
+        public float Direction { get; }
+        
         public float AttackCooldown { get; }
     }
 }

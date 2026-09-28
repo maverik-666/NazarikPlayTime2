@@ -25,7 +25,7 @@ namespace Project
 
         public void Init(
             PlayerStructure playerStructure,
-            EnemyStructure enemyStructure,
+            IEnemyStructure enemyStructure,
             CameraMover cameraMover,
             TimeSpeedHandler timeSpeedHandler,
             ServiceButtonPanel serviceButtonPanel,

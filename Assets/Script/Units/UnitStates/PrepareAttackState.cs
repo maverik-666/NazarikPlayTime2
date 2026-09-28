@@ -9,7 +9,6 @@ namespace Project
         [SerializeField]
         private string _id;
 
-        private IIdler _idler;
         private IStateMachine _stateMachine;
         
         private IAttackState _attackState;

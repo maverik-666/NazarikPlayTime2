@@ -33,7 +33,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(CatFactory)} not initialized", this);
+                Debug.LogError($"{nameof(GolemFactory)} not initialized", this);
             }
         }
 #endif

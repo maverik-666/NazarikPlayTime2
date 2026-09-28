@@ -4,7 +4,7 @@ namespace Project
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Transform))]
-    public class EnemyStructure : MonoBehaviour
+    public class Level1EnemyStructure : MonoBehaviour, IEnemyStructure
     {
         private Structure _structure;
         private bool _isInitialized = false;
@@ -31,7 +31,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(EnemyStructure)} not initialized", this);
+                Debug.LogError($"{nameof(Level1EnemyStructure)} not initialized", this);
             }
         }
 #endif

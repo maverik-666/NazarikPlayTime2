@@ -20,7 +20,6 @@ namespace Project
             
             _canvasGroup.alpha = 1;
             _canvasGroup.blocksRaycasts = true;
-            Hide();
         }
 
         public void Show(Action callback)
@@ -40,6 +39,7 @@ namespace Project
             
             _fadeTween?.Kill();
             _fadeTween = _canvasGroup.DOFade(0, 0.3f)
+                .SetUpdate(true)
                 .SetEase(Ease.OutSine);
         }
 

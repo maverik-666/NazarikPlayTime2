@@ -14,6 +14,8 @@ namespace Project
         
         public bool IsAvailable { get; } 
         
+        public Unlockable Unlockable { get; }
+        
         public ServiceButton ServiceButtonPf { get; }
 
         public void Execute();

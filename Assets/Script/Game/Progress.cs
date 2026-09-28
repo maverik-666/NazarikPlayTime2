@@ -16,7 +16,7 @@ namespace Project
 
         public bool IsUnlocked(Unlockable unlockable)
         {
-            return PlayerPrefs.HasKey(unlockable.ToString());
+            return unlockable == Unlockable.None || PlayerPrefs.HasKey(unlockable.ToString());
         }
 
         public void Unlock(Unlockable unlockable)

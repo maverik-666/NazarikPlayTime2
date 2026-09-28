@@ -6,10 +6,13 @@ namespace Project
     [RequireComponent(typeof(Transform))]
     public class TimeSpeedHandler : MonoBehaviour
     {
+        private float _currentSpeed = 1;
         private bool _isInitialized = false;
 
         public void Init()
         {
+            _currentSpeed = 1;
+            Time.timeScale = _currentSpeed;
             _isInitialized = true;
         }
         
@@ -20,7 +23,13 @@ namespace Project
         
         public void RenewTime()
         {
-            Time.timeScale = 1;
+            Time.timeScale = _currentSpeed;
+        }
+
+        public void SetSpeed(float speed)
+        {
+            _currentSpeed = speed;
+            Time.timeScale = _currentSpeed;
         }
 
 
