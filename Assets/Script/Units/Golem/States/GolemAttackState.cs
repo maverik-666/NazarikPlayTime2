@@ -12,7 +12,7 @@ namespace Project
         
         private IAttacker _attacker;
         private IDamageable _damageable; 
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
         private IStateMachine _stateMachine;
 
         private Timer _afterAttackTimer;
@@ -25,7 +25,7 @@ namespace Project
         public string ID => _id;
         public bool CanAttack => !_isOnCooldown;
 
-        public void Init(string id, IAttacker attacker, IDamageable damageable, float attackDuration, float attackDistance, string afterAttackStateId, Registry<IDamageable> damageableRegistry, IStateMachine stateMachine)
+        public void Init(string id, IAttacker attacker, IDamageable damageable, float attackDuration, float attackDistance, string afterAttackStateId, DamageableRegistry damageableRegistry, IStateMachine stateMachine)
         {
             _id = id;
             _attacker = attacker;
@@ -68,14 +68,15 @@ namespace Project
         
         private void AfterAttack()
         {
-            foreach (var damageable in _damageableRegistry.Items)
+            for (int i = _damageableRegistry.Items.Count - 1; i >= 0; i--)
             {
+                var damageable = _damageableRegistry.Items[i];
                 if (IsAttackable(damageable))
                 {
                     damageable.TakeDamage(_attacker.Attack);
                 }
             }
-            
+
             _stateMachine.SetState(_afterAttackStateId);
         }
         

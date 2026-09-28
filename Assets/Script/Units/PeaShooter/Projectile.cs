@@ -25,14 +25,14 @@ namespace Project
         private Team _enemyTeam;
         private float _direction;
 
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
 
         private bool _isDepleted = false;
         private bool _isInitialized = false;
         
         public Vector2 Position => transform.position;
 
-        public void Init(Team enemyTeam, float direction, Registry<IDamageable> damageableRegistry)
+        public void Init(Team enemyTeam, float direction, DamageableRegistry damageableRegistry)
         {
             _enemyTeam = enemyTeam;
             _direction = direction;

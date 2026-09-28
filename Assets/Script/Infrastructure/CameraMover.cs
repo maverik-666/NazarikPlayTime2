@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -168,6 +169,15 @@ public class CameraMover : MonoBehaviour
         float maxFromWidth = _boundsWidth * 0.5f / _camera.aspect;
         float effectiveMax = Mathf.Min(_maxZoom, maxFromHeight, maxFromWidth);
         return Mathf.Clamp(size, _minZoom, effectiveMax);
+    }
+
+    public void Shake(float duration, float strength)
+    {
+        DOTween.Shake(() => _targetPosition, (x) =>
+        {
+            _targetPosition = x;
+
+        }, duration, strength);
     }
     
     

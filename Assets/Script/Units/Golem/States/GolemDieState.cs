@@ -13,11 +13,11 @@ namespace Project
         private GolemRemainsFactory _golemRemainsFactory;
         private IStateMachine _stateMachine;
         
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
         
         public string ID => _id;
 
-        public void Init(string id, Golem unit, Registry<IDamageable> damageableRegistry, GolemRemainsFactory golemRemainsFactory, IStateMachine stateMachine)
+        public void Init(string id, Golem unit, DamageableRegistry damageableRegistry, GolemRemainsFactory golemRemainsFactory, IStateMachine stateMachine)
         {
             _id = id;
             _unit = unit;

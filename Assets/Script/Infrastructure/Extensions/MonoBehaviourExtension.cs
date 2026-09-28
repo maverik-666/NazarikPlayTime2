@@ -2,6 +2,7 @@ namespace Project
 {
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.UI;
 
     public static class Extensions
     {
@@ -63,6 +64,20 @@ namespace Project
         public static float CalcRotation(this Vector2 v)
         {
             return Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+        }
+        
+        public static void SetAlpha(this SpriteRenderer renderer, float alpha)
+        {
+            Color color = renderer.color;
+            color.a = Mathf.Clamp01(alpha);
+            renderer.color = color;
+        }
+
+        public static void SetAlpha(this Image image, float alpha)
+        {
+            Color color = image.color;
+            color.a = Mathf.Clamp01(alpha);
+            image.color = color;
         }
     }
 }

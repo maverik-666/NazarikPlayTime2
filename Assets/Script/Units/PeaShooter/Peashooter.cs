@@ -50,7 +50,7 @@ namespace Project
         public float Direction => _direction;
         
 
-        public void Init(Team team, Team enemyTeam, float direction, Registry<IDamageable> damageableRegistry, ProjectileFactory projectileFactory)
+        public void Init(Team team, Team enemyTeam, float direction, DamageableRegistry damageableRegistry, ProjectileFactory projectileFactory)
         {
             _team = team;
             _enemyTeam = enemyTeam;

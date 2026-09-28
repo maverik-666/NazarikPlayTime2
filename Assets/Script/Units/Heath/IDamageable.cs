@@ -4,6 +4,8 @@ namespace Project
 
     public interface IDamageable
     {
+        public Transform transform { get; }
+        
         public Vector2 Position { get; }
         
         public Health Health { get; }

@@ -4,5 +4,6 @@ namespace Project
     {
         None,
         Golem,
+        Olmek,
     }
 }

@@ -16,7 +16,7 @@ namespace Project
         private Health _health;
 
         private GolemRemainsSkinRenderer _skinRenderer;
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
         private JumpAnimator _jumpAnimator;
         
         private bool _canNotTakeDamage = false;
@@ -28,7 +28,7 @@ namespace Project
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
         
-        public void Init(Team team, float direction, Registry<IDamageable> damageableRegistry)
+        public void Init(Team team, float direction, DamageableRegistry damageableRegistry)
         {
             _team = team;
             _direction = direction;

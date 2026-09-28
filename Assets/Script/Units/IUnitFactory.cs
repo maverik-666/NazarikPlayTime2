@@ -4,7 +4,7 @@ namespace Project
 
     public interface IUnitFactory
     {
-        void Init(Registry<IDamageable> damageableRegistry);
+        void Init(DamageableRegistry damageableRegistry);
         
         void Create(Vector3 position, Team team, Team enemyTeam, float direction);
     }

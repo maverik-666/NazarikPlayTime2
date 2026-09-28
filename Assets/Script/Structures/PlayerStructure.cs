@@ -12,7 +12,7 @@ namespace Project
 
         public Structure Structure => _structure;
 
-        public void Init(Registry<IDamageable> damageableRegistry)
+        public void Init(DamageableRegistry damageableRegistry)
         {
             _structure = GetComponent<Structure>();
             _structure.Init();

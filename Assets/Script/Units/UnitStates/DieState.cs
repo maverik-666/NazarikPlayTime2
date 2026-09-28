@@ -12,13 +12,13 @@ namespace Project
         private IUnit _unit;
         private IStateMachine _stateMachine;
         
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
         
         private JumpAnimator _jumpAnimator;
 
         public string ID => _id;
 
-        public void Init(string id, IUnit unit, Registry<IDamageable> damageableRegistry, IStateMachine stateMachine)
+        public void Init(string id, IUnit unit, DamageableRegistry damageableRegistry, IStateMachine stateMachine)
         {
             _id = id;
             _unit = unit;

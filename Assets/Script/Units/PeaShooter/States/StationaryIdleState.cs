@@ -12,13 +12,13 @@ namespace Project
         private IIdler _idler;
         private IStateMachine _stateMachine;
         
-        private Registry<IDamageable> _enemies;
+        private DamageableRegistry _enemies;
         
         private IAttackState _attackState;
 
         public string ID => _id;
 
-        public void Init(string id, IIdler idler, Registry<IDamageable> enemies, IAttackState attackState, IStateMachine stateMachine)
+        public void Init(string id, IIdler idler, DamageableRegistry enemies, IAttackState attackState, IStateMachine stateMachine)
         {
             _id = id;
             _idler = idler;

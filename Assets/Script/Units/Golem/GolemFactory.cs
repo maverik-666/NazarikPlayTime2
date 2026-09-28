@@ -9,11 +9,11 @@ namespace Project
         [SerializeField]
         private Golem _golemPf;
         
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
         private GolemRemainsFactory _golemRemainsFactory;
         private bool _isInitialized = false;
 
-        public void Init( Registry<IDamageable> damageableRegistry)
+        public void Init( DamageableRegistry damageableRegistry)
         {
             _damageableRegistry = damageableRegistry;
             _golemRemainsFactory = GetComponent<GolemRemainsFactory>();

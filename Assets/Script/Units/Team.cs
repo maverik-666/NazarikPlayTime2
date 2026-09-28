@@ -8,5 +8,6 @@ namespace Project
         Any,
         Red,
         Blue,
+        None,
     }
 }

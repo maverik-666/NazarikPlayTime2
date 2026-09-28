@@ -44,7 +44,7 @@ namespace Project
 
         public ServiceButton ServiceButtonPf => _serviceButtonPf;
 
-        public void Init(Structure structure, MoneyCounter moneyCounter, Registry<IDamageable> damageableRegistry)
+        public void Init(Structure structure, MoneyCounter moneyCounter, DamageableRegistry damageableRegistry)
         {
             _structure = structure;
             _moneyCounter = moneyCounter;

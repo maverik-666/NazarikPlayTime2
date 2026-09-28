@@ -9,10 +9,10 @@ namespace Project
         [SerializeField]
         private Cat _catPf;
         
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
         private bool _isInitialized = false;
 
-        public void Init(Registry<IDamageable> damageableRegistry)
+        public void Init(DamageableRegistry damageableRegistry)
         {
             _damageableRegistry = damageableRegistry;
             _isInitialized = true;

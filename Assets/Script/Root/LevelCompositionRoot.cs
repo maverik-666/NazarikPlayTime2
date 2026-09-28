@@ -3,8 +3,8 @@ namespace Project
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class Level2CompositionRoot : Context
-    {
+    public class LevelCompositionRoot : Context
+   {
         private LoadingScreen _loadingScreen = null;
         private CountDownScreen _countDownScreen = null;
         
@@ -27,7 +27,7 @@ namespace Project
 
             GetComponentInChildren<PauseMenu>(true).Init(timeSpeedHandler, levelLoader);
             
-            var damageableRegistry = new Registry<IDamageable>(200);
+            var damageableRegistry = new DamageableRegistry(200);
 
             var camera = GetComponentInChildren<Camera>(true);
             var cameraMover = GetComponentInChildren<CameraMover>(true);
@@ -48,7 +48,7 @@ namespace Project
             var playerStructure = GetComponentInChildren<PlayerStructure>(true);
             playerStructure.Init(damageableRegistry);
 
-            var enemyStructure = GetComponentInChildren<Level2EnemyStructure>(true);
+            var enemyStructure = GetComponentInChildren<IEnemyStructure>(true);
             enemyStructure.Init(damageableRegistry);
             
             var services = new List<IService>();
@@ -58,6 +58,13 @@ namespace Project
                 service.Init(playerStructure.Structure, moneyCounter, damageableRegistry);
                 services.Add(service);
             }
+
+            var unitSelector = GetComponentInChildren<UnitSelector>(true);
+            unitSelector.Init(camera, damageableRegistry);
+            
+            var olmekSpawnService = GetComponentInChildren<OlmekSpawnService>(true);
+            olmekSpawnService.Init(playerStructure.Structure, moneyCounter, unitSelector, cameraMover, damageableRegistry); 
+            services.Add(olmekSpawnService);
 
             var serviceButtonPanel = GetComponentInChildren<ServiceButtonPanel>(true);
             var serviceButtonCreator = GetComponentInChildren<ServiceButtonCreator>(true);

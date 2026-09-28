@@ -13,14 +13,14 @@ namespace Project
         private IMover _mover;
         private IStateMachine _stateMachine;
         
-        private Registry<IDamageable> _enemies;
+        private DamageableRegistry _enemies;
         
         private IAttackState _attackState;
         private string _idleStateId;
 
         public string ID => _id;
 
-        public void Init(string id, IMover mover, Registry<IDamageable> enemies, IAttackState attackState, string idleStateId, IStateMachine stateMachine)
+        public void Init(string id, IMover mover, DamageableRegistry enemies, IAttackState attackState, string idleStateId, IStateMachine stateMachine)
         {
             _id = id;
             _mover = mover;

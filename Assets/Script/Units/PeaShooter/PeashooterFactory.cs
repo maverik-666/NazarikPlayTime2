@@ -10,10 +10,10 @@ namespace Project
         private Peashooter _peaShooterPf;
         
         private ProjectileFactory _projectileFactory;
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
         private bool _isInitialized = false;
 
-        public void Init(Registry<IDamageable> damageableRegistry)
+        public void Init(DamageableRegistry damageableRegistry)
         {
             _damageableRegistry = damageableRegistry;
 

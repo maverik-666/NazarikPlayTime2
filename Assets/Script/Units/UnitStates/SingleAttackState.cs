@@ -13,7 +13,7 @@ namespace Project
         
         private IAttacker _attacker;
         private IStateMachine _stateMachine;
-        private Registry<IDamageable> _damageableRegistry;
+        private DamageableRegistry _damageableRegistry;
 
         private Timer _afterAttackTimer;
         private float _attackDuration;
@@ -25,7 +25,7 @@ namespace Project
         public string ID => _id;
         public bool CanAttack => !_isOnCooldown;
 
-        public void Init(string id, IAttacker attacker, float attackDuration, float attackDistance, string afterAttackStateId, Registry<IDamageable> damageableRegistry, IStateMachine stateMachine)
+        public void Init(string id, IAttacker attacker, float attackDuration, float attackDistance, string afterAttackStateId, DamageableRegistry damageableRegistry, IStateMachine stateMachine)
         {
             _id = id;
             _attacker = attacker;

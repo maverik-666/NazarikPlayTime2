@@ -59,6 +59,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.GolemRemainsFactory
   _golemPf: {fileID: 6055299800856530213, guid: 55c0dc9e4ec78024699f54a3cdd68a1b, type: 3}
+--- !u!1 &532459229400552145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 144290601077996124}
+  - component: {fileID: 4748749809435282053}
+  m_Layer: 0
+  m_Name: Olmek Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &144290601077996124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532459229400552145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1890118972877716672}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4748749809435282053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532459229400552145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9061f7dc515641ac991db8ce6422174c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.OlmekFactory
+  _olmekPf: {fileID: 7601384445320793916, guid: 6c29b95507175e5468a9579ca21200ec, type: 3}
 --- !u!1 &564195439875735969
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.UnitSpawnService
   _price: 400
   _cooldown: 60
+  _unlockable: 0
   _serviceButtonPf: {fileID: 8365463615301766112, guid: 997cc7e808d475e47938854cd2a9a4ee, type: 3}
   _yOffsetRange: {x: -0.05, y: 0.05}
 --- !u!1 &1060376363745876218
@@ -155,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.UnitSpawnService
   _price: 75
   _cooldown: 0.5
+  _unlockable: 0
   _serviceButtonPf: {fileID: 8365463615301766112, guid: 5ff792c2b9033a041af8fc24493a71a9, type: 3}
   _yOffsetRange: {x: -0.05, y: 0.05}
 --- !u!1 &3365614333437373092
@@ -233,5 +280,55 @@ Transform:
   m_Children:
   - {fileID: 1854849695510898837}
   - {fileID: 135208898175482179}
+  - {fileID: 1890118972877716672}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9094605227317438795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890118972877716672}
+  - component: {fileID: 700404095614024499}
+  m_Layer: 0
+  m_Name: OlmekSpawnService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1890118972877716672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094605227317438795}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 144290601077996124}
+  m_Father: {fileID: 5522416600877768493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700404095614024499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094605227317438795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1942740535471da05ed220ed6bec62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.OlmekSpawnService
+  _price: 175
+  _cooldown: 30
+  _unlockable: 2
+  _serviceButtonPf: {fileID: 8365463615301766112, guid: 6a4b97eba13dd10468a6218127f9e68a, type: 3}
