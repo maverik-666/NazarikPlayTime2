@@ -5,7 +5,7 @@ namespace Project
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Transform))]
-    public class Level2EnemyStructure : MonoBehaviour, IEnemyStructure
+    public class Level4EnemyStructure : MonoBehaviour, IEnemyStructure
     {
         [SerializeField]
         private float _peaShooterSpawnDelay;
@@ -28,12 +28,14 @@ namespace Project
             _peashooterFactory = GetComponentInChildren<PeashooterFactory>();
             _peashooterFactory.Init(damageableRegistry);
             
-            var unitSpawner = GetComponentInChildren<TimedUnitSpawner>(true);
-            var unitFactory = unitSpawner.GetComponentInChildren<IUnitFactory>(true);
+            foreach (var unitSpawner in GetComponentsInChildren<TimedUnitSpawner>(true))
+            {
+                var unitFactory = unitSpawner.GetComponentInChildren<IUnitFactory>(true);
             
-            unitFactory.Init(damageableRegistry);
-            unitSpawner.Init(_structure.Team, _structure.EnemyTeam, _structure.Direction, unitFactory);
-            
+                unitFactory.Init(damageableRegistry);
+                unitSpawner.Init(_structure.Team, _structure.EnemyTeam, _structure.Direction, unitFactory);
+            }
+        
             DOTween.Sequence()
                 .SetLink(gameObject, LinkBehaviour.KillOnDestroy)
                 .AppendInterval(_peaShooterSpawnDelay)
@@ -41,7 +43,7 @@ namespace Project
             
             _isInitialized = true;
         }
-
+        
         private void CreatePeaShooter()
         {
             _peashooterFactory.Create(_peaShooterSpawnPoint.position, Structure.Team, _structure.EnemyTeam, _structure.Direction);
@@ -52,7 +54,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(Level2EnemyStructure)} not initialized", this);
+                Debug.LogError($"{nameof(Level4EnemyStructure)} not initialized", this);
             }
         }
 #endif

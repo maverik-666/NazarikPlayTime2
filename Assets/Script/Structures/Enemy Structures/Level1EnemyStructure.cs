@@ -17,12 +17,13 @@ namespace Project
             _structure.Init();
             damageableRegistry.Add(_structure);
             
-            var unitFactory = GetComponentInChildren<IUnitFactory>(true);
-            unitFactory.Init(damageableRegistry);
-
-            var unitSpawner = GetComponentInChildren<TimedUnitSpawner>(true);
-            unitSpawner.Init(_structure.Team, _structure.EnemyTeam, _structure.Direction, unitFactory);
+            foreach (var unitSpawner in GetComponentsInChildren<TimedUnitSpawner>(true))
+            {
+                var unitFactory = unitSpawner.GetComponentInChildren<IUnitFactory>(true);
             
+                unitFactory.Init(damageableRegistry);
+                unitSpawner.Init(_structure.Team, _structure.EnemyTeam, _structure.Direction, unitFactory);
+            }
             _isInitialized = true;
         }
 

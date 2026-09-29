@@ -8,10 +8,13 @@ namespace Project
     [RequireComponent(typeof(Transform))]
     public class CountDownScreen : MonoBehaviour
     {
+        [SerializeField]
+        private CanvasGroup _root;
+        
         [Header("Texts")]
         [SerializeField]
         private CanvasGroup[] _numbers;
-
+        
         [SerializeField]
         private float _interval = 0.45f; 
         
@@ -21,11 +24,14 @@ namespace Project
         public void Init(Action afterAction)
         {
             _afterAction = afterAction;
+            _root.blocksRaycasts = false;
             _isInitialized = true;
         }
 
         public void Show()
         {
+            _root.blocksRaycasts = true;
+            
             var seq = DOTween.Sequence();
             seq.SetLink(gameObject, LinkBehaviour.KillOnDestroy);
             seq.SetUpdate(true);
@@ -43,7 +49,13 @@ namespace Project
                     .Append(number.DOFade(0, 0.15f)));
             }
 
-            seq.OnComplete(_afterAction.Invoke);
+            seq.OnComplete(AfterCountDown);
+        }
+
+        private void AfterCountDown()
+        {
+            _root.blocksRaycasts = false;
+            _afterAction?.Invoke();
         }
 
 #if UNITY_EDITOR

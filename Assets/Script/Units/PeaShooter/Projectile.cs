@@ -82,10 +82,11 @@ namespace Project
 
         private bool IsAttackable(IDamageable damageable, out float distance)
         {
-            distance = Mathf.Abs(damageable.Position.x - Position.x);
+            float delta = damageable.Position.x - Position.x;
+
+            distance = Mathf.Abs(delta) + damageable.Radius * -Mathf.Sign(delta);
             
             return !damageable.IsDead 
-                   && !damageable.CanNotTakeDamage
                    && damageable.Team == _enemyTeam 
                    && distance <= _hitDistance;
         }

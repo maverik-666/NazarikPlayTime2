@@ -329,6 +329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.OlmekSpawnService
   _price: 175
-  _cooldown: 30
+  _cooldown: 15
   _unlockable: 2
   _serviceButtonPf: {fileID: 8365463615301766112, guid: 6a4b97eba13dd10468a6218127f9e68a, type: 3}

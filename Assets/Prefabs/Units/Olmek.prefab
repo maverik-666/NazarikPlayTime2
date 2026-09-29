@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b29280e7615452fae0f52eaecedfc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Olmek
+  _radius: 0.5
   _heathPoints: 10000
   _attackDistance: 1
   _attack: 100
-  _jumpOffScreenDelay: 10
+  _jumpOffScreenDelay: 20
 --- !u!1 &4539971602745553208
 GameObject:
   m_ObjectHideFlags: 0

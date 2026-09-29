@@ -52,9 +52,13 @@ namespace Project
 
         private bool IsInVision(IDamageable enemy)
         {
+            float delta = enemy.Position.x - _mover.Position.x;
+
+            float distance = Mathf.Abs(delta) + enemy.Radius * -Mathf.Sign(delta);
+            
             return !enemy.IsDead 
                    && enemy.Team == _mover.EnemyTeam
-                   && Mathf.Abs(enemy.Position.x - _mover.Position.x) <= _mover.VisionDistance;
+                   && Mathf.Abs(distance) <= _mover.VisionDistance;
         }
 
         private void FoundEnemy()

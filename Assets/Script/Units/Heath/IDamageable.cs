@@ -8,6 +8,8 @@ namespace Project
         
         public Vector2 Position { get; }
         
+        public float Radius { get; }
+        
         public Health Health { get; }
         
         public Team Team { get; }

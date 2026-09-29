@@ -8,6 +8,8 @@ namespace Project
     public class Olmek : MonoBehaviour, IDamageable
     {
         [SerializeField]
+        private float _radius;
+        [SerializeField]
         private int _heathPoints = 10000;
 
         [SerializeField]
@@ -30,6 +32,8 @@ namespace Project
         private bool _isInitialized = false;
 
         public Vector2 Position => transform.position;
+        public float Radius => _radius;
+        
         public Health Health => _health;
         
         public Team Team => _team;

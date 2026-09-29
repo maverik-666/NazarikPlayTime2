@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.Ghost
   _moveSpeed: 0.2
   _attack: 3
-  _attackCooldown: 1
+  _attackCooldown: 1.5
   _visionDistance: 0.2
   _heathPoints: 1
 --- !u!1 &4539971602745553208

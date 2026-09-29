@@ -86,7 +86,7 @@ namespace Project
             
             return !damageable.IsDead 
                    && !damageable.CanNotTakeDamage
-                   && damageable.Team == _attacker.EnemyTeam 
+                   && (damageable.Team == _attacker.EnemyTeam || damageable.Team == Team.Unknown) 
                    && distance <= _attackDistance;
         }
 

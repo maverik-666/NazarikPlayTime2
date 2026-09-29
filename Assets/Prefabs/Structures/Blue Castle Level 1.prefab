@@ -26,11 +26,11 @@ Transform:
   m_GameObject: {fileID: 4826292712342466135}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -1.25, z: 0}
+  m_LocalPosition: {x: 4.6, y: -1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1838973262177941447}
+  m_Father: {fileID: 7540816137180424318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9169644948896702166
 MonoBehaviour:
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 7540816137180424318}
   - component: {fileID: 6884226923228361877}
   m_Layer: 0
-  m_Name: UnitSpawner
+  m_Name: Cat Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,8 @@ Transform:
   m_LocalPosition: {x: -0.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 804004629688339020}
   m_Father: {fileID: 1838973262177941447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6884226923228361877
@@ -151,9 +152,6 @@ PrefabInstance:
     - {fileID: 6180466962724733378, guid: e9546a16186f440448ff0b1fb19e9182, type: 3}
     - {fileID: 695359979554553130, guid: e9546a16186f440448ff0b1fb19e9182, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1475895502552775909, guid: e9546a16186f440448ff0b1fb19e9182, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 804004629688339020}
     - targetCorrespondingSourceObject: {fileID: 1475895502552775909, guid: e9546a16186f440448ff0b1fb19e9182, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7540816137180424318}

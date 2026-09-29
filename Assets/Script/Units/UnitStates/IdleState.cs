@@ -51,9 +51,13 @@ namespace Project
         
         private bool IsInVision(IDamageable enemy)
         {
+            float delta = enemy.Position.x - _idler.Position.x;
+
+            float distance = Mathf.Abs(delta) + enemy.Radius * -Mathf.Sign(delta);
+            
             return !enemy.IsDead 
                    && enemy.Team == _idler.EnemyTeam
-                   && Mathf.Abs(enemy.Position.x - _idler.Position.x) <= _idler.VisionDistance;
+                   && Mathf.Abs(distance) <= _idler.VisionDistance;
         }
 
 

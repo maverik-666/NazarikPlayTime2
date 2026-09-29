@@ -544,6 +544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CountDowm
       objectReference: {fileID: 0}
+    - target: {fileID: 9018864191765768707, guid: 58feb3b1aa9ddc44a8842b3433eee166, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1571,7 +1575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4169799519626727586, guid: f14f3febf536376419682260b5ed8dcd, type: 3}
       propertyPath: _heathPoints
-      value: 300
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 6341491812690248351, guid: f14f3febf536376419682260b5ed8dcd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2092,6 +2096,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1889361933}
     m_Modifications:
+    - target: {fileID: 1741862217579317719, guid: 6f29d8b598ed21145af9523b201d77b5, type: 3}
+      propertyPath: _interval
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741862217579317719, guid: 6f29d8b598ed21145af9523b201d77b5, type: 3}
+      propertyPath: _singleInterval
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2238046016014349597, guid: 6f29d8b598ed21145af9523b201d77b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -2132,13 +2144,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4413648812010267562, guid: 6f29d8b598ed21145af9523b201d77b5, type: 3}
+      propertyPath: _interval
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413648812010267562, guid: 6f29d8b598ed21145af9523b201d77b5, type: 3}
+      propertyPath: _singleInterval
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7051873465631826418, guid: 6f29d8b598ed21145af9523b201d77b5, type: 3}
       propertyPath: m_Name
       value: Blue Castle
       objectReference: {fileID: 0}
-    - target: {fileID: 8799018292009953406, guid: 6f29d8b598ed21145af9523b201d77b5, type: 3}
-      propertyPath: _heathPoints
-      value: 750
+    - target: {fileID: 8827465612537625879, guid: 6f29d8b598ed21145af9523b201d77b5, type: 3}
+      propertyPath: _peaShooterSpawnDelay
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2303,18 +2323,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 644393678}
     m_Modifications:
-    - target: {fileID: 700404095614024499, guid: 339bc5b3d45c557469120cd64e716bb1, type: 3}
-      propertyPath: _price
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 700404095614024499, guid: 339bc5b3d45c557469120cd64e716bb1, type: 3}
-      propertyPath: _cooldown
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5412882419923760816, guid: 339bc5b3d45c557469120cd64e716bb1, type: 3}
-      propertyPath: _price
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5498588495609539607, guid: 339bc5b3d45c557469120cd64e716bb1, type: 3}
       propertyPath: m_Name
       value: --- SERVICES ---

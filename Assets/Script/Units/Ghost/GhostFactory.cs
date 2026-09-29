@@ -10,7 +10,7 @@ namespace Project
         private Ghost _ghostPf;
 
         [SerializeField]
-        private Team _ghostTeam = Team.None;
+        private Team _ghostTeam = Team.Unknown;
         
         private DamageableRegistry _damageableRegistry;
         private bool _isInitialized = false;

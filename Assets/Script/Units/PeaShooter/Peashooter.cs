@@ -34,6 +34,7 @@ namespace Project
         private bool _isInitialized = false;
 
         public Vector2 Position => transform.position;
+        public float Radius => 0;
         public Health Health => _health;
         
         public Team Team => _team;

@@ -47,6 +47,7 @@ namespace Project
             _isInitialized = true;
         }
         
+        /*
         private void OnGUI()
         {
             if (GUI.Button(new Rect(0,0, 100, 50), "PlayerWin"))
@@ -59,6 +60,7 @@ namespace Project
                 EnemyWin();
             }
         }
+        */
 
 
         private void EnemyWin()
