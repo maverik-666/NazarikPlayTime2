@@ -11,13 +11,17 @@ namespace Project
         
         private DamageableRegistry _damageableRegistry;
         private GolemRemainsFactory _golemRemainsFactory;
+        private UnitRegistry _unitRegistry;
         private bool _isInitialized = false;
 
-        public void Init( DamageableRegistry damageableRegistry)
+        public void Init(DamageableRegistry damageableRegistry, UnitRegistry unitRegistry)
         {
             _damageableRegistry = damageableRegistry;
+            _unitRegistry = unitRegistry;
+            
             _golemRemainsFactory = GetComponent<GolemRemainsFactory>();
             _golemRemainsFactory.Init(damageableRegistry);
+            
             _isInitialized = true;
         }
 
@@ -26,6 +30,7 @@ namespace Project
             var unit = Instantiate(_golemPf, position, Quaternion.identity, transform);
             unit.Init(team, enemyTeam, direction, _damageableRegistry, _golemRemainsFactory);
             _damageableRegistry.Add(unit);
+            _unitRegistry.Add(unit);
         }
 
 #if UNITY_EDITOR

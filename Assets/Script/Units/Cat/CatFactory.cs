@@ -10,11 +10,13 @@ namespace Project
         private Cat _catPf;
         
         private DamageableRegistry _damageableRegistry;
+        private UnitRegistry _unitRegistry;
         private bool _isInitialized = false;
 
-        public void Init(DamageableRegistry damageableRegistry)
+        public void Init(DamageableRegistry damageableRegistry, UnitRegistry unitRegistry)
         {
             _damageableRegistry = damageableRegistry;
+            _unitRegistry = unitRegistry;
             _isInitialized = true;
         }
 
@@ -23,6 +25,7 @@ namespace Project
             var unit = Instantiate(_catPf, position, Quaternion.identity, transform);
             unit.Init(team, enemyTeam, direction, _damageableRegistry);
             _damageableRegistry.Add(unit);
+            _unitRegistry.Add(unit);
         }
 
 #if UNITY_EDITOR

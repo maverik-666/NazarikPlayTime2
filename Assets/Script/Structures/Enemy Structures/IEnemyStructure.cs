@@ -4,6 +4,6 @@ namespace Project
     {
         Structure Structure { get; }
 
-        public void Init(DamageableRegistry damageableRegistry);
+        public void Init(DamageableRegistry damageableRegistry, UnitRegistry unitRegistry);
     }
 }

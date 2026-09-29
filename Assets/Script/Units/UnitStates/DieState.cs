@@ -13,9 +13,8 @@ namespace Project
         private IStateMachine _stateMachine;
         
         private DamageableRegistry _damageableRegistry;
+        private UnitRegistry _unitRegistry;
         
-        private JumpAnimator _jumpAnimator;
-
         public string ID => _id;
 
         public void Init(string id, IUnit unit, DamageableRegistry damageableRegistry, IStateMachine stateMachine)
@@ -24,19 +23,17 @@ namespace Project
             _unit = unit;
             _damageableRegistry = damageableRegistry;
             _stateMachine = stateMachine;
-            _jumpAnimator = new JumpAnimator(transform);
         }
 
         public void Enter()
         {
             _unit.SetInvincible(true);
             _damageableRegistry.Remove(_unit);
-            _jumpAnimator.Play(-_unit.Direction, _unit.Dispose);
+            _unitRegistry.Remove(_unit);
         }
 
         public void UpdateState()
         {
-            _jumpAnimator.Tick(Time.deltaTime);
         }
 
         public void Exit() { }

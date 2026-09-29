@@ -14,6 +14,8 @@ namespace Project
         
         public Team Team { get; }
         
+        public DamageableType Type { get; }
+        
         public bool IsDead => Health.IsDead;
 
         public bool CanNotTakeDamage { get; }
@@ -21,5 +23,7 @@ namespace Project
         public void SetInvincible(bool value);
         
         public void TakeDamage(int damage);
+
+        public void InstantDeath();
     }
 }

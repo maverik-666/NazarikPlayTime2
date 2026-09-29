@@ -10,6 +10,8 @@ namespace Project
         
         void SetDirection(float direction);
 
+        public void PickedUp();
+
         void Dispose();
     }
 }

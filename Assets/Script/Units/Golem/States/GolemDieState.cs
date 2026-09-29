@@ -14,6 +14,7 @@ namespace Project
         private IStateMachine _stateMachine;
         
         private DamageableRegistry _damageableRegistry;
+        private UnitRegistry _unitRegistry;
         
         public string ID => _id;
 
@@ -23,6 +24,7 @@ namespace Project
             _unit = unit;
             _golemRemainsFactory = golemRemainsFactory;
             _damageableRegistry = damageableRegistry;
+            _unitRegistry = this.Resolve<UnitRegistry>();
             _stateMachine = stateMachine;
         }
 
@@ -30,6 +32,7 @@ namespace Project
         {
             _unit.SetInvincible(true);
             _damageableRegistry.Remove(_unit);
+            _unitRegistry.Remove(_unit);
             
             _golemRemainsFactory.Create(_unit.Position, _unit.Team, _unit.Direction);
             _unit.Dispose();

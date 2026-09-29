@@ -11,15 +11,16 @@ namespace Project
         
         private ProjectileFactory _projectileFactory;
         private DamageableRegistry _damageableRegistry;
+        private UnitRegistry _unitRegistry;
         private bool _isInitialized = false;
 
-        public void Init(DamageableRegistry damageableRegistry)
+        public void Init(DamageableRegistry damageableRegistry, UnitRegistry unitRegistry)
         {
             _damageableRegistry = damageableRegistry;
-
+            _unitRegistry = unitRegistry;
             _projectileFactory = GetComponent<ProjectileFactory>();
             _projectileFactory.Init(damageableRegistry);
-            
+
             _isInitialized = true;
         }
 
@@ -28,6 +29,7 @@ namespace Project
             var unit = Instantiate(_peaShooterPf, position, Quaternion.identity, transform);
             unit.Init(team, enemyTeam, direction, _damageableRegistry, _projectileFactory);
             _damageableRegistry.Add(unit);
+            _unitRegistry.Add(unit);
         }
 
 #if UNITY_EDITOR

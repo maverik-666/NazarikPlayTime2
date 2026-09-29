@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebcd60220eea441ea18e70e9f739a440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.GameOverHandler
-  _winUnlockable: 0
+  _winUnlockable: 3
   _winUnlockableLevel: 2
 --- !u!4 &1302100390 stripped
 Transform:
@@ -1814,14 +1814,58 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3117878098956724410, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 28.776682
+      objectReference: {fileID: 0}
     - target: {fileID: 3649842020920842874, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
       propertyPath: m_Name
       value: GameOverMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 5958977143625760359, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958977143625760359, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958977143625760359, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958977143625760359, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958977143625760359, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958977143625760359, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958977143625760359, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958977143625760359, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969066808025502822, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1653414833, guid: 5d3e153bb0ef784488fd9fb4a6308a00, type: 3}
     - target: {fileID: 6286848518565685482, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 7310262338301044659, guid: bffe1fd3ee8dfad45983d778f7173266, type: 3}
+    - target: {fileID: 6464135453776483890, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1629784455547994443, guid: 61204f09e5c210d41a7a6b07f9f5aafd, type: 3}
     - target: {fileID: 6684224080079446088, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1830,6 +1874,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -6424698248659208960, guid: 4a116a9d6e4c30c40ac8f65677bcabfe, type: 3}
+    - target: {fileID: 7405408036547625600, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1653414833, guid: 5d3e153bb0ef784488fd9fb4a6308a00, type: 3}
     - target: {fileID: 8026253125193772519, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
       propertyPath: m_SizeDelta.y
       value: 82

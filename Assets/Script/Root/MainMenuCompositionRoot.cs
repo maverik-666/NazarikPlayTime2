@@ -1,6 +1,6 @@
 namespace Project
 {
-    using System;
+    using Game.Scripts;
 
     public class MainMenuCompositionRoot : Context
     {
@@ -8,6 +8,9 @@ namespace Project
         
         private void Awake()
         {
+            GetComponentInChildren<MusicManager>(true).Init();
+            GetComponentInChildren<SoundManager>(true).Init();
+            
             var loadingScreen = GetComponentInChildren<LoadingScreen>(true);
             loadingScreen.Init();
             

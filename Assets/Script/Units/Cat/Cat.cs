@@ -29,7 +29,8 @@ namespace Project
         private Team _team;
         private Team _enemyTeam;
         private float _direction = 1;
-        
+
+        private CatSkinRenderer _skinRenderer;
         private StateMachine _stateMachine;
 
         private bool _canNotTakeDamage = false;
@@ -43,6 +44,7 @@ namespace Project
         
         public Team Team => _team;
         public Team EnemyTeam => _enemyTeam;
+        public DamageableType Type => DamageableType.Unit;
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
 
@@ -87,7 +89,8 @@ namespace Project
             dieState.Init("Die", this, damageableRegistry, _stateMachine);
             _stateMachine.AddState(dieState);
             
-            GetComponentInChildren<CatSkinRenderer>().Init(this, _stateMachine);
+            _skinRenderer = GetComponentInChildren<CatSkinRenderer>();
+            _skinRenderer.Init(this, _stateMachine);
             
             _stateMachine.SetState("Idle");
             
@@ -131,7 +134,19 @@ namespace Project
             _direction = Mathf.Sign(direction);
             transform.localScale = new Vector3(_direction, 1, 1);
         }
-        
+
+        public void InstantDeath()
+        {
+            _stateMachine.SetState("Die");
+        }
+
+        public void PickedUp()
+        {
+            _canNotTakeDamage = true;
+            _stateMachine.enabled = false;
+            _stateMachine.SetState("Idle");
+        }
+
         public void Dispose()
         {
             Destroy(gameObject);

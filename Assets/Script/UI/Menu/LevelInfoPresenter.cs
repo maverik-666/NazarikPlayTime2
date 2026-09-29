@@ -19,6 +19,15 @@ namespace Project
 
         [SerializeField]
         private MenuButton _playLevel;
+
+        [Header("Crash")]
+        [TextArea]
+        [SerializeField]
+        private string _crashTitle;
+
+        [TextArea]
+        [SerializeField]
+        private string _crashDescription; 
         
         private LevelLoader _levelLoader;
         private LevelButton _selected;
@@ -84,9 +93,26 @@ namespace Project
 
         private void OnPlayClick()
         {
-            _levelLoader.LoadLevel(_selected.Level);
+            if (_selected.Level == 4 || _selected.Level == 5)
+            {
+                Crash();
+            }
+            else
+            {
+                _levelLoader.LoadLevel(_selected.Level);
+            }
         }
-        
+
+        private void Crash()
+        {
+            _title.SetText(_crashTitle);
+            _description.SetText(_crashDescription);
+
+            DOTween.KillAll();
+            DOTween.Sequence()
+                .AppendInterval(0.05f)
+                .AppendCallback(Application.Quit);
+        }
 
 #if UNITY_EDITOR
         private void Start()

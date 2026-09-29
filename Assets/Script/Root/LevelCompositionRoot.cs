@@ -26,9 +26,10 @@ namespace Project
             progress.Init();
 
             GetComponentInChildren<PauseMenu>(true).Init(timeSpeedHandler, levelLoader);
-            
-            var damageableRegistry = new DamageableRegistry(200);
 
+            var damageableRegistry = new DamageableRegistry(200);
+            var unitRegistry = new UnitRegistry(200);
+            
             var camera = GetComponentInChildren<Camera>(true);
             var cameraMover = GetComponentInChildren<CameraMover>(true);
             cameraMover.Init();
@@ -49,13 +50,13 @@ namespace Project
             playerStructure.Init(damageableRegistry);
 
             var enemyStructure = GetComponentInChildren<IEnemyStructure>(true);
-            enemyStructure.Init(damageableRegistry);
-            
+            enemyStructure.Init(damageableRegistry, unitRegistry);
+
             var services = new List<IService>();
-            
+
             foreach (var service in GetComponentsInChildren<UnitSpawnService>(true))
             {
-                service.Init(playerStructure.Structure, moneyCounter, damageableRegistry);
+                service.Init(playerStructure.Structure, moneyCounter, damageableRegistry, unitRegistry);
                 services.Add(service);
             }
 

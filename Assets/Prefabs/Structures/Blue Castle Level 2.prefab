@@ -72,11 +72,11 @@ Transform:
   m_GameObject: {fileID: 2883901291759260314}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: -1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 471181240696879656}
+  m_Father: {fileID: 6624689024173681914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4162115878368358150
 MonoBehaviour:
@@ -163,8 +163,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6624689024173681914}
+  - component: {fileID: 7355674297648514070}
   m_Layer: 0
-  m_Name: Peashooter SpawnPoint
+  m_Name: Peashooter Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,9 +183,24 @@ Transform:
   m_LocalPosition: {x: 0.6875, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1948525879775904161}
   m_Father: {fileID: 471181240696879656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7355674297648514070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925810022898390791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee154117a48841f7a20f723df16d97e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.DelayedUnitSpawner
+  _startDelay: 10
+  _yOffsetRange: {x: -0.05, y: 0.05}
 --- !u!1001 &1365320712882063053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -254,9 +270,6 @@ PrefabInstance:
       addedObject: {fileID: 7942988692530979162}
     - targetCorrespondingSourceObject: {fileID: 1475895502552775909, guid: e9546a16186f440448ff0b1fb19e9182, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1948525879775904161}
-    - targetCorrespondingSourceObject: {fileID: 1475895502552775909, guid: e9546a16186f440448ff0b1fb19e9182, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6624689024173681914}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7685678981990754314, guid: e9546a16186f440448ff0b1fb19e9182, type: 3}
@@ -285,5 +298,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423b6eeb74124238a58e54801978d95e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Level2EnemyStructure
-  _peaShooterSpawnDelay: 10
-  _peaShooterSpawnPoint: {fileID: 6624689024173681914}

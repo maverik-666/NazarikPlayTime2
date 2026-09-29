@@ -37,6 +37,8 @@ namespace Project
         public Health Health => _health;
         
         public Team Team => _team;
+        
+        public DamageableType Type => DamageableType.Structure;
 
         public bool CanNotTakeDamage => true;
         
@@ -106,6 +108,8 @@ namespace Project
         
         public void TakeDamage(int damage) { }
         
+        public void InstantDeath() {}
+
 #if UNITY_EDITOR
         private void Start()
         {

@@ -26,6 +26,7 @@ namespace Project
         public float Radius => 0;
         public Health Health => _health;
         public Team Team => _team;
+        public DamageableType Type => DamageableType.Structure;
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
         
@@ -86,6 +87,11 @@ namespace Project
         {
             _direction = Mathf.Sign(direction);
             transform.localScale = new Vector3(_direction, 1, 1);
+        }
+        
+        public void InstantDeath()
+        {
+            Die();
         }
         
 #if UNITY_EDITOR

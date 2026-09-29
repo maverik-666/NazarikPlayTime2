@@ -44,14 +44,14 @@ namespace Project
 
         public ServiceButton ServiceButtonPf => _serviceButtonPf;
 
-        public void Init(Structure structure, MoneyCounter moneyCounter, DamageableRegistry damageableRegistry)
+        public void Init(Structure structure, MoneyCounter moneyCounter, DamageableRegistry damageableRegistry, UnitRegistry unitRegistry)
         {
             _structure = structure;
             _moneyCounter = moneyCounter;
             _cooldownTimer = new Timer();
-            
+
             _unitFactory = GetComponentInChildren<IUnitFactory>();
-            _unitFactory.Init(damageableRegistry);
+            _unitFactory.Init(damageableRegistry, unitRegistry);
 
             _cooldownTimer.Start(_cooldown);
             

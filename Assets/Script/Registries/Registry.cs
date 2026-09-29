@@ -15,7 +15,7 @@ namespace Project
             _list = new List<T>(capacity);
         }
 
-        public void AddRange(T[] array)
+        public virtual void AddRange(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -23,7 +23,7 @@ namespace Project
             }
         }
 
-        public void Add(T item)
+        public virtual void Add(T item)
         {
             if (_list.Contains(item))
             {
@@ -33,12 +33,12 @@ namespace Project
             _list.Add(item);
         }
         
-        public void Remove(T item)
+        public virtual void Remove(T item)
         {
             _list.Remove(item);
         }
         
-        public void RemoveRange(T[] array)
+        public virtual void RemoveRange(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {

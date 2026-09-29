@@ -48,6 +48,7 @@ namespace Project
         
         public Team Team => _team;
         public Team EnemyTeam => _enemyTeam;
+        public DamageableType Type => DamageableType.Unit;
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
 
@@ -145,6 +146,18 @@ namespace Project
             transform.localScale = new Vector3(_direction, 1, 1);
         }
 
+        public void InstantDeath()
+        {
+            _stateMachine.SetState("Die");
+        }
+
+        public void PickedUp()
+        {
+            _canNotTakeDamage = true;
+            _stateMachine.enabled = false;
+            _stateMachine.SetState("Idle");
+        }
+        
         public void Dispose()
         {
             var seq = DOTween.Sequence();

@@ -1,52 +1,42 @@
 namespace Project
 {
-    using DG.Tweening;
     using UnityEngine;
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Transform))]
     public class Level4EnemyStructure : MonoBehaviour, IEnemyStructure
     {
-        [SerializeField]
-        private float _peaShooterSpawnDelay;
-        
-        [SerializeField]
-        private Transform _peaShooterSpawnPoint;
-        
         private Structure _structure;
         private PeashooterFactory _peashooterFactory;
+        private RotFactory _rotFactory;
+        
         private bool _isInitialized = false;
 
         public Structure Structure => _structure;
 
-        public void Init(DamageableRegistry damageableRegistry)
+        public void Init(DamageableRegistry damageableRegistry, UnitRegistry unitRegistry)
         {
             _structure = GetComponent<Structure>();
             _structure.Init();
             damageableRegistry.Add(_structure);
-            
-            _peashooterFactory = GetComponentInChildren<PeashooterFactory>();
-            _peashooterFactory.Init(damageableRegistry);
-            
+
             foreach (var unitSpawner in GetComponentsInChildren<TimedUnitSpawner>(true))
             {
                 var unitFactory = unitSpawner.GetComponentInChildren<IUnitFactory>(true);
-            
-                unitFactory.Init(damageableRegistry);
+
+                unitFactory.Init(damageableRegistry, unitRegistry);
                 unitSpawner.Init(_structure.Team, _structure.EnemyTeam, _structure.Direction, unitFactory);
             }
-        
-            DOTween.Sequence()
-                .SetLink(gameObject, LinkBehaviour.KillOnDestroy)
-                .AppendInterval(_peaShooterSpawnDelay)
-                .AppendCallback(CreatePeaShooter);
+            
+            foreach (var unitSpawner in GetComponentsInChildren<DelayedUnitSpawner>(true))
+            {
+                var unitFactory = unitSpawner.GetComponentInChildren<IUnitFactory>(true);
+
+                unitFactory.Init(damageableRegistry, unitRegistry);
+                unitSpawner.Init(_structure.Team, _structure.EnemyTeam, _structure.Direction, unitFactory);
+            }
             
             _isInitialized = true;
-        }
-        
-        private void CreatePeaShooter()
-        {
-            _peashooterFactory.Create(_peaShooterSpawnPoint.position, Structure.Team, _structure.EnemyTeam, _structure.Direction);
         }
 
 #if UNITY_EDITOR

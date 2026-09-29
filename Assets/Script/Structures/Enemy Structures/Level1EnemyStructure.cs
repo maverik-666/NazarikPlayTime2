@@ -11,17 +11,17 @@ namespace Project
 
         public Structure Structure => _structure;
 
-        public void Init(DamageableRegistry damageableRegistry)
+        public void Init(DamageableRegistry damageableRegistry, UnitRegistry unitRegistry)
         {
             _structure = GetComponent<Structure>();
             _structure.Init();
             damageableRegistry.Add(_structure);
-            
+
             foreach (var unitSpawner in GetComponentsInChildren<TimedUnitSpawner>(true))
             {
                 var unitFactory = unitSpawner.GetComponentInChildren<IUnitFactory>(true);
-            
-                unitFactory.Init(damageableRegistry);
+
+                unitFactory.Init(damageableRegistry, unitRegistry);
                 unitSpawner.Init(_structure.Team, _structure.EnemyTeam, _structure.Direction, unitFactory);
             }
             _isInitialized = true;

@@ -33,6 +33,8 @@ namespace Project
         
         public Health Health => _health;
         public Team Team => _team;
+        
+        public DamageableType Type => DamageableType.Base;
 
         public Team EnemyTeam => _enemyTeam;
         public int Direction => _direction;
@@ -73,7 +75,11 @@ namespace Project
             
             Death?.Invoke();
         }
-     
+
+        public void InstantDeath()
+        {
+        }
+
 #if UNITY_EDITOR
         private void Start()
         {

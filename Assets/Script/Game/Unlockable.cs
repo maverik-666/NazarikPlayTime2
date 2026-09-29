@@ -5,5 +5,6 @@ namespace Project
         None,
         Golem,
         Olmek,
+        Animatronic
     }
 }
