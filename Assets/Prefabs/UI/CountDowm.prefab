@@ -302,7 +302,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 90
+  m_SortingOrder: 95
   m_TargetDisplay: 0
 --- !u!114 &1690601729817498681
 MonoBehaviour:
@@ -395,6 +395,11 @@ MonoBehaviour:
   - {fileID: 6533136918283736197}
   - {fileID: 2050844983914054252}
   _interval: 0.45
+  _countSound:
+    _audioClip: {fileID: 8300000, guid: 9ba59347e8ab1744b8f09ac6d29f0536, type: 3}
+    _soundVolume: 0.5
+    _pitchRange: {x: 1, y: 1}
+  _pitchStep: 0.15
 --- !u!1 &6332458557047860387
 GameObject:
   m_ObjectHideFlags: 0

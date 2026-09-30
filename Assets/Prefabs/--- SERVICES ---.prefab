@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.OlmekFactory
   _olmekPf: {fileID: 7601384445320793916, guid: 6c29b95507175e5468a9579ca21200ec, type: 3}
+  _floorY: 1.25
 --- !u!1 &564195439875735969
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.UnitSpawnService
   _price: 400
   _cooldown: 60
-  _unlockable: 0
+  _unlockable: 1
   _serviceButtonPf: {fileID: 8365463615301766112, guid: 997cc7e808d475e47938854cd2a9a4ee, type: 3}
   _yOffsetRange: {x: -0.05, y: 0.05}
 --- !u!1 &1060376363745876218

@@ -23,6 +23,12 @@ namespace Project
         
         [SerializeField]
         private CanvasGroup _frameLit;
+
+        [SerializeField]
+        private RandomSoundData _successSound;
+        
+        [SerializeField]
+        private SingleSoundData _failureSound;
         
         private IService _service;
 
@@ -53,6 +59,8 @@ namespace Project
             {
                 _service.Execute();
                 
+                SoundManager.Instance.Play(_successSound.GetRandomSound());
+                
                 _jumpTween?.Kill(true);
                 _jumpTween = _rect.DOAnchorPosY(10, 0.3f)
                     .SetRelative()
@@ -62,6 +70,9 @@ namespace Project
             }
             else
             {
+                
+                SoundManager.Instance.Play(_failureSound);
+                
                 _jumpTween?.Kill(true);
                 _jumpTween = _rect.DOShakeAnchorPos(0.3f, Vector2.right * 2)
                     .SetLink(gameObject, LinkBehaviour.KillOnDisable)

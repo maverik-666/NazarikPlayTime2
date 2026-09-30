@@ -1,6 +1,5 @@
 namespace Project
 {
-    using System;
     using DG.Tweening;
     using LudicWorlds;
     using UnityEngine;
@@ -26,6 +25,10 @@ namespace Project
 
         [SerializeField]
         private float _flashDuration = 0.15f;
+        
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _deathSound;
         
         private Ghost _unit;
         private SpriteRenderer _spriteRenderer;
@@ -94,13 +97,14 @@ namespace Project
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
             _dieParticle.Play();
+            
+            SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }
 
         private void FlashWhite()
         {
             FlashColor(Color.white, _flashColorTo, _flashDuration);
         }
-
         
         private void FlashRed()
         {

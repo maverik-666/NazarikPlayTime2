@@ -17,6 +17,10 @@ namespace Project
         [SerializeField]
         private Image _x2Image;
         
+        [Header("Sounds")]
+        [SerializeField]
+        private SingleSoundData _clickSound;
+        
         private Tween _scaleTween;
 
         private bool _isAccelerated = false;
@@ -35,6 +39,8 @@ namespace Project
         {
             _isAccelerated = !_isAccelerated;
             ApplyState();
+           
+            SoundManager.Instance.Play(_clickSound);
             
             _scaleTween?.Kill(true);
             _scaleTween = transform.DOScale(0.8f, 0.15f)

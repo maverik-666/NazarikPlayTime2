@@ -41,7 +41,11 @@ namespace Project
 
         [SerializeField]
         private float _slideOffset = 200;
-
+        
+        [Header("Sounds")]
+        [SerializeField]
+        private SingleSoundData _clickSound;
+        
         private TimeSpeedHandler _timeSpeedHandler;
         private LevelLoader _levelLoader;
         private Sequence _seq;
@@ -66,21 +70,30 @@ namespace Project
         
         private void OnPauseClick()
         {
+            SoundManager.Instance.Play(_clickSound);
+            MusicManager.Instance.Pause();
             Show();
         }
         
         private void OnPlayClick()
         {
+            SoundManager.Instance.Play(_clickSound);
+            MusicManager.Instance.Resume();
+            
             Hide();
         }
 
         private void OnMenuClick()
         {
+            SoundManager.Instance.Play(_clickSound);
+            
             _levelLoader.LoadMainMenu();
         }
 
         private void OnRestartClick()
         {
+            SoundManager.Instance.Play(_clickSound);
+            
             _levelLoader.LoadCurrent();
         }
         

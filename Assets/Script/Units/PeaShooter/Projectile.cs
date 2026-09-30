@@ -22,6 +22,10 @@ namespace Project
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
         
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _hitSound;
+        
         private Team _enemyTeam;
         private float _direction;
 
@@ -96,6 +100,8 @@ namespace Project
             _isDepleted = true;
             _spriteRenderer.enabled = false;
             _hitParticle.Play();
+            
+            SoundManager.Instance.Play(_hitSound.GetRandomSound());
             
             var seq = DOTween.Sequence();
             seq.SetLink(gameObject, LinkBehaviour.KillOnDestroy);

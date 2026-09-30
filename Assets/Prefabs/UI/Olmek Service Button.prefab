@@ -135,6 +135,14 @@ MonoBehaviour:
   _button: {fileID: 692742108467772360}
   _frame: {fileID: 8509832506520206365}
   _frameLit: {fileID: 968865471058063498}
+  _successSound:
+    _audioClips:
+    - {fileID: 8300000, guid: db41fe2a8c5c4cc48b9e279b5a51bee7, type: 3}
+    _soundVolume: 0.5
+  _failureSound:
+    _audioClip: {fileID: 8300000, guid: 44719ba28941248429dd1fb9da41346c, type: 3}
+    _soundVolume: 0.15
+    _pitchRange: {x: 1, y: 1}
 --- !u!1 &1711769823313938519
 GameObject:
   m_ObjectHideFlags: 0

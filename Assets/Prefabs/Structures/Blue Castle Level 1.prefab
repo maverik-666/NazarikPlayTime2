@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.TimedUnitSpawner
   _startDelay: 0
-  _interval: 10
+  _interval: 9
   _spawnCount: 1
   _singleInterval: 0.5
   _yOffsetRange: {x: -0.05, y: 0.05}

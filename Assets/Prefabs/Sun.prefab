@@ -228,6 +228,10 @@ MonoBehaviour:
   _rotationSpeed: 50
   _fallSpeed: 0.3
   _moveToTargetSpeed: 15
+  _clickSound:
+    _audioClip: {fileID: 8300000, guid: 57aa7b9a02571de4cbfbba65ea76f4aa, type: 3}
+    _soundVolume: 0.75
+    _pitchRange: {x: 1, y: 1}
 --- !u!1 &3847512589551500183
 GameObject:
   m_ObjectHideFlags: 0

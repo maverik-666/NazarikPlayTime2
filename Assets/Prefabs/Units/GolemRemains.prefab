@@ -100,6 +100,11 @@ MonoBehaviour:
   _tiltRotation: 30
   _flashColorTo: 0.4
   _flashDuration: 0.15
+  _deathSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 060d9bb895ce30e49918712cfe0977a7, type: 3}
+    - {fileID: 8300000, guid: 4cc501a4cb727204bb8152a2b13125ee, type: 3}
+    _volume: 0.5
 --- !u!212 &7916362123042555066
 SpriteRenderer:
   serializedVersion: 2

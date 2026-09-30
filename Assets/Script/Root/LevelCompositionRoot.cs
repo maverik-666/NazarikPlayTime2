@@ -5,11 +5,18 @@ namespace Project
 
     public class LevelCompositionRoot : Context
    {
+       [SerializeField]
+       private SingleSoundData _music;
+       
         private LoadingScreen _loadingScreen = null;
         private CountDownScreen _countDownScreen = null;
+        private TimeSpeedHandler _timeSpeedHandler = null;
         
         private void Awake()
         {
+            GetComponentInChildren<MusicManager>(true).Init();
+            GetComponentInChildren<SoundManager>(true).Init();
+            
             var timeSpeedHandler = GetComponentInChildren<TimeSpeedHandler>(true);
             timeSpeedHandler.Init();
 
@@ -26,9 +33,12 @@ namespace Project
             progress.Init();
 
             GetComponentInChildren<PauseMenu>(true).Init(timeSpeedHandler, levelLoader);
-
+            GetComponentInChildren<SoundMenu>().Init();
+            
             var damageableRegistry = new DamageableRegistry(200);
             var unitRegistry = new UnitRegistry(200);
+            
+            Bind(unitRegistry);
             
             var camera = GetComponentInChildren<Camera>(true);
             var cameraMover = GetComponentInChildren<CameraMover>(true);
@@ -80,12 +90,19 @@ namespace Project
             gameOverHandler.Init(playerStructure, enemyStructure, cameraMover, timeSpeedHandler, serviceButtonPanel, gameOverMenu, progress);
 
             var countDownScreen = GetComponentInChildren<CountDownScreen>(true);
-            countDownScreen.Init(timeSpeedHandler.RenewTime);
+            countDownScreen.Init(StartGame);
             
             timeSpeedHandler.StopTime();
             
             _loadingScreen = loadingScreen;
             _countDownScreen = countDownScreen;
+            _timeSpeedHandler = timeSpeedHandler;
+        }
+
+        private void StartGame()
+        {
+            _timeSpeedHandler.RenewTime();
+            MusicManager.Instance.PlayMusic(_music.AudioClip, _music.Volume);
         }
 
         private void Start()
@@ -93,5 +110,6 @@ namespace Project
             _loadingScreen.Hide();
             _countDownScreen.Show();
         }
+       
     }
 }

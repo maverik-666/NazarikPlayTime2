@@ -106,6 +106,19 @@ MonoBehaviour:
   _tiltRotation: 30
   _flashColorTo: 0.4
   _flashDuration: 0.15
+  _plantSound:
+    _audioClip: {fileID: 8300000, guid: c5c00d703950539449de0a0e2d0e6efc, type: 3}
+    _soundVolume: 0.5
+    _pitchRange: {x: 1, y: 1}
+  _attackSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 7075847875a3e9e41804fe69475593c6, type: 3}
+    - {fileID: 8300000, guid: e875dd7f82169494ba74703ee98d26b3, type: 3}
+    _soundVolume: 1
+  _deathSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 99a21925164cacb4196bffc66901fb63, type: 3}
+    _soundVolume: 0.5
 --- !u!95 &9184404526601923824
 Animator:
   serializedVersion: 7
@@ -342,7 +355,7 @@ Transform:
   m_GameObject: {fileID: 6389755680994187888}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.328125, y: 0.4375, z: 0}
+  m_LocalPosition: {x: 0.328125, y: 0.46875, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -453,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.SpriteOrderInLayer
   _baseValueOn: {fileID: 8155672732246900512}
-  _addedValue: -10
+  _addedValue: -1000
   _layerId: 
 --- !u!1001 &7048203359015291561
 PrefabInstance:

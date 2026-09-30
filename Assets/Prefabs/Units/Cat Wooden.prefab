@@ -108,6 +108,18 @@ MonoBehaviour:
   _tiltRotation: 30
   _flashColorTo: 0.4
   _flashDuration: 0.15
+  _deathSound:
+    _audioClips:
+    - {fileID: 8300000, guid: a4689ecce2eae23468dcc74d7a6cd157, type: 3}
+    - {fileID: 8300000, guid: c9530bab327162b49b351b2cd5fbb18a, type: 3}
+    - {fileID: 8300000, guid: c3cdaac7bd57e9147aed55ce7e220097, type: 3}
+    - {fileID: 8300000, guid: d9b80e241ff742a4b8fba0a28b1ab744, type: 3}
+    _soundVolume: 0.75
+  _attackSound:
+    _audioClip: {fileID: 8300000, guid: 8f5d646aa54d91e4ebb0f8ed82bcf4c9, type: 3}
+    _soundVolume: 0.35
+    _pitchRange: {x: 1, y: 1}
+  _attackSoundDelay: 0
 --- !u!95 &9184404526601923824
 Animator:
   serializedVersion: 7

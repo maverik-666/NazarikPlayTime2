@@ -38,6 +38,7 @@ namespace Project
         private float _direction = 1;
         
         private StateMachine _stateMachine;
+        private GolemSkinRenderer _skinRenderer;
 
         private bool _canNotTakeDamage = false;
         private bool _isInitialized = false;
@@ -101,7 +102,8 @@ namespace Project
             dieState.Init("Die", this, damageableRegistry, _stateMachine);
             _stateMachine.AddState(dieState);
             
-            GetComponentInChildren<GolemSkinRenderer>().Init(this, _stateMachine);
+            _skinRenderer = GetComponentInChildren<GolemSkinRenderer>();
+            _skinRenderer.Init(this, _stateMachine);
             
             _stateMachine.SetState("Idle");
             
@@ -123,6 +125,7 @@ namespace Project
             int lastHealth = Health.Current;
             
             Health.TakeDamage(damage);
+            _skinRenderer.FlashRed();
 
             if (Health.IsDead)
             {

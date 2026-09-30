@@ -72,13 +72,38 @@ namespace Project
         [SerializeField]
         private PauseMenuButton _quitButton;
         
+        [Header("Sounds")]
+        [SerializeField]
+        private SingleSoundData _clickSound;
+
+        [SerializeField]
+        private SingleSoundData _winSound;
+        
+        [SerializeField]
+        private RandomSoundData _winPhraseSound;
+
+        [SerializeField]
+        private float _winPhraseDelay = 3;
+        
+        [SerializeField]
+        private SingleSoundData _loseSound;
+        
+        [SerializeField]
+        private RandomSoundData _losePhraseSound;
+
+        [SerializeField]
+        private float _losePhraseDelay = 3;
+        
+        private LevelLoader _levelLoader;
+        
         private bool _isInitialized = false;
 
         public void Init(LevelLoader levelLoader)
         {
-            _continueButton.Init(levelLoader.LoadMainMenu);
-            _restartButton.Init(levelLoader.LoadCurrent);
-            _quitButton.Init(levelLoader.LoadMainMenu);
+            _levelLoader = levelLoader;
+            _continueButton.Init(OnContinueClick);
+            _restartButton.Init(OnRestartClick);
+            _quitButton.Init(OnQuitClick);
 
             _rootCanvasGroup.blocksRaycasts = false;
             _rootCanvasGroup.alpha = 0;
@@ -92,7 +117,28 @@ namespace Project
             
             _isInitialized = true;
         }
-        
+
+        private void OnQuitClick()
+        {
+            SoundManager.Instance.Play(_clickSound);
+
+            _levelLoader.LoadMainMenu();
+        }
+
+        private void OnRestartClick()
+        {
+            SoundManager.Instance.Play(_clickSound);
+
+            _levelLoader.LoadCurrent();
+        }
+
+        private void OnContinueClick()
+        {
+            SoundManager.Instance.Play(_clickSound);
+
+            _levelLoader.LoadMainMenu();
+        }
+
         public void ShowEnemyWin()
         {
             _titleText.text = _loseTitles[Random.Range(0, _loseTitles.Length)];
@@ -103,12 +149,26 @@ namespace Project
             _loseCanvasGroup.alpha = 1;
             _loseCanvasGroup.blocksRaycasts = true;
             
+            MusicManager.Instance.Stop();
+            
+            SoundManager.Instance.Play(_loseSound);
+            DOTween.Sequence()
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetUpdate(true)
+                .AppendInterval(_losePhraseDelay)
+                .AppendCallback(PlayLosePhrase);
+            
             DOTween.Sequence()
                 .SetLink(gameObject, LinkBehaviour.KillOnDestroy)
                 .SetUpdate(true)
                 .AppendInterval(0.5f)
                 .AppendCallback(Show)
                 .Insert(0.25f, _loseRect.DOAnchorPosY(0, 1).SetEase(Ease.OutSine));
+        }
+        
+        private void PlayLosePhrase()
+        {
+            SoundManager.Instance.Play(_losePhraseSound.GetRandomSound());
         }
         
         public void ShowPlayerWin()
@@ -123,13 +183,26 @@ namespace Project
             
             Flash(_unlock1CanvasGroup);
             Flash(_unlock2CanvasGroup);
-
+            
+            MusicManager.Instance.Stop();
+            SoundManager.Instance.Play(_winSound);
+            DOTween.Sequence()
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetUpdate(true)
+                .AppendInterval(_winPhraseDelay)
+                .AppendCallback(PlayWinPhrase);
+            
             DOTween.Sequence()
                 .SetLink(gameObject, LinkBehaviour.KillOnDestroy)
                 .SetUpdate(true)
                 .AppendInterval(0.5f)
                 .AppendCallback(Show)
                 .Insert(0.25f, _winRect.DOAnchorPosY(0, 1).SetEase(Ease.OutSine));
+        }
+
+        private void PlayWinPhrase()
+        {
+            SoundManager.Instance.Play(_winPhraseSound.GetRandomSound());
         }
 
         private void Flash(CanvasGroup canvasGroup)
@@ -170,7 +243,6 @@ namespace Project
                 .Append(_descriptionGroup.DOFade(1, 0.5f))
                 .Join(_descriptionGroup.transform.DOScale(1, 0.5f).SetEase(Ease.InCubic))
                 .Append(_descriptionGroup.GetComponent<RectTransform>().DOShakeAnchorPos(0.15f, new Vector3(15f, 0, 0))));
-
         }
         
 #if UNITY_EDITOR

@@ -33,6 +33,11 @@ namespace Project
         [SerializeField]
         private float _flashDuration = 0.15f;
         
+                
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _landSound;
+        
         private SpriteRenderer _spriteRenderer;
         private SpriteFlasher _spriteFlasher;
         private Tween _shakeTween;
@@ -62,12 +67,18 @@ namespace Project
             seq.Join(transform.DOScale(Vector3.one, _fallDuration).SetEase(Ease.InQuad));
             seq.AppendCallback(callback.Invoke);
             seq.AppendCallback(FlashWhite);
+            seq.AppendCallback(PlayLandSound);
             seq.Append(transform.DOShakePosition(0.15f, new Vector3(0.125f, 0, 0)));
         }
 
         private void FlashWhite()
         {
             _spriteFlasher.FlashColor(Color.white, _flashColorTo, _flashDuration);
+        }
+
+        private void PlayLandSound()
+        {
+            SoundManager.Instance.Play(_landSound.GetRandomSound());
         }
 
         public void JumpOffScreen(Action callback)

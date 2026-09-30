@@ -52,6 +52,12 @@ MonoBehaviour:
   _hitDistance: 0.1
   _hitParticle: {fileID: 1838582791157627735}
   _spriteRenderer: {fileID: 8221850140434904096}
+  _hitSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 8124e9d48ac55194dbf488deb83e13d7, type: 3}
+    - {fileID: 8300000, guid: d0ba43d2445642f42bbff8bd9f870cc7, type: 3}
+    - {fileID: 8300000, guid: e98557db2d4ca1243b7a3a1a7f7fccdc, type: 3}
+    _soundVolume: 0.4
 --- !u!1 &4991631680532132919
 GameObject:
   m_ObjectHideFlags: 0

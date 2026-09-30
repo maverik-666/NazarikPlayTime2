@@ -20,6 +20,9 @@ namespace Project
         
         [SerializeField]
         private float _moveToTargetSpeed = 1;
+
+        [SerializeField]
+        private SingleSoundData _clickSound;
         
         private float _initialYPosition = 0;
         private float _fallHeight = 0;
@@ -69,6 +72,8 @@ namespace Project
             
             _fadeTween?.Kill();
             _canvasGroup.alpha = 1;
+            
+            SoundManager.Instance.Play(_clickSound);
             
             _clickAction?.Invoke(this);
         }

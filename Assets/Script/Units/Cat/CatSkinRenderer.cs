@@ -28,6 +28,16 @@ namespace Project
 
         [SerializeField]
         private float _flashDuration = 0.15f;
+
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _deathSound;
+        
+        [SerializeField]
+        private SingleSoundData _attackSound;
+
+        [SerializeField]
+        private float _attackSoundDelay;
         
         private Cat _unit;
         private SpriteRenderer _spriteRenderer;
@@ -82,6 +92,16 @@ namespace Project
         {
             FlashWhite();
             _attackParticle.Play();
+
+            DOTween.Sequence()
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .AppendInterval(_attackSoundDelay)
+                .AppendCallback(PlayAttackSound);
+        }
+
+        private void PlayAttackSound()
+        {
+            SoundManager.Instance.Play(_attackSound, _attackSound.GetRandomPitch());
         }
 
         private void Die()
@@ -89,6 +109,8 @@ namespace Project
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
             _dieParticle.Play();
+            
+            SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }
 
         private void TakeDamage()
@@ -104,7 +126,7 @@ namespace Project
         }
 
         
-        private void FlashRed()
+        public void FlashRed()
         {
             FlashColor(Color.red, _flashColorTo, _flashDuration);
         }

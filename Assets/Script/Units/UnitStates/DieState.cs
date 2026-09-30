@@ -22,6 +22,7 @@ namespace Project
             _id = id;
             _unit = unit;
             _damageableRegistry = damageableRegistry;
+            _unitRegistry = this.Resolve<UnitRegistry>();
             _stateMachine = stateMachine;
         }
 

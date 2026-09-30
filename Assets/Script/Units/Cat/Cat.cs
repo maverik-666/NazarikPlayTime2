@@ -112,6 +112,8 @@ namespace Project
             int lastHealth = Health.Current;
             
             Health.TakeDamage(damage);
+            
+            _skinRenderer.FlashRed();
 
             if (Health.IsDead)
             {

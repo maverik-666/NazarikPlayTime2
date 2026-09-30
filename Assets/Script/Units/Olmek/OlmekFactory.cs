@@ -10,7 +10,7 @@ namespace Project
         private Olmek _olmekPf;
 
         [SerializeField]
-        private Transform _floorPoint;
+        private float _floorY = 1.25f;
         
         private DamageableRegistry _damageableRegistry;
         private CameraMover _cameraMover;
@@ -26,7 +26,7 @@ namespace Project
 
         public void Create(Vector3 position, Team team)
         {
-            position.y = _floorPoint.position.y;
+            position.y = _floorY;
             
             var olmek = Instantiate(_olmekPf, position, Quaternion.identity, transform);
             olmek.Init(team, _cameraMover, _damageableRegistry);

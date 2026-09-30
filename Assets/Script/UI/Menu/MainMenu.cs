@@ -35,6 +35,13 @@ namespace Project
         [SerializeField]
         private LevelButton[] _levelButtons;
         
+        [Header("Sounds")]
+        [SerializeField]
+        private SingleSoundData _clickSound;
+
+        [SerializeField]
+        private RandomSoundData _playtimeSound;
+        
         private Progress _progress;
 
         private LevelInfoPresenter _levelInfoPresenter;
@@ -189,6 +196,8 @@ namespace Project
 
         private void OnBackClick()
         {
+            SoundManager.Instance.Play(_clickSound);
+            
             var seq = DOTween.Sequence();
             seq.SetLink(gameObject, LinkBehaviour.KillOnDestroy);
 
@@ -199,11 +208,14 @@ namespace Project
 
         private void OnClickLogo()
         {
-            // TODO add sound
+            SoundManager.Instance.Play(_clickSound);
+            SoundManager.Instance.Play(_playtimeSound.GetRandomSound());
         }
         
         private void OnPlayClick()
         {
+            SoundManager.Instance.Play(_clickSound);
+            
             var seq = DOTween.Sequence();
             seq.SetLink(gameObject, LinkBehaviour.KillOnDestroy);
 
@@ -214,11 +226,15 @@ namespace Project
 
         private void OnQuitClick()
         {
+            SoundManager.Instance.Play(_clickSound);
+            
             Application.Quit();
         }
 
         private void OnLevelSelect(LevelButton selected)
         {
+            SoundManager.Instance.Play(_clickSound);
+            
             foreach (var levelButton in _levelButtons)
             {
                 if (levelButton == selected)

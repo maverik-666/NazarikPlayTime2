@@ -180,6 +180,12 @@ MonoBehaviour:
   _jumpDuration: 0.15
   _flashColorTo: 0.4
   _flashDuration: 0.15
+  _landSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 8cc99b68d46457e47ad5dcd3f06dbd61, type: 3}
+    - {fileID: 8300000, guid: 23bf73270e0c27a4dbcc5e8777f899f6, type: 3}
+    - {fileID: 8300000, guid: 7715078035b47d34aa82b1db630d727f, type: 3}
+    _soundVolume: 1
 --- !u!1 &7153670040479106001
 GameObject:
   m_ObjectHideFlags: 0

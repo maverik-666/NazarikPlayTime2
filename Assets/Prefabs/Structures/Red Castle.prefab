@@ -292,6 +292,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.StructureSkinRenderer
   _healthText: {fileID: 1240177535570365722}
   _dieParticle: {fileID: 6342378941327300717}
+  _damageSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 54bfbeeb4485e624097f2b3b4c105849, type: 3}
+    - {fileID: 8300000, guid: 3c3b23e44819ad54aa282ab3bea5d04b, type: 3}
+    - {fileID: 8300000, guid: 51409582104a0e24790f72f6f617465c, type: 3}
+    - {fileID: 8300000, guid: e6026f188f2b8c840b0aa3c2a3678fc1, type: 3}
+    - {fileID: 8300000, guid: 38d6b2397af9d3d42846644cc194030d, type: 3}
+    - {fileID: 8300000, guid: b9dd84a534c998a429b6d4e949985a81, type: 3}
+    _soundVolume: 0.15
 --- !u!212 &1290590217204057992
 SpriteRenderer:
   serializedVersion: 2

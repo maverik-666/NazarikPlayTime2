@@ -1,5 +1,6 @@
 namespace Project
 {
+    using DG.Tweening;
     using LudicWorlds;
     using UnityEngine;
 
@@ -23,6 +24,16 @@ namespace Project
 
         [SerializeField]
         private float _flashDuration = 0.15f;
+        
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _deathSound;
+        
+        [SerializeField]
+        private RandomSoundData _attackSound;
+
+        [SerializeField]
+        private float _attackSoundDelay;
         
         private Golem _unit;
         private Animator _animator;
@@ -81,7 +92,7 @@ namespace Project
         private void Idle()
         {
             transform.rotation = Quaternion.identity;
-        } 
+        }
 
         private void Attack()
         {
@@ -89,11 +100,21 @@ namespace Project
             _attackParticle.Play();
         }
 
-        
+
         private void GolemDie()
         {
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
+            
+            DOTween.Sequence()
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .AppendInterval(_attackSoundDelay)
+                .AppendCallback(PlayAttackSound);
+        }
+
+        private void PlayAttackSound()
+        {
+            SoundManager.Instance.Play(_attackSound.GetRandomSound());
         }
         
         private void Die()
@@ -101,6 +122,8 @@ namespace Project
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
             _dieParticle.Play();
+            
+            SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }
 
         private void TakeDamage()
@@ -114,9 +137,8 @@ namespace Project
         {
             _spriteFlasher.FlashColor(Color.white, _flashColorTo, _flashDuration);
         }
-
         
-        private void FlashRed()
+        public void FlashRed()
         {
             _spriteFlasher.FlashColor(Color.red, _flashColorTo, _flashDuration);
         }

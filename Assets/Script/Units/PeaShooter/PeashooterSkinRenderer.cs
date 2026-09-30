@@ -20,6 +20,16 @@ namespace Project
 
         [SerializeField]
         private float _flashDuration = 0.15f;
+
+        [Header("Sounds")]
+        [SerializeField]
+        private SingleSoundData _plantSound;
+
+        [SerializeField]
+        private RandomSoundData _attackSound;
+        
+        [SerializeField]
+        private RandomSoundData _deathSound;
         
         private Peashooter _unit;
         private Animator _animator;
@@ -40,6 +50,8 @@ namespace Project
             
             _stateMachine.StateEntered += OnStateEntered;
             _isInitialized = true;
+            
+            SoundManager.Instance.Play(_plantSound);
         }
 
         private void OnStateEntered(IState state)
@@ -79,6 +91,7 @@ namespace Project
         private void Attack()
         {
             FlashWhite();
+            SoundManager.Instance.Play(_attackSound.GetRandomSound());
         }
         
         private void Die()
@@ -86,6 +99,7 @@ namespace Project
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
             _dieParticle.Play();
+            SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }
 
         private void TakeDamage()

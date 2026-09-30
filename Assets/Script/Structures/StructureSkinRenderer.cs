@@ -14,6 +14,10 @@ namespace Project
         [SerializeField]
         private ParticleSystem _dieParticle;
         
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _damageSound;
+        
         private Health _health; 
         private Tween _shakeTween;
         private bool _isInitialized = false;
@@ -31,6 +35,8 @@ namespace Project
             _shakeTween = transform.DOShakePosition(0.15f, new Vector3(0.25f, 0, 0), 10, 90, false)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable);
             
+            SoundManager.Instance.Play(_damageSound.GetRandomSound());
+
             UpdateHealthText();
         }
 

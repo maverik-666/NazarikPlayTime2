@@ -304,6 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.LevelButton
   _level: 0
+  _title: 
+  _description: 
   _perl: {fileID: 2200973643446413835}
   _highlightSelect: {fileID: 6001977355230172876}
   _highlightLocked: {fileID: 3525454840580086889}
@@ -311,6 +313,14 @@ MonoBehaviour:
   _flyDuration: 3
   _gotoRange: {x: 1, y: 4}
   _slideOffset: 200
+  _successSound:
+    _audioClip: {fileID: 8300000, guid: 812918e38c075974eb4a8428f8ab45ba, type: 3}
+    _soundVolume: 0.5
+    _pitchRange: {x: 0.75, y: 1.25}
+  _failureSound:
+    _audioClip: {fileID: 8300000, guid: 44719ba28941248429dd1fb9da41346c, type: 3}
+    _soundVolume: 0.15
+    _pitchRange: {x: 1, y: 1}
 --- !u!225 &911657532725921725
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -19,7 +19,11 @@ namespace Project
 
         [SerializeField]
         private MenuButton _playLevel;
-
+        
+        [Header("Sounds")]
+        [SerializeField]
+        private SingleSoundData _playSound;
+        
         [Header("Crash")]
         [TextArea]
         [SerializeField]
@@ -95,10 +99,13 @@ namespace Project
         {
             if (_selected.Level == 4 || _selected.Level == 5)
             {
+                SoundManager.Instance.Play(_playSound);
                 Crash();
             }
             else
             {
+                MusicManager.Instance.Stop();
+                SoundManager.Instance.Play(_playSound);
                 _levelLoader.LoadLevel(_selected.Level);
             }
         }

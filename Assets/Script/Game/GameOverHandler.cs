@@ -1,6 +1,7 @@
 namespace Project
 {
     using UnityEngine;
+    using UnityEngine.InputSystem;
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Transform))]
@@ -47,22 +48,6 @@ namespace Project
             _isInitialized = true;
         }
         
-        /*
-        private void OnGUI()
-        {
-            if (GUI.Button(new Rect(0,0, 100, 50), "PlayerWin"))
-            {
-                PlayerWin();
-            }
-            
-            if (GUI.Button(new Rect(0,50, 100, 50), "EnemyWin"))
-            { 
-                EnemyWin();
-            }
-        }
-        */
-
-
         private void EnemyWin()
         {
             _timeSpeedHandler.StopTime();
@@ -92,6 +77,28 @@ namespace Project
                 Debug.LogError($"{nameof(GameOverHandler)} not initialized", this);
             }
         }
-    }
 #endif
+
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+        private void Update()
+        {
+            if (Keyboard.current.iKey.wasPressedThisFrame && Keyboard.current.ctrlKey.isPressed)
+            {
+                PlayerWin();
+                enabled = false;
+            }
+            
+            if (Keyboard.current.oKey.wasPressedThisFrame && Keyboard.current.ctrlKey.isPressed)
+            {
+                EnemyWin();
+                enabled = false;
+            }
+            
+            if (Keyboard.current.pKey.wasPressedThisFrame && Keyboard.current.ctrlKey.isPressed)
+            {
+                PlayerPrefs.DeleteAll();
+            }
+        }
+#endif
+    }
 }

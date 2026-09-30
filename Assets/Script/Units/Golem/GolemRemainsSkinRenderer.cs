@@ -22,7 +22,11 @@ namespace Project
 
         [SerializeField]
         private float _flashDuration = 0.15f;
-        
+
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _deathSound;
+
         private SpriteRenderer _spriteRenderer;
         private SpriteFlasher _spriteFlasher;
         private Tween _shakeTween;
@@ -54,6 +58,8 @@ namespace Project
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
             _dieParticle.Play();
+            
+            SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }
 
 #if UNITY_EDITOR

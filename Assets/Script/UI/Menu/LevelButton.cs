@@ -44,7 +44,14 @@ namespace Project
 
         [SerializeField]
         private float _slideOffset = 200;
-
+        
+        [Header("Sounds")]
+        [SerializeField]
+        private SingleSoundData _successSound;
+        
+        [SerializeField]
+        private SingleSoundData _failureSound;
+        
         private Action<LevelButton> _selectAction;
         
         private RectTransform _wrap;
@@ -144,6 +151,8 @@ namespace Project
 
         private void Locked()
         {
+            SoundManager.Instance.Play(_failureSound);
+            
             _lockedTween?.Kill(true);
             _lockedTween = _highlightLocked.DOFade(1, 0.1f)
                 .SetLink(gameObject, LinkBehaviour.KillOnDestroy)
@@ -153,6 +162,8 @@ namespace Project
 
         public void Select()
         {
+            SoundManager.Instance.Play(_successSound);
+            
             _fadeTween?.Kill();
             
             _fadeTween = _highlightSelect.DOFade(1, 0.3f)

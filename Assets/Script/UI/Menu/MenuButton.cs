@@ -33,12 +33,12 @@ namespace Project
             }
             
             _scaleTween?.Kill(true);
-            
-            _scaleTween = transform.DOScale(0.8f, 0.15f)
+
+            _clickAction.Invoke();
+            _scaleTween = transform.DOScale(0.8f, 0.075f)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                 .SetEase(Ease.OutSine)
-                .SetLoops(2, LoopType.Yoyo)
-                .OnComplete(_clickAction.Invoke);
+                .SetLoops(2, LoopType.Yoyo);
         }
 
         public void SetInteractable(bool isInteractable)
