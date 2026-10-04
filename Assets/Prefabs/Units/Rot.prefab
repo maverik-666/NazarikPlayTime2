@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952239326361440557}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.40354517, w: 0.9149597}
+  m_LocalPosition: {x: -0.017904706, y: 1.1497288, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6488377873746073033}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -47.6}
 --- !u!212 &5872847841018367962
 SpriteRenderer:
   serializedVersion: 2
@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8839868518474590428}
   - component: {fileID: 8446902943032061786}
+  - component: {fileID: 9055551288833436020}
   m_Layer: 0
   m_Name: Tentacle Line
   m_TagString: Untagged
@@ -249,6 +250,21 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &9055551288833436020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865193965803721519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24cc6c7483d727541a8db0b870d05bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.LineOrderInLayer
+  _baseValueOn: {fileID: 8155672732246900512}
+  _addedValue: -10
+  _layerId: 
 --- !u!1 &2743481274361999894
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,12 +314,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Rot
   _moveSpeed: 0.15
-  _attackCooldown: 5
-  _attackPrepareDuration: 5
+  _attackCooldown: 2
+  _attackPrepareDuration: 0
   _attackDistance: 2
   _visionDistance: 1
   _heathPoints: 100000000
-  _knockPoints: 
+  _knockDamage: 25
 --- !u!1 &4539971602745553208
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.SpriteOrderInLayer
   _baseValueOn: {fileID: 6767558189574402644}
-  _addedValue: 0
+  _addedValue: 1000
   _layerId: 
 --- !u!1 &6012887889671706950
 GameObject:
@@ -477,7 +493,7 @@ Transform:
   m_GameObject: {fileID: 6012887889671706950}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0099179745, y: 1.1514931, z: 0}
+  m_LocalPosition: {x: -0.025542974, y: 1.1514931, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -744,7 +760,7 @@ Transform:
   m_GameObject: {fileID: 7390646808732714208}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0099179745, y: 1.1514931, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -767,4 +783,5 @@ MonoBehaviour:
   _source: {fileID: 5565655490235226236}
   _line: {fileID: 8446902943032061786}
   _tentacleEnd: {fileID: 8827810000161604633}
-  _speed: 10
+  _speed: 5
+  _targetOffset: {x: 0, y: 0.15, z: 0}

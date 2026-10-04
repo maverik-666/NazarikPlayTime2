@@ -1,5 +1,6 @@
 namespace Project
 {
+    using DG.Tweening;
     using UnityEngine;
 
     [DisallowMultipleComponent]
@@ -24,6 +25,7 @@ namespace Project
         {
             var unit = Instantiate(_rotPf, position, Quaternion.identity, transform);
             unit.Init(team, enemyTeam, direction, _damageableRegistry, _unitRegistry);
+
             _damageableRegistry.Add(unit);
             _unitRegistry.Add(unit);
         }

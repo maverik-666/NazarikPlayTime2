@@ -27,7 +27,7 @@ namespace Project
         private int _heathPoints = 50;
 
         [SerializeField]
-        private int[] _knockPoints = { 0 };
+        private int _knockDamage = 25;
         
         private Health _health;
         private Team _team;
@@ -36,6 +36,7 @@ namespace Project
         
         private StateMachine _stateMachine;
 
+        private int _accumulatedDamage = 0;
         private bool _canNotTakeDamage = false;
         private bool _isInitialized = false;
 
@@ -111,23 +112,12 @@ namespace Project
                 return;
             }
 
-            int lastHealth = Health.Current;
-            
-            Health.TakeDamage(damage);
+            _accumulatedDamage += damage;
 
-            if (Health.IsDead)
-            {
+            if(_accumulatedDamage >= _knockDamage)
+            { 
+                _accumulatedDamage = 0;
                 _stateMachine.SetState("TakeDamage");
-                return;
-            }
-            
-            foreach (int knockPoint in _knockPoints)
-            {
-                if (lastHealth > knockPoint && Health.Current <= knockPoint)
-                { 
-                    _stateMachine.SetState("TakeDamage");
-                    break;
-                }
             }
         }
         

@@ -22,6 +22,7 @@ namespace Project
         private Action<IDamageable> _requestCallback;
         private Team _targetTeam;
         private Structure _structure;
+        private DamageableType _allowedTypes; 
         private bool _hasRequest = false;
 
         private Tween _fadeTween = null;
@@ -42,10 +43,12 @@ namespace Project
             _isInitialized = true;
         }
         
-        public void RequestSelection(Structure structure, Team targetTeam, Action<IDamageable> callback)
+        public void RequestSelection(Structure structure, Team targetTeam, DamageableType allowedTypes, Sprite aimSprite, Action<IDamageable> callback)
         {
             _structure = structure;
             _targetTeam = targetTeam;
+            _allowedTypes = allowedTypes;
+            _aim.SetSprite(aimSprite);
 
             if (!TryGetClosestToMouse(out _currentTarget))
             {
@@ -79,7 +82,7 @@ namespace Project
             
             foreach (var damageable in _damageableRegistry.Items)
             { 
-                if (damageable.Team != _targetTeam || _structure.gameObject == damageable.transform.gameObject)
+                if (damageable.Team != _targetTeam || !_allowedTypes.HasFlag(damageable.Type))
                     continue;
 
                 float distance = Vector2.Distance(damageable.Position, position);

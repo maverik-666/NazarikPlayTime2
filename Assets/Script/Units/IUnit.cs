@@ -1,12 +1,11 @@
 namespace Project
 {
-    using UnityEngine;
 
     public interface IUnit : IDamageable
     {
-        public Transform transform { get; }
-        
         float Direction { get; }
+        
+        public Team EnemyTeam { get; }
         
         void SetDirection(float direction);
 

@@ -76,6 +76,10 @@ namespace Project
             var olmekSpawnService = GetComponentInChildren<OlmekSpawnService>(true);
             olmekSpawnService.Init(playerStructure.Structure, moneyCounter, unitSelector, cameraMover, damageableRegistry); 
             services.Add(olmekSpawnService);
+            
+            var animatronicSpawnService = GetComponentInChildren<AnimactronicSpawnService>(true);
+            animatronicSpawnService.Init(playerStructure.Structure, moneyCounter, unitSelector, damageableRegistry, unitRegistry); 
+            services.Add(animatronicSpawnService);
 
             var serviceButtonPanel = GetComponentInChildren<ServiceButtonPanel>(true);
             var serviceButtonCreator = GetComponentInChildren<ServiceButtonCreator>(true);

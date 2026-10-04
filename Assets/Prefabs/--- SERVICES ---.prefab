@@ -205,6 +205,56 @@ MonoBehaviour:
   _unlockable: 0
   _serviceButtonPf: {fileID: 8365463615301766112, guid: 5ff792c2b9033a041af8fc24493a71a9, type: 3}
   _yOffsetRange: {x: -0.05, y: 0.05}
+--- !u!1 &1565507785535352616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 260173229864571566}
+  - component: {fileID: 773895017525617477}
+  m_Layer: 0
+  m_Name: AnimatronicSpawnService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &260173229864571566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565507785535352616}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8335382782221060177}
+  m_Father: {fileID: 5522416600877768493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &773895017525617477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565507785535352616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b822616c11b74125a871fdd3cda70c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.AnimactronicSpawnService
+  _price: 50
+  _cooldown: 0.5
+  _unlockable: 3
+  _serviceButtonPf: {fileID: 8365463615301766112, guid: 7e031b0a0fdeaec41b05546ac0f686ff, type: 3}
+  _aimSprite: {fileID: 21300000, guid: 492c452b388e9ac4c943fe4b2371ca30, type: 3}
 --- !u!1 &3365614333437373092
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,8 +332,69 @@ Transform:
   - {fileID: 1854849695510898837}
   - {fileID: 135208898175482179}
   - {fileID: 1890118972877716672}
+  - {fileID: 260173229864571566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8797806285972904571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8335382782221060177}
+  - component: {fileID: 2799083734778962688}
+  - component: {fileID: 7808970827494399906}
+  m_Layer: 0
+  m_Name: Animatronic Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8335382782221060177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797806285972904571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 260173229864571566}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2799083734778962688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797806285972904571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55df7d299e1d4ccc86f1249ac50d55fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.AnimatronicFactory
+  _animatronicPf: {fileID: 3993586021441715661, guid: 9321c25461962e9418ad6be98926aa3b, type: 3}
+--- !u!114 &7808970827494399906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797806285972904571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a00e68d0e9b4c27932c70155053a163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.GhostFactory
+  _ghostPf: {fileID: 5950907082530088681, guid: 1086497a63f3fb64496db6559807652d, type: 3}
+  _ghostTeam: 1
 --- !u!1 &9094605227317438795
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,3 +444,4 @@ MonoBehaviour:
   _cooldown: 15
   _unlockable: 2
   _serviceButtonPf: {fileID: 8365463615301766112, guid: 6a4b97eba13dd10468a6218127f9e68a, type: 3}
+  _aimSprite: {fileID: 21300000, guid: 761cf7b1a75145d4ab7b355cd7f70844, type: 3}

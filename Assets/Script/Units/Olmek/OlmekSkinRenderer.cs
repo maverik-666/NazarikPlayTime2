@@ -23,9 +23,6 @@ namespace Project
         [SerializeField]
         private float _jumpHeight = 10;
         
-        [SerializeField]
-        private float _jumpDuration = 0.15f;
-        
         [Header("Shaders")]
         [SerializeField]
         private float _flashColorTo = 0.4f;

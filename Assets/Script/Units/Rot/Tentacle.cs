@@ -1,6 +1,7 @@
 namespace Project
 {
     using System;
+    using DG.Tweening;
     using UnityEngine;
 
     [DisallowMultipleComponent]
@@ -15,9 +16,14 @@ namespace Project
         
         [SerializeField]
         private Transform _tentacleEnd;
-
+        
         [SerializeField]
         private float _speed;
+
+        [SerializeField]
+        private Vector3 _targetOffset;
+
+        private SpriteRenderer _spriteRenderer;
         
         private bool _hasTarget;
         private Action _grabAction;
@@ -28,6 +34,8 @@ namespace Project
 
         public void Init()
         {
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>(true);
+            _spriteRenderer.enabled = false;
             _isInitialized = true;
         }
         
@@ -36,6 +44,9 @@ namespace Project
             _target = target;
             _grabAction = grabAction;
             _consumeAction = consumeAction; 
+            
+            _spriteRenderer.enabled = true;
+            _tentacleEnd.position = _source.position;
             
             _hasTarget = true;
         }
@@ -49,22 +60,36 @@ namespace Project
                     MoveToTarget();
                 }
                 else
-                {
+                { 
                     MoveToSource();
+                    MoveTargetToSource();
                 }
+            } 
+            else
+            {
+                MoveToSource();
             }
             
-            _tentacleEnd.transform.up = _source.transform.position - transform.position;
+            if((_source.position - _tentacleEnd.position).sqrMagnitude > 0.001f)
+            {
+                _tentacleEnd.LookAt(_source, Vector3.up); 
+                _tentacleEnd.Rotate(Vector3.up, 90, Space.Self);
+            }
             
             _line.SetPosition(0,_source.position);
             _line.SetPosition(1, _tentacleEnd.transform.position);
         }
-        
+
         private void MoveToSource()
         {
             _tentacleEnd.position = Vector3.Lerp(_tentacleEnd.position, _source.position, _speed * Time.deltaTime);
-
-            if ((_source.position - _tentacleEnd.position).sqrMagnitude < 0.05f)
+        }
+        
+        private void MoveTargetToSource()
+        {
+            _target.position = Vector3.Lerp(_target.position, _source.position, _speed * Time.deltaTime);
+            
+            if ((_source.position - _target.position).sqrMagnitude < 0.001f)
             {
                 Consume();
             }
@@ -72,9 +97,10 @@ namespace Project
 
         private void MoveToTarget()
         {
-            _tentacleEnd.position = Vector3.Lerp(_tentacleEnd.position, _target.position, _speed * Time.deltaTime);
+            var targetPosition = _target.position + _targetOffset;
+            _tentacleEnd.position = Vector3.Lerp(_tentacleEnd.position, targetPosition, _speed * Time.deltaTime);
 
-            if ((_target.position - _tentacleEnd.position).sqrMagnitude < 0.05f)
+            if ((targetPosition - _tentacleEnd.position).sqrMagnitude < 0.001f)
             {
                 Grab();
             }
@@ -82,8 +108,7 @@ namespace Project
         
         private void Grab()
         {
-            _tentacleEnd.position = _target.position;
-            _target.SetParent(_tentacleEnd.parent);
+            _tentacleEnd.position = _target.position + _targetOffset;
             
             _grabAction?.Invoke();
             _isGrabbed = true;
@@ -91,13 +116,12 @@ namespace Project
         
         private void Consume()
         {
-            _tentacleEnd.position = _source.position;
             _consumeAction?.Invoke();
             
             Discard();
         }
         
-        private void Discard()
+        public void Discard()
         {
             _hasTarget = false;
             _target = null;

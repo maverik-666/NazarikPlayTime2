@@ -17,7 +17,9 @@ namespace Project
         private Tentacle _tentacle;
         private float _attackDistance;
         private string _afterAttackStateId;
-        
+
+        private IUnit _target;
+        private bool _isConsuming;
         private bool _isOnCooldown;
 
         public string ID => _id;
@@ -55,7 +57,9 @@ namespace Project
 
         private void Attack(IUnit target)
         {
+            _isConsuming = true;
             target.PickedUp();
+            _target = target;
             _tentacle.StartMoveTo(target.transform, Grab, Consume);
             
             _isOnCooldown = true;
@@ -72,7 +76,16 @@ namespace Project
 
         private void Consume()
         {
-            
+            _target.transform.DOScale(0, 0.5f)
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetEase(Ease.OutSine)
+                .OnComplete(AfterConsume);
+        }
+
+        private void AfterConsume()
+        {
+            _target.InstantDeath();
+            _stateMachine.SetState("Idle");
         }
         
         private void OnCooldownPass()
@@ -111,11 +124,19 @@ namespace Project
             return !unit.IsDead
                    && !unit.CanNotTakeDamage
                    && unit.Team == _attacker.EnemyTeam
+                   && unit.Type == DamageableType.Unit
                    && distance <= _attackDistance;
         }
 
         public void Exit()
         {
+            if (_isConsuming)
+            {
+                _tentacle.Discard();
+                _target.InstantDeath();
+            }
+
+            _isConsuming = false;
         }
 
         public void Dispose() { }

@@ -62,6 +62,12 @@ namespace Project
                 .SetRelative()
                 .SetEase(Ease.InOutSine));
             
+            transform.localScale = Vector3.zero;
+            transform.DOScale(1, 0.5f)
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetEase(Ease.OutSine);
+
+            
             _isInitialized = true;
         }
 

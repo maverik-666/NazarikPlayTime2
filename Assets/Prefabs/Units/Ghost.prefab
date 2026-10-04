@@ -111,7 +111,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: cd4957f644bb18e4ab1866457108bf4c, type: 3}
     - {fileID: 8300000, guid: aee850dbf4365f344903ecd325c3ac7f, type: 3}
     - {fileID: 8300000, guid: 740a35c99c01f1f4aaf5f718699f0e45, type: 3}
-    _volume: 1
+    _soundVolume: 0.5
 --- !u!95 &9184404526601923824
 Animator:
   serializedVersion: 7
@@ -494,6 +494,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c04e973330a685a4288c4df05184d731, type: 2}
+    - target: {fileID: 727064983094314860, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 727064983094314860, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 0.9019608

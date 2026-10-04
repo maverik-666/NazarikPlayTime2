@@ -19,6 +19,9 @@ namespace Project
         [SerializeField]
         private ServiceButton _serviceButtonPf;
         
+        [SerializeField]
+        private Sprite _aimSprite;
+        
         private Structure _structure;
         private MoneyCounter _moneyCounter;
         private Timer _cooldownTimer;
@@ -76,7 +79,7 @@ namespace Project
 
         private void RequestPosition()
         {
-            _unitSelector.RequestSelection(_structure, _structure.Team, SpawnUnitOn);
+            _unitSelector.RequestSelection(_structure, _structure.Team, DamageableType.Unit | DamageableType.Structure, _aimSprite, SpawnUnitOn);
         }
         
         private void SpawnUnitOn(IDamageable damageable)

@@ -1,5 +1,6 @@
 namespace Project
 {
+    using DG.Tweening;
     using LudicWorlds;
     using UnityEngine;
 
@@ -34,6 +35,11 @@ namespace Project
             
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteFlasher = new SpriteFlasher(gameObject, _spriteRenderer);
+            
+            transform.localScale = Vector3.zero;
+            transform.DOScale(1, 0.5f)
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .SetEase(Ease.OutSine);
             
             _stateMachine.StateEntered += OnStateEntered;
             _isInitialized = true;

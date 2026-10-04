@@ -73,6 +73,11 @@ namespace Project
             _target = target;
         }
 
+        public void SetSprite(Sprite sprite)
+        {
+            _spriteRenderer.sprite = sprite;
+        }
+
 #if UNITY_EDITOR
         private void Start()
         {

@@ -2256,6 +2256,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -32
       objectReference: {fileID: 0}
+    - target: {fileID: 1858413654783812449, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858413654783812449, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858413654783812449, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188761631433306273, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188761631433306273, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3348680179044058585, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -2263,6 +2283,26 @@ PrefabInstance:
     - target: {fileID: 3348680179044058585, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418331613630199138, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418331613630199138, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805984991547660395, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805984991547660395, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805984991547660395, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5164951967775475382, guid: 5b0475ef36e026141b6878573c09eebd, type: 3}
       propertyPath: m_SizeDelta.x
