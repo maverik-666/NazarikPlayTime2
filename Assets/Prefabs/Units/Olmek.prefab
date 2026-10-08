@@ -52,6 +52,7 @@ MonoBehaviour:
   _attackDistance: 1
   _attack: 100
   _jumpOffScreenDelay: 20
+  _properties: 0
 --- !u!1 &4539971602745553208
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.SpriteOrderInLayer
   _baseValueOn: {fileID: 6767558189574402644}
-  _addedValue: 1000
+  _addedValue: -10000
   _layerId: 
 --- !u!114 &4259523302963569708
 MonoBehaviour:
@@ -177,7 +178,6 @@ MonoBehaviour:
   _fallDuration: 1
   _fallHeight: 10
   _jumpHeight: 4
-  _jumpDuration: 0.15
   _flashColorTo: 0.4
   _flashDuration: 0.15
   _landSound:
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.SpriteOrderInLayer
   _baseValueOn: {fileID: 6767558189574402644}
-  _addedValue: -2000
+  _addedValue: -10001
   _layerId: 
 --- !u!1001 &2027870652382982893
 PrefabInstance:
