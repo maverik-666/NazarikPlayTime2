@@ -15,16 +15,18 @@ namespace Project
         private DamageableRegistry _enemies;
         
         private IAttackState _attackState;
+        private DamageableProperty _allowedProperties;
         private string _moveStateId;
 
         public string ID => _id;
 
-        public void Init(string id, IIdler idler, DamageableRegistry enemies, IAttackState attackState, string moveStateId, IStateMachine stateMachine)
+        public void Init(string id, IIdler idler, DamageableRegistry enemies, IAttackState attackState, string moveStateId, DamageableProperty allowedProperties, IStateMachine stateMachine)
         {
             _id = id;
             _idler = idler;
             _enemies = enemies;
             _attackState = attackState;
+            _allowedProperties = allowedProperties;
             _moveStateId = moveStateId;
             _stateMachine = stateMachine;
         }
@@ -57,7 +59,8 @@ namespace Project
             
             return !enemy.IsDead 
                    && enemy.Team == _idler.EnemyTeam
-                   && Mathf.Abs(distance) <= _idler.VisionDistance;
+                   && Mathf.Abs(distance) <= _idler.VisionDistance
+                   && _allowedProperties.HasFlag(enemy.Properties);
         }
 
 

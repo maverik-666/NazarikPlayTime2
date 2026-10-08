@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Animatronic
   _waitDuration: 25
-  _heathPoints: 50
+  _heathPoints: 75
   _summonDuration: 4
+  _properties: 0
 --- !u!1 &4539971602745553208
 GameObject:
   m_ObjectHideFlags: 0

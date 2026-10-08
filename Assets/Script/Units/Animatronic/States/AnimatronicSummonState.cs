@@ -3,13 +3,13 @@ namespace Project
     using LudicWorlds;
     using UnityEngine;
     
-    public class SummonGhostState : MonoBehaviour, IState, IAttackState
+    public class AnimatronicSummonState : MonoBehaviour, IState, IAttackState
     {
         [Header("Debug")]
         [SerializeField] 
         private string _id;
 
-        private IUnit _unit;
+        private Animatronic _unit;
         private IStateMachine _stateMachine;
         private GhostFactory _ghostFactory;
         
@@ -25,7 +25,7 @@ namespace Project
         public string ID => _id;
         public bool CanAttack => !_isOnCooldown;
 
-        public void Init(string id, IUnit unit, float attackDuration, GhostFactory ghostFactory, string afterAttackStateId, IStateMachine stateMachine)
+        public void Init(string id, Animatronic unit, float attackDuration, GhostFactory ghostFactory, string afterAttackStateId, IStateMachine stateMachine)
         {
             _id = id;
             _unit = unit;
@@ -55,7 +55,12 @@ namespace Project
         
         private void AfterAttack()
         {
-            _ghostFactory.Create(_unit.transform.position, _unit.Team,  _unit.EnemyTeam, _unit.Direction);
+            if (!_unit.IsDepleted)
+            { 
+                _ghostFactory.Create(_unit.transform.position, _unit.Team,  _unit.EnemyTeam, _unit.Direction);
+                _unit.SetDepleted();
+            }
+            
             _stateMachine.SetState(_afterAttackStateId);
         }
 

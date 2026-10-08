@@ -9,9 +9,6 @@ namespace Project
         [SerializeField]
         private Ghost _ghostPf;
 
-        [SerializeField]
-        private Team _ghostTeam = Team.Unknown;
-        
         private DamageableRegistry _damageableRegistry;
         private UnitRegistry _unitRegistry;
         private bool _isInitialized = false;
@@ -26,7 +23,7 @@ namespace Project
         public void Create(Vector3 position, Team team, Team enemyTeam, float direction)
         {
             var unit = Instantiate(_ghostPf, position, Quaternion.identity, transform);
-            unit.Init(_ghostTeam, enemyTeam, direction, _damageableRegistry);
+            unit.Init(team, enemyTeam, direction, _damageableRegistry);
             _damageableRegistry.Add(unit);
             _unitRegistry.Add(unit);
         }

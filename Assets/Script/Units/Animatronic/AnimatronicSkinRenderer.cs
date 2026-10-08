@@ -95,6 +95,10 @@ namespace Project
         private void Attack()
         {
             FlashWhite();
+
+            transform.DOShakePosition(1, Vector3.right * 0.3f)
+                .SetDelay(2)
+                .SetLink(gameObject, LinkBehaviour.KillOnDestroy);
         }
         
         private void Die()
@@ -118,7 +122,7 @@ namespace Project
         }
 
         
-        private void FlashRed()
+        public void FlashRed()
         {
             _spriteFlasher.FlashColor(Color.red, _flashColorTo, _flashDuration);
         }

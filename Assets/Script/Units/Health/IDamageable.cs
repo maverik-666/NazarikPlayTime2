@@ -16,6 +16,8 @@ namespace Project
         
         public DamageableType Type { get; }
         
+        public DamageableProperty Properties { get; }
+        
         public bool IsDead => Health.IsDead;
 
         public bool CanNotTakeDamage { get; }

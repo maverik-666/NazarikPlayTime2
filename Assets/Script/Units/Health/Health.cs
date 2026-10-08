@@ -29,6 +29,12 @@ namespace Project
             _current = _max = max;
             Changed?.Invoke();
         }
+        
+        public void SetCurrentHealth(int current)
+        {
+            _current = Mathf.Min(current, _max);
+            Changed?.Invoke();
+        }
 
         public void TakeDamage(int damage)
         {

@@ -17,13 +17,18 @@ namespace Project
         [SerializeField]
         private float _summonDuration;
         
+        [SerializeField]
+        private DamageableProperty _properties = DamageableProperty.None;
+        
         private Health _health;
         private Team _team;
         private Team _enemyTeam;
         private float _direction = 1;
         
         private StateMachine _stateMachine;
+        private AnimatronicSkinRenderer _skinRenderer;
 
+        private bool _isDepleted = false;
         private bool _canNotTakeDamage = false;
         private bool _isInitialized = false;
 
@@ -35,13 +40,16 @@ namespace Project
         public Team EnemyTeam => _enemyTeam;
         
         public DamageableType Type => DamageableType.Structure;
+        public DamageableProperty Properties => _properties;
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
 
         public float VisionDistance => 0;
 
         public float Direction => _direction;
-        
+
+        public bool IsDepleted => _isDepleted;
+
         public void Init(Team team, Team enemyTeam, float direction, DamageableRegistry damageableRegistry, GhostFactory ghostFactory)
         {
             _team = team;
@@ -52,7 +60,7 @@ namespace Project
             
             _stateMachine = GetComponentInChildren<StateMachine>();
 
-            var attackState = GetComponentInChildren<SummonGhostState>();
+            var attackState = GetComponentInChildren<AnimatronicSummonState>();
             attackState.Init("Attack", this, _summonDuration, ghostFactory, "Idle", _stateMachine);
             _stateMachine.AddState(attackState);
             
@@ -71,8 +79,9 @@ namespace Project
             var dieState = GetComponentInChildren<AnimatronicDieState>();
             dieState.Init("Die", this, damageableRegistry, ghostFactory, _stateMachine);
             _stateMachine.AddState(dieState);
-            
-            GetComponentInChildren<AnimatronicSkinRenderer>().Init(this, _stateMachine);
+
+            _skinRenderer = GetComponentInChildren<AnimatronicSkinRenderer>();
+            _skinRenderer.Init(this, _stateMachine);
             
             _stateMachine.SetState("PrepareAttack");
             
@@ -84,6 +93,11 @@ namespace Project
             _canNotTakeDamage = value;
         }
 
+        public void SetDepleted()
+        {
+            _isDepleted = true;
+        }
+        
         public void TakeDamage(int damage)
         {
             if (CanNotTakeDamage)
@@ -92,6 +106,7 @@ namespace Project
             }
 
             Health.TakeDamage(damage);
+            _skinRenderer.FlashRed();
 
             if (Health.IsDead)
             {

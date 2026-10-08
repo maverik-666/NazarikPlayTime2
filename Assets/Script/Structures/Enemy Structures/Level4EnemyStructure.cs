@@ -20,7 +20,7 @@ namespace Project
             _structure.Init();
             damageableRegistry.Add(_structure);
 
-            foreach (var unitSpawner in GetComponentsInChildren<TimedUnitSpawner>(true))
+            foreach (var unitSpawner in GetComponentsInChildren<TimedUnitSpawner>(false))
             {
                 var unitFactory = unitSpawner.GetComponentInChildren<IUnitFactory>(true);
 
@@ -28,7 +28,7 @@ namespace Project
                 unitSpawner.Init(_structure.Team, _structure.EnemyTeam, _structure.Direction, unitFactory);
             }
             
-            foreach (var unitSpawner in GetComponentsInChildren<DelayedUnitSpawner>(true))
+            foreach (var unitSpawner in GetComponentsInChildren<DelayedUnitSpawner>(false))
             {
                 var unitFactory = unitSpawner.GetComponentInChildren<IUnitFactory>(true);
 

@@ -18,6 +18,7 @@ namespace Project
         private Timer _afterAttackTimer;
         private float _attackDuration;
         private float _attackDistance;
+        private DamageableProperty _allowedProperties;
         private string _afterAttackStateId;
         
         private bool _isOnCooldown;
@@ -25,7 +26,7 @@ namespace Project
         public string ID => _id;
         public bool CanAttack => !_isOnCooldown;
 
-        public void Init(string id, IAttacker attacker, float attackDuration, float attackDistance, string afterAttackStateId, DamageableRegistry damageableRegistry, IStateMachine stateMachine)
+        public void Init(string id, IAttacker attacker, float attackDuration, float attackDistance, string afterAttackStateId, DamageableRegistry damageableRegistry, DamageableProperty allowedProperties, IStateMachine stateMachine)
         {
             _id = id;
             _attacker = attacker;
@@ -34,6 +35,7 @@ namespace Project
             _afterAttackStateId = afterAttackStateId;
             
             _damageableRegistry = damageableRegistry;
+            _allowedProperties = allowedProperties;
             _stateMachine = stateMachine;
 
             _afterAttackTimer = new Timer();
@@ -101,7 +103,8 @@ namespace Project
             return !damageable.IsDead 
                    && !damageable.CanNotTakeDamage
                    && damageable.Team == _attacker.EnemyTeam 
-                   && distance <= _attackDistance;
+                   && distance <= _attackDistance
+                   && _allowedProperties.HasFlag(damageable.Properties);
         }
 
         public void Exit()

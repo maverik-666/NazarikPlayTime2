@@ -173,13 +173,20 @@ public class CameraMover : MonoBehaviour
 
     public void Shake(float duration, float strength)
     {
-        DOTween.Shake(() => _targetPosition, (x) =>
+        enabled = false;
+        DOTween.Shake(() => _camera.transform.position, (x) =>
         {
-            _targetPosition = x;
+            _camera.transform.position = x;
 
-        }, duration, strength);
+        }, duration, Vector3.right * strength)
+        .SetLink(_camera.gameObject, LinkBehaviour.KillOnDestroy)
+        .OnComplete(Enable);
     }
-    
+
+    private void Enable()
+    {
+        enabled = true;
+    }
     
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

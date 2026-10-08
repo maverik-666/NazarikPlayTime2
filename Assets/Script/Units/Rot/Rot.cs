@@ -29,6 +29,9 @@ namespace Project
         [SerializeField]
         private int _knockDamage = 25;
         
+        [SerializeField]
+        private DamageableProperty _properties = DamageableProperty.None;
+        
         private Health _health;
         private Team _team;
         private Team _enemyTeam;
@@ -46,7 +49,8 @@ namespace Project
         
         public Team Team => _team;
         public Team EnemyTeam => _enemyTeam;
-        public DamageableType Type => DamageableType.Unit;
+        public DamageableType Type => DamageableType.Unit; 
+        public DamageableProperty Properties => _properties;
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
 
@@ -82,11 +86,11 @@ namespace Project
             _stateMachine.AddState(prepareAttack);
             
             var idleState = GetComponentInChildren<IdleState>();
-            idleState.Init("Idle", this, damageableRegistry, prepareAttack, "Move", _stateMachine);
+            idleState.Init("Idle", this, damageableRegistry, prepareAttack, "Move", DamageableProperty.None, _stateMachine);
             _stateMachine.AddState(idleState);
             
             var moveState = GetComponentInChildren<MoveForwardState>();
-            moveState.Init("Move", this, damageableRegistry, prepareAttack, "Idle", _stateMachine);
+            moveState.Init("Move", this, damageableRegistry, prepareAttack, "Idle", DamageableProperty.None, _stateMachine);
             _stateMachine.AddState(moveState);
 
             var takeDamageState = GetComponentInChildren<TakeDamageState>();

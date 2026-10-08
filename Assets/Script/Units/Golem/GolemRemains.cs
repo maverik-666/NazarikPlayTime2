@@ -9,6 +9,9 @@ namespace Project
         [SerializeField]
         private int _heathPoints = 50;
         
+        [SerializeField]
+        private DamageableProperty _properties = DamageableProperty.None;
+        
         private Team _team = Team.Red;
         
         private float _direction = 1;
@@ -27,6 +30,7 @@ namespace Project
         public Health Health => _health;
         public Team Team => _team;
         public DamageableType Type => DamageableType.Structure;
+        public DamageableProperty Properties => _properties;
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
         

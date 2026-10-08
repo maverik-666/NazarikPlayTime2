@@ -19,6 +19,8 @@ namespace Project
         private float _attackDuration;
         private float _attackDistance;
         private string _afterAttackStateId;
+
+        private CameraMover _cameraMover;
         
         private bool _isOnCooldown;
 
@@ -35,7 +37,8 @@ namespace Project
             _attackDistance = attackDistance;
             _afterAttackStateId = afterAttackStateId;
             _stateMachine = stateMachine;
-
+            _cameraMover = this.Resolve<CameraMover>();
+            
             _afterAttackTimer = new Timer();
         }
 
@@ -77,6 +80,7 @@ namespace Project
                 }
             }
 
+            _cameraMover.Shake(0.3f, 3);
             _stateMachine.SetState(_afterAttackStateId);
         }
         
@@ -89,9 +93,11 @@ namespace Project
                 return false;
             }
             
+            distance = Mathf.Abs(distance);
+            
             return !damageable.IsDead 
                    && !damageable.CanNotTakeDamage
-                   && (damageable.Team == _attacker.EnemyTeam || damageable.Team == Team.Unknown) 
+                   && (damageable.Team == _attacker.EnemyTeam) 
                    && distance <= _attackDistance;
         }
 

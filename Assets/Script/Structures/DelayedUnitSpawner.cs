@@ -22,7 +22,7 @@ namespace Project
 
         private Timer _timer;
 
-        private bool _HasSpawned = false;
+        private bool _hasSpawned = false;
         private bool _isInitialized = false;
 
         public void Init(Team team, Team enemyTeam, float direction, IUnitFactory unitFactory)
@@ -43,9 +43,9 @@ namespace Project
         {
             _timer.Tick(Time.deltaTime);
             
-            if (_timer.IsStopped && !_HasSpawned)
+            if (_timer.IsStopped && !_hasSpawned)
             {
-                _HasSpawned = true; 
+                _hasSpawned = true; 
                 Spawn(); 
             }
         }

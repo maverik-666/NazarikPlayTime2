@@ -9,7 +9,7 @@ namespace Project
         [SerializeField]
         private string _id;
 
-        private IUnit _unit;
+        private Animatronic _unit;
         private IStateMachine _stateMachine;
 
         private DamageableRegistry _damageableRegistry;
@@ -18,7 +18,7 @@ namespace Project
 
         public string ID => _id;
 
-        public void Init(string id, IUnit unit, DamageableRegistry damageableRegistry, GhostFactory ghostFactory, IStateMachine stateMachine)
+        public void Init(string id, Animatronic unit, DamageableRegistry damageableRegistry, GhostFactory ghostFactory, IStateMachine stateMachine)
         {
             _id = id;
             _unit = unit;
@@ -33,7 +33,12 @@ namespace Project
             _unit.SetInvincible(true);
             _damageableRegistry.Remove(_unit);
             _unitRegistry.Remove(_unit);
-            _ghostFactory.Create(_unit.Position, _unit.Team, _unit.EnemyTeam, _unit.Direction);
+
+            if (!_unit.IsDepleted)
+            { 
+                _ghostFactory.Create(_unit.Position, _unit.Team, _unit.EnemyTeam, _unit.Direction);
+                _unit.SetDepleted();
+            }
         }
 
         public void UpdateState()

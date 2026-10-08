@@ -52,7 +52,8 @@ MonoBehaviour:
   _attack: 3
   _attackCooldown: 1.5
   _visionDistance: 0.2
-  _heathPoints: 1
+  _heathPoints: 45
+  _properties: -1
 --- !u!1 &4539971602745553208
 GameObject:
   m_ObjectHideFlags: 0

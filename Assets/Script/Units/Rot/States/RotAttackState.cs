@@ -17,8 +17,9 @@ namespace Project
         private Tentacle _tentacle;
         private float _attackDistance;
         private string _afterAttackStateId;
-
-        private IUnit _target;
+        private IDamageable _playerStructure;
+        
+        private IDamageable _target;
         private bool _isConsuming;
         private bool _isOnCooldown;
 
@@ -34,6 +35,8 @@ namespace Project
             _attackDistance = attackDistance;
             _afterAttackStateId = afterAttackStateId;
 
+            _playerStructure = this.Resolve<PlayerStructure>().Structure;
+
             _unitRegistry = unitRegistry;
             _stateMachine = stateMachine;
         }
@@ -41,8 +44,13 @@ namespace Project
         public void Enter()
         {
             if (TryFindTarget(out var target))
-            {
+            { 
+                target.PickedUp();
                 Attack(target);
+            }
+            else if (TryFindPlayerStructure())
+            {
+                Attack(_playerStructure);
             }
             else
             {
@@ -55,10 +63,9 @@ namespace Project
             _stateMachine.SetState(_afterAttackStateId);
         }
 
-        private void Attack(IUnit target)
+        private void Attack(IDamageable target)
         {
             _isConsuming = true;
-            target.PickedUp();
             _target = target;
             _tentacle.StartMoveTo(target.transform, Grab, Consume);
             
@@ -76,6 +83,11 @@ namespace Project
 
         private void Consume()
         {
+            if (_target.IsDead)
+            {
+                return;
+            }
+            
             _target.transform.DOScale(0, 0.5f)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                 .SetEase(Ease.OutSine)
@@ -117,15 +129,21 @@ namespace Project
             return foundAny;
         }
 
+        private bool TryFindPlayerStructure()
+        {
+            return Mathf.Abs(_playerStructure.Position.x - _attacker.Position.x) <= _attackDistance;
+        }
+
         private bool IsAttackable(IUnit unit, out float distance)
         {
             distance = Mathf.Abs(unit.Position.x - _attacker.Position.x);
 
             return !unit.IsDead
                    && !unit.CanNotTakeDamage
+                   && distance <= _attackDistance
                    && unit.Team == _attacker.EnemyTeam
                    && unit.Type == DamageableType.Unit
-                   && distance <= _attackDistance;
+                   && !unit.Properties.HasFlag(DamageableProperty.Intangible);
         }
 
         public void Exit()

@@ -11,6 +11,9 @@ namespace Project
         
         [SerializeField]
         private float _tiltRotation = 30f;
+
+        [SerializeField]
+        private ParticleSystem _spawnVFX;
         
         [Header("Shaders")]
         [SerializeField]
@@ -40,6 +43,9 @@ namespace Project
             transform.DOScale(1, 0.5f)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                 .SetEase(Ease.OutSine);
+
+            _spawnVFX.Play();
+            this.Resolve<CameraMover>().Shake(0.5f, 1f);
             
             _stateMachine.StateEntered += OnStateEntered;
             _isInitialized = true;

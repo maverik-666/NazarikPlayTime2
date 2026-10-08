@@ -115,7 +115,7 @@ namespace Project
         }
 
         
-        private void FlashRed()
+        public void FlashRed()
         {
             _spriteFlasher.FlashColor(Color.red, _flashColorTo, _flashDuration);
         }

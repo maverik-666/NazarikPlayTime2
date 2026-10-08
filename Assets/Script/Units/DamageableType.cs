@@ -10,4 +10,11 @@ namespace Project
         Structure = 1 << 1,
         Base = 1 << 2,
     }
+
+    [Flags]
+    public enum DamageableProperty
+    {
+        None = 0,
+        Intangible = 1 << 0,
+    }
 }

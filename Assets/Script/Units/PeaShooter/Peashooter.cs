@@ -23,12 +23,16 @@ namespace Project
         [SerializeField]
         private int[] _knockPoints = { 0 };
         
+        [SerializeField]
+        private DamageableProperty _properties = DamageableProperty.None;
+
         private Health _health;
         private Team _team;
         private Team _enemyTeam;
         private float _direction = 1;
         
         private StateMachine _stateMachine;
+        private PeashooterSkinRenderer _skinRenderer;
 
         private bool _canNotTakeDamage = false;
         private bool _isInitialized = false;
@@ -39,7 +43,8 @@ namespace Project
         
         public Team Team => _team;
         public Team EnemyTeam => _enemyTeam;
-        public DamageableType Type => DamageableType.Unit;
+        public DamageableType Type => DamageableType.Unit; 
+        public DamageableProperty Properties => _properties;
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
         
@@ -71,7 +76,7 @@ namespace Project
             _stateMachine.AddState(prepareAttack);
             
             var idleState = GetComponentInChildren<StationaryIdleState>();
-            idleState.Init("Idle", this, damageableRegistry, prepareAttack, _stateMachine);
+            idleState.Init("Idle", this, damageableRegistry, prepareAttack, DamageableProperty.None, _stateMachine);
             _stateMachine.AddState(idleState);
             
             var takeDamageState = GetComponentInChildren<TakeDamageState>();
@@ -81,8 +86,9 @@ namespace Project
             var dieState = GetComponentInChildren<DieState>();
             dieState.Init("Die", this, damageableRegistry, _stateMachine);
             _stateMachine.AddState(dieState);
-            
-            GetComponentInChildren<PeashooterSkinRenderer>().Init(this, _stateMachine);
+
+            _skinRenderer = GetComponentInChildren<PeashooterSkinRenderer>();
+            _skinRenderer.Init(this, _stateMachine);
             
             _stateMachine.SetState("Idle");
             
@@ -104,6 +110,7 @@ namespace Project
             int lastHealth = Health.Current;
             
             Health.TakeDamage(damage);
+            _skinRenderer.FlashRed();
 
             if (Health.IsDead)
             {

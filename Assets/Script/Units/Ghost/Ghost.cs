@@ -23,6 +23,9 @@ namespace Project
         [SerializeField]
         private int _heathPoints = 50;
 
+        [SerializeField]
+        private DamageableProperty _properties = DamageableProperty.Intangible;
+        
         private Health _health;
         private Team _team;
         private Team _enemyTeam;
@@ -39,8 +42,9 @@ namespace Project
         
         public Team Team => _team;
         public Team EnemyTeam => _enemyTeam;
-        public DamageableType Type => DamageableType.Unit;
-        
+        public DamageableType Type => DamageableType.Unit; 
+        public DamageableProperty Properties => _properties;
+
         public bool CanNotTakeDamage => _canNotTakeDamage;
 
         public float MoveSpeed => _moveSpeed;
@@ -65,15 +69,15 @@ namespace Project
             _stateMachine = GetComponentInChildren<StateMachine>();
 
             var attackState = GetComponentInChildren<SingleAttackState>();
-            attackState.Init("Attack", this, 0.15f, _visionDistance, "Idle", damageableRegistry, _stateMachine);
+            attackState.Init("Attack", this, 0.15f, _visionDistance, "Idle", damageableRegistry, DamageableProperty.None, _stateMachine);
             _stateMachine.AddState(attackState);
 
             var idleState = GetComponentInChildren<IdleState>();
-            idleState.Init("Idle", this, damageableRegistry, attackState, "Move", _stateMachine);
+            idleState.Init("Idle", this, damageableRegistry, attackState, "Move", DamageableProperty.None, _stateMachine);
             _stateMachine.AddState(idleState);
 
             var moveState = GetComponentInChildren<MoveForwardState>();
-            moveState.Init("Move", this, damageableRegistry, attackState, "Idle", _stateMachine);
+            moveState.Init("Move", this, damageableRegistry, attackState, "Idle", DamageableProperty.None, _stateMachine);
             _stateMachine.AddState(moveState);
             
             var dieState = GetComponentInChildren<DieState>();

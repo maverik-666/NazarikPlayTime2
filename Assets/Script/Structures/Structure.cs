@@ -19,6 +19,9 @@ namespace Project
         [SerializeField]
         private int _direction = 1;
         
+        [SerializeField]
+        private DamageableProperty _properties = DamageableProperty.None;
+        
         private Health _health;
 
         private StructureSkinRenderer _structureSkinRenderer;
@@ -35,6 +38,7 @@ namespace Project
         public Team Team => _team;
         
         public DamageableType Type => DamageableType.Base;
+              public DamageableProperty Properties => _properties;
 
         public Team EnemyTeam => _enemyTeam;
         public int Direction => _direction;
@@ -78,6 +82,8 @@ namespace Project
 
         public void InstantDeath()
         {
+            _health.SetCurrentHealth(0);
+            Die();
         }
 
 #if UNITY_EDITOR
