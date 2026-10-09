@@ -52,7 +52,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(MenuButton)} not initialized", this);
+                Debug.LogError($"{GetType().Name} not initialized", this);
             }
         }
 #endif

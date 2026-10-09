@@ -61,7 +61,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(TimedUnitSpawner)} not initialized", this);
+                Debug.LogError($"{GetType().Name} not initialized", this);
             }
         }
 

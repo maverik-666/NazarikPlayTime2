@@ -149,7 +149,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(Peashooter)} not initialized", this);
+                Debug.LogError($"{GetType().Name} not initialized", this);
             }
         }
 

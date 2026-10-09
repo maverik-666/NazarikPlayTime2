@@ -82,7 +82,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(RespawningUnitSpawner)} not initialized", this);
+                Debug.LogError($"{GetType().Name} not initialized", this);
             }
         }
 

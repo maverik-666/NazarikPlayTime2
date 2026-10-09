@@ -153,7 +153,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(GolemSkinRenderer)} not initialized", this);
+                Debug.LogError($"{GetType().Name} not initialized", this);
             }
         }
 #endif

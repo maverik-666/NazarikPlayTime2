@@ -26,7 +26,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(PlayerStructure)} not initialized", this);
+                Debug.LogError($"{GetType().Name} not initialized", this);
             }
         }
 #endif

@@ -83,7 +83,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(SelectorAim)} not initialized", this);
+                Debug.LogError($"{GetType().Name} not initialized", this);
             }
         }
 #endif

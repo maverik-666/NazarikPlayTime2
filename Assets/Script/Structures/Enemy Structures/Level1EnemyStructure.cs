@@ -32,7 +32,7 @@ namespace Project
         {
             if (!_isInitialized)
             {
-                Debug.LogError($"{nameof(Level1EnemyStructure)} not initialized", this);
+                Debug.LogError($"{GetType().Name} not initialized", this);
             }
         }
 #endif
