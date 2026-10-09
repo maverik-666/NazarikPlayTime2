@@ -1,5 +1,6 @@
 namespace Project
 {
+    using System;
     using DG.Tweening;
     using UnityEngine;
     using UnityEngine.EventSystems;
@@ -9,13 +10,8 @@ namespace Project
     [RequireComponent(typeof(Transform))]
     public class AccelerationButton : MonoBehaviour, IPointerClickHandler
     {
-        private const int AcceleratedSpeed = 2;
-        
         [SerializeField]
-        private Image _x1Image;
-        
-        [SerializeField]
-        private Image _x2Image;
+        private AccelerationMode[] _modes;
         
         [Header("Sounds")]
         [SerializeField]
@@ -23,7 +19,8 @@ namespace Project
         
         private Tween _scaleTween;
 
-        private bool _isAccelerated = false;
+        private int _currentMode = 0;
+        private int _clickCounter = 1;
         private TimeSpeedHandler _timeSpeedHandler;
         private bool _isInitialized = false;
 
@@ -37,7 +34,8 @@ namespace Project
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            _isAccelerated = !_isAccelerated;
+            _currentMode = _clickCounter++ % 3;
+            
             ApplyState();
            
             SoundManager.Instance.Play(_clickSound);
@@ -52,18 +50,34 @@ namespace Project
 
         private void ApplyState()
         {
-            if (_isAccelerated)
+            for (int i = 0; i < _modes.Length; i++)
             {
-                _x1Image.gameObject.SetActive(false);
-                _x2Image.gameObject.SetActive(true);
-                _timeSpeedHandler.SetSpeed(AcceleratedSpeed);
+                var mode = _modes[i];
+
+                if (i == _currentMode)
+                { 
+                    mode.Image.gameObject.SetActive(true);
+                    _timeSpeedHandler.SetSpeed(mode.Acceleration);
+                }
+                else
+                { 
+                    mode.Image.gameObject.SetActive(false);
+                }
             }
-            else
-            {
-                _x1Image.gameObject.SetActive(true);
-                _x2Image.gameObject.SetActive(false);
-                _timeSpeedHandler.SetSpeed(1);
-            }
+        }
+
+        [Serializable]
+        private class AccelerationMode
+        {
+            [SerializeField]
+            private Image _image;
+
+            [SerializeField]
+            private float _acceleration = 1;
+
+            public Image Image => _image;
+
+            public float Acceleration => _acceleration;
         }
 
 #if UNITY_EDITOR

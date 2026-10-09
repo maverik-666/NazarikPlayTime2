@@ -1855,6 +1855,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3117878098956724410, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117878098956724410, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117878098956724410, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3649842020920842874, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
       propertyPath: m_Name
       value: GameOverMenu
@@ -1867,10 +1879,26 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1102909348399178556, guid: bffe1fd3ee8dfad45983d778f7173266, type: 3}
+    - target: {fileID: 6918079810535998733, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.064468
+      objectReference: {fileID: 0}
     - target: {fileID: 7230381435255230200, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -6424698248659208960, guid: 4a116a9d6e4c30c40ac8f65677bcabfe, type: 3}
+    - target: {fileID: 7430317134782161936, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430317134782161936, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430317134782161936, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8026253125193772519, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
       propertyPath: m_SizeDelta.y
       value: 82
