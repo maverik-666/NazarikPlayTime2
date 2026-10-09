@@ -27,6 +27,9 @@ namespace Project
         
         [SerializeField]
         private GameObject _kris;
+
+        [SerializeField]
+        private GameObject _piano;
         
         [SerializeField]
         private GameObject _cat;
@@ -95,12 +98,23 @@ namespace Project
             if (_progress.IsLevelUnlocked(2) && Random.value > 0.9f)
             {
                 _cat.SetActive(true);
+                _piano.SetActive(false);
                 _kris.SetActive(false);
             }
             else
             {
                 _cat.SetActive(false);
-                _kris.SetActive(true);
+
+                if (_progress.IsLevelUnlocked(6))
+                {
+                    _piano.SetActive(true);
+                    _kris.SetActive(false);
+                }
+                else
+                { 
+                    _piano.SetActive(false);
+                    _kris.SetActive(true);
+                }
             }
         }
         

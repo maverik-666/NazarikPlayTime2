@@ -3,11 +3,14 @@ namespace Project
     using UnityEngine;
 
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(ProjectileFactory))]
+    [RequireComponent(typeof(Transform))]
     public class KrisFactory : MonoBehaviour, IUnitFactory
     {
         [SerializeField]
         private Kris _krisPf;
+
+        [SerializeField]
+        private DarkTransition _darkTransition;
         
         private DamageableRegistry _damageableRegistry;
         private UnitRegistry _unitRegistry;
@@ -18,13 +21,15 @@ namespace Project
             _damageableRegistry = damageableRegistry;
             _unitRegistry = unitRegistry;
 
+            _darkTransition.Init();
+            
             _isInitialized = true;
         }
 
         public IDamageable Create(Vector3 position, Team team, Team enemyTeam, float direction)
         {
             var unit = Instantiate(_krisPf, position, Quaternion.identity, transform);
-            unit.Init(team, enemyTeam, direction, _damageableRegistry);
+            unit.Init(team, enemyTeam, direction, _damageableRegistry, _darkTransition);
             _damageableRegistry.Add(unit);
             _unitRegistry.Add(unit);
             

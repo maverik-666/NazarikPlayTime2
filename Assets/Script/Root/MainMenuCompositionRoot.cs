@@ -6,8 +6,12 @@ namespace Project
     {
         [SerializeField]
         private SingleSoundData _music;
+
+        [SerializeField]
+        private SingleSoundData _endGameMusic;
         
         private LoadingScreen _loadingScreen;
+        private Progress _progress;
         
         private void Awake()
         {
@@ -46,8 +50,15 @@ namespace Project
         private void Start()
         {
             _loadingScreen.Hide();
-            
-            MusicManager.Instance.PlayMusic(_music.AudioClip, _music.Volume);
+
+            if (_progress.IsLevelUnlocked(6))
+            {
+                MusicManager.Instance.PlayMusic(_endGameMusic.AudioClip, _endGameMusic.Volume);
+            }
+            else
+            {
+                MusicManager.Instance.PlayMusic(_music.AudioClip, _music.Volume);
+            }
         }
     }
 }

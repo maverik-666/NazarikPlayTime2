@@ -6,23 +6,17 @@ namespace Project
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Transform))]
-    public class Kris : MonoBehaviour, IIdler, IAttacker, IUnit
+    public class Kris : MonoBehaviour, IUnit
     {
         [SerializeField]
-        private int _attack = 15;
+        private float _poseDuration;
         
         [SerializeField]
-        private float _attackCooldown = 5;
+        private float _healCooldown = 5;
         
         [SerializeField]
-        private float _visionDistance = 1;
-        
-        [SerializeField]
-        private int _heathPoints = 50;
+        private int _heathPoints = 1000;
 
-        [SerializeField]
-        private int[] _knockPoints = { 0 };
-        
         [SerializeField]
         private DamageableProperty _properties = DamageableProperty.None;
 
@@ -48,16 +42,10 @@ namespace Project
 
         public bool CanNotTakeDamage => _canNotTakeDamage;
         
-        public int Attack => _attack;
-
-        public float AttackCooldown => _attackCooldown;
-
-        public float VisionDistance => _visionDistance;
-
         public float Direction => _direction;
         
 
-        public void Init(Team team, Team enemyTeam, float direction, DamageableRegistry damageableRegistry)
+        public void Init(Team team, Team enemyTeam, float direction, DamageableRegistry damageableRegistry, DarkTransition darkTransition)
         {
             _team = team;
             _enemyTeam = enemyTeam;
@@ -66,15 +54,27 @@ namespace Project
             _health = new Health(_heathPoints);
             
             _stateMachine = GetComponentInChildren<StateMachine>();
+
+            var poseState = GetComponentInChildren<WaitState>();
+            poseState.Init("Pose", 5, "Idle", _stateMachine);
+            _stateMachine.AddState(poseState);
             
-            var idleState = GetComponentInChildren<LockedState>();
-            idleState.Init("Idle", this, _stateMachine);
+            var idleState = GetComponentInChildren<WaitForHealState>();
+            idleState.Init("Idle", this, _healCooldown, "Heal", _stateMachine);
             _stateMachine.AddState(idleState);
+            
+            var healState = GetComponentInChildren<HealState>();
+            healState.Init("Heal", this, "Idle", _health.Max, 0.5f, _stateMachine);
+            _stateMachine.AddState(healState);
             
             var takeDamageState = GetComponentInChildren<TakeDamageState>();
             takeDamageState.Init("TakeDamage", this, "Die", "Idle", _stateMachine);
             _stateMachine.AddState(takeDamageState);
 
+            var defendState = GetComponentInChildren<DefendState>();
+            defendState.Init("Defend", this,"Idle", 0.5f, _stateMachine);
+            _stateMachine.AddState(defendState);
+            
             var dieState = GetComponentInChildren<DieState>();
             dieState.Init("Die", this, damageableRegistry, _stateMachine);
             _stateMachine.AddState(dieState);
@@ -82,7 +82,9 @@ namespace Project
             _skinRenderer = GetComponentInChildren<KrisSkinRenderer>();
             _skinRenderer.Init(this, _stateMachine);
             
-            _stateMachine.SetState("Idle");
+            _stateMachine.SetState("Pose");
+            
+            darkTransition.Play();
             
             _isInitialized = true;
         }
@@ -98,25 +100,17 @@ namespace Project
             {
                 return;
             }
-
-            int lastHealth = Health.Current;
             
             Health.TakeDamage(damage);
             _skinRenderer.FlashRed();
 
-            if (Health.IsDead)
+            if (_health.IsDead)
             {
                 _stateMachine.SetState("TakeDamage");
-                return;
             }
-            
-            foreach (int knockPoint in _knockPoints)
-            {
-                if (lastHealth > knockPoint && Health.Current <= knockPoint)
-                { 
-                    _stateMachine.SetState("TakeDamage");
-                    break;
-                }
+            else
+            { 
+                _stateMachine.SetState("Defend");
             }
         }
         
@@ -157,13 +151,6 @@ namespace Project
             {
                 Debug.LogError($"{GetType().Name} not initialized", this);
             }
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.right * (_direction * _visionDistance));
         }
 #endif
     }

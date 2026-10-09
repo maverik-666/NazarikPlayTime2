@@ -44,7 +44,10 @@ namespace Project
             var cameraMover = GetComponentInChildren<CameraMover>(true);
             cameraMover.Init();
             
-            GetComponentInChildren<Clouds>(true).Init();
+            foreach (var clouds in GetComponentsInChildren<Clouds>(true))
+            {
+                clouds.Init();
+            }
             
             var moneyCounter = GetComponentInChildren<MoneyCounter>(true);
             var moneyCounterView = GetComponentInChildren<MoneyCounterView>(true);

@@ -34,7 +34,7 @@ namespace Project
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            _currentMode = _clickCounter++ % 3;
+            _currentMode = _clickCounter++ % _modes.Length;
             
             ApplyState();
            

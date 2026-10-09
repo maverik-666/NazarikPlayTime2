@@ -360,7 +360,7 @@ ScriptedImporter:
     uvTransform: {x: 276, y: 270}
   - name: kriss_Frame_5
     originalName: 
-    pivot: {x: 0.3846154, y: 0}
+    pivot: {x: 0.39473686, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -368,7 +368,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 276
       y: 204
-      width: 39
+      width: 38
       height: 58
     spriteID: 9e94a0a743d4fc84a852eaf8dc6ae8f1
     spriteBone: []
@@ -587,7 +587,7 @@ ScriptedImporter:
       cellRect:
         x: 49
         y: 0
-        width: 39
+        width: 38
         height: 58
       spriteId: 9e94a0a743d4fc84a852eaf8dc6ae8f1
     - name: kriss_Frame_6

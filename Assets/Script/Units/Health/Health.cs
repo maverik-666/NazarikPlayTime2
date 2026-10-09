@@ -47,5 +47,17 @@ namespace Project
             
             Changed?.Invoke();
         }
+
+        public void Heal(int heal)
+        {
+            _current += heal;
+            
+            if (_current > _max)
+            { 
+                _current = _max;
+            }
+            
+            Changed?.Invoke();
+        }
     }
 }

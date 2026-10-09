@@ -1,5 +1,6 @@
 namespace Project
 {
+    using DG.Tweening;
     using LudicWorlds;
     using UnityEngine;
 
@@ -7,6 +8,12 @@ namespace Project
     {
         [SerializeField]
         private SpriteRenderer _shadow;
+
+        [SerializeField]
+        private ParticleSystem _healParticle;
+
+        [SerializeField]
+        private ParticleSystem _itemParticle;
         
         [SerializeField]
         private ParticleSystem _dieParticle;
@@ -36,6 +43,7 @@ namespace Project
         private StateMachine _stateMachine;
         private SpriteRenderer _spriteRenderer;
         private SpriteFlasher _spriteFlasher;
+        private Tween _shakeTween;
         
         private bool _isInitialized = false;
 
@@ -48,50 +56,43 @@ namespace Project
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteFlasher = new SpriteFlasher(gameObject, _spriteRenderer);
             
+            _spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            _shadow.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            
             _stateMachine.StateEntered += OnStateEntered;
             _isInitialized = true;
-            
-            SoundManager.Instance.Play(_plantSound);
         }
 
         private void OnStateEntered(IState state)
         {
-            if (state.ID == "Idle" || state.ID == "PrepareAttack")
-            {
-                if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-                {
-                    _animator.Play("Idle");
-                }
-
-                Idle();
-                return;
-            }
-            
             _animator.Play(state.ID);
             
-            if (state.ID == "Attack")
+            if (state.ID == "Heal")
             {
-                Attack();
+                Heal();
             }
             else if (state.ID == "Die")
             {
                 Die();
+            }
+            else if (state.ID == "Defend")
+            {
+                Defend();
             }
             else if (state.ID == "TakeDamage")
             {
                 TakeDamage();
             }
         }
+        
 
-        private void Idle()
-        {
-            transform.rotation = Quaternion.identity;
-        } 
-
-        private void Attack()
+        private void Heal()
         {
             FlashWhite();
             SoundManager.Instance.Play(_attackSound.GetRandomSound());
+            
+            _healParticle.Play(true);
+            _itemParticle.Play(true);
         }
         
         private void Die()
@@ -109,11 +110,20 @@ namespace Project
             FlashRed();
         }
 
+        private void Defend()
+        {
+            _shakeTween?.Kill(true); 
+            _shakeTween = transform.DOShakePosition(0.15f, new Vector3(0.125f, 0, 0), 10, 90, false)
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable);
+            _spriteFlasher.FlashColor(Color.red, _flashColorTo, _flashDuration);
+            
+            FlashRed();
+        }
+
         private void FlashWhite()
         {
             _spriteFlasher.FlashColor(Color.white, _flashColorTo, _flashDuration);
         }
-
         
         public void FlashRed()
         {
