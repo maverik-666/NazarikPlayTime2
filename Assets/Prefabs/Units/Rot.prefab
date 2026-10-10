@@ -375,6 +375,10 @@ MonoBehaviour:
   _spawnVFX: {fileID: 1834759922002416584}
   _flashColorTo: 0.4
   _flashDuration: 0.15
+  _spawnSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 9694e7bf2bf73724fabdb50dad88b0d0, type: 3}
+    _soundVolume: 1
 --- !u!95 &9184404526601923824
 Animator:
   serializedVersion: 7
@@ -788,6 +792,12 @@ MonoBehaviour:
   _tentacleEnd: {fileID: 8827810000161604633}
   _speed: 5
   _targetOffset: {x: 0, y: 0.15, z: 0}
+  _grabSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 98c5af62cde5160469847dd5809970ed, type: 3}
+    - {fileID: 8300000, guid: fa8d97cdaf8895a4dbb23dacb5b1a8ba, type: 3}
+    - {fileID: 8300000, guid: 06953d813029e7a4ca6c973e015fdee5, type: 3}
+    _soundVolume: 1
 --- !u!1001 &8324545593552585212
 PrefabInstance:
   m_ObjectHideFlags: 0

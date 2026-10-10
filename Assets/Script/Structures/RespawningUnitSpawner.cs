@@ -13,7 +13,7 @@ namespace Project
         private float _respawnDelay = 10;
         
         [SerializeField]
-        private Vector2 _yOffsetRange = new Vector2(-0.25f, 0.25f);
+        private Vector2 _yOffsetRange = new Vector2(-0.05f, 0.05f);
 
         private IUnitFactory _unitFactory;
 

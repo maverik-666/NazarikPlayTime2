@@ -24,6 +24,9 @@ namespace Project
 
         [Header("Sounds")]
         [SerializeField]
+        private RandomSoundData _spawnSound;
+        
+        [SerializeField]
         private RandomSoundData _deathSound;
         
         private Animatronic _unit;
@@ -55,6 +58,8 @@ namespace Project
             _shadow.transform.DOScale(1, 0.5f)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                 .SetEase(Ease.OutSine);
+
+            SoundManager.Instance.Play(_spawnSound.GetRandomSound());
             
             _isInitialized = true;
         }

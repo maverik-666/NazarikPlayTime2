@@ -30,7 +30,7 @@ namespace Project
 
         [Header("Sounds")]
         [SerializeField]
-        private SingleSoundData _plantSound;
+        private SingleSoundData _spawnSound;
 
         [SerializeField]
         private RandomSoundData _attackSound;
@@ -60,6 +60,9 @@ namespace Project
             _shadow.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
             
             _stateMachine.StateEntered += OnStateEntered;
+            
+            SoundManager.Instance.Play(_spawnSound);
+            
             _isInitialized = true;
         }
 

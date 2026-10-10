@@ -1027,7 +1027,7 @@ MonoBehaviour:
     _pitchRange: {x: 1, y: 1}
   _winSound:
     _audioClip: {fileID: 8300000, guid: 3a9e141a497724c488e87b59d31c1caf, type: 3}
-    _soundVolume: 0.5
+    _soundVolume: 0.4
     _pitchRange: {x: 1, y: 1}
   _winPhraseSound:
     _audioClips:
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   _winPhraseDelay: 3
   _loseSound:
     _audioClip: {fileID: 8300000, guid: 4011a34ab6a53894a9674e47b2121364, type: 3}
-    _soundVolume: 0.75
+    _soundVolume: 0.4
     _pitchRange: {x: 1, y: 1}
   _losePhraseSound:
     _audioClips:

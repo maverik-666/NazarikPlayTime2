@@ -21,6 +21,10 @@ namespace Project
 
         [SerializeField]
         private float _flashDuration = 0.15f;
+
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _spawnSound;
         
         private Rot _unit;
         private Animator _animator;
@@ -46,6 +50,8 @@ namespace Project
 
             _spawnVFX.Play();
             this.Resolve<CameraMover>().Shake(0.5f, 1f);
+            
+            SoundManager.Instance.Play(_spawnSound.GetRandomSound());
             
             _stateMachine.StateEntered += OnStateEntered;
             _isInitialized = true;

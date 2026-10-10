@@ -23,6 +23,10 @@ namespace Project
         [SerializeField]
         private Vector3 _targetOffset;
 
+        [Header("Sounds")]
+        [SerializeField]
+        private RandomSoundData _grabSound;
+        
         private SpriteRenderer _spriteRenderer;
         
         private bool _hasTarget;
@@ -109,6 +113,8 @@ namespace Project
         private void Grab()
         {
             _tentacleEnd.position = _target.position + _targetOffset;
+            
+            SoundManager.Instance.Play(_grabSound.GetRandomSound());
             
             _grabAction?.Invoke();
             _isGrabbed = true;

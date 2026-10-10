@@ -32,6 +32,7 @@ namespace Project
         private float _direction = 1;
         
         private StateMachine _stateMachine;
+        private GhostSkinRenderer _skinRenderer;
 
         private bool _canNotTakeDamage = false;
         private bool _isInitialized = false;
@@ -84,7 +85,8 @@ namespace Project
             dieState.Init("Die", this, damageableRegistry, _stateMachine);
             _stateMachine.AddState(dieState);
             
-            GetComponentInChildren<GhostSkinRenderer>().Init(this, _stateMachine);
+            _skinRenderer = GetComponentInChildren<GhostSkinRenderer>();
+            _skinRenderer.Init(this, _stateMachine);
             
             _stateMachine.SetState("Idle");
             
@@ -109,6 +111,8 @@ namespace Project
             {
                 _stateMachine.SetState("Die");
             }
+
+            _skinRenderer.FlashRed();
         }
         
         public void SetDirection(float direction)
@@ -119,6 +123,7 @@ namespace Project
         
         public void InstantDeath()
         {
+            _health.SetCurrentHealth(0);
             _stateMachine.SetState("Die");
         }
 

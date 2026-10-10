@@ -104,10 +104,15 @@ MonoBehaviour:
   _tiltRotation: 30
   _flashColorTo: 0.4
   _flashDuration: 0.15
+  _spawnSound:
+    _audioClips:
+    - {fileID: 8300000, guid: 65a7d046a13f40041af21119ee529dc1, type: 3}
+    _soundVolume: 0.75
   _deathSound:
     _audioClips:
-    - {fileID: 8300000, guid: cd4957f644bb18e4ab1866457108bf4c, type: 3}
-    _soundVolume: 0.5
+    - {fileID: 8300000, guid: 0acdbc32b273c39489538d47e1cacec7, type: 3}
+    - {fileID: 8300000, guid: f1a0a2a605ddc504a9f517557f5c4232, type: 3}
+    _soundVolume: 1
 --- !u!95 &9184404526601923824
 Animator:
   serializedVersion: 7

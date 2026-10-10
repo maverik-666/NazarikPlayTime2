@@ -156,6 +156,7 @@ namespace Project
 
         public void InstantDeath()
         {
+            _health.SetCurrentHealth(0);
             _stateMachine.SetState("Die");
         }
 

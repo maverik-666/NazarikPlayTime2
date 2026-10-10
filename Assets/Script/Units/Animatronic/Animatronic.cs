@@ -121,8 +121,9 @@ namespace Project
         }
         
         public void InstantDeath()
-        {
-            _stateMachine.SetState("Die");
+        { 
+            _health.SetCurrentHealth(0); 
+            _stateMachine.SetState("Die"); 
         }
 
         public void PickedUp()

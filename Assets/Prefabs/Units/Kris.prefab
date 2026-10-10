@@ -14791,15 +14791,17 @@ MonoBehaviour:
   _tiltRotation: 30
   _flashColorTo: 0.4
   _flashDuration: 0.15
-  _plantSound:
-    _audioClip: {fileID: 0}
+  _spawnSound:
+    _audioClip: {fileID: 8300000, guid: 3528162cc0558214ba3ca021fda5967a, type: 3}
     _soundVolume: 0.5
     _pitchRange: {x: 1, y: 1}
   _attackSound:
-    _audioClips: []
+    _audioClips:
+    - {fileID: 8300000, guid: f7bf209f26ce63a4287e29a317cfd9bb, type: 3}
     _soundVolume: 0.5
   _deathSound:
-    _audioClips: []
+    _audioClips:
+    - {fileID: 8300000, guid: 9e2152efcb2774446a049560a3dc4fdb, type: 3}
     _soundVolume: 0.5
 --- !u!95 &9184404526601923824
 Animator:

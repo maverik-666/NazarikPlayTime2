@@ -64,7 +64,7 @@ namespace Project
             _stateMachine.AddState(idleState);
             
             var healState = GetComponentInChildren<HealState>();
-            healState.Init("Heal", this, "Idle", _health.Max, 0.5f, _stateMachine);
+            healState.Init("Heal", this, "Idle", _health.Max, 1, _stateMachine);
             _stateMachine.AddState(healState);
             
             var takeDamageState = GetComponentInChildren<TakeDamageState>();
@@ -72,7 +72,7 @@ namespace Project
             _stateMachine.AddState(takeDamageState);
 
             var defendState = GetComponentInChildren<DefendState>();
-            defendState.Init("Defend", this,"Idle", 0.5f, _stateMachine);
+            defendState.Init("Defend", this,"Idle", 1, _stateMachine);
             _stateMachine.AddState(defendState);
             
             var dieState = GetComponentInChildren<DieState>();
@@ -121,9 +121,9 @@ namespace Project
         }
         
         public void InstantDeath()
-        {
-            _stateMachine.SetState("Die");
-        }
+{
+      _health.SetCurrentHealth(0);
+       _stateMachine.SetState("Die");}
 
         public void PickedUp()
         {

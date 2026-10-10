@@ -134,8 +134,9 @@ namespace Project
             transform.localScale = new Vector3(_direction, 1, 1);
         }
         
-        public void InstantDeath()
-        {
+        public void InstantDeath() 
+        { 
+            _health.SetCurrentHealth(0); 
             _stateMachine.SetState("Die");
         }
 

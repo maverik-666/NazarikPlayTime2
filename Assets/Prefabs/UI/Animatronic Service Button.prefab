@@ -137,8 +137,8 @@ MonoBehaviour:
   _frameLit: {fileID: 968865471058063498}
   _successSound:
     _audioClips:
-    - {fileID: 8300000, guid: db41fe2a8c5c4cc48b9e279b5a51bee7, type: 3}
-    _soundVolume: 0.5
+    - {fileID: 8300000, guid: fd888f7e5744ce147b47ccb0192ff709, type: 3}
+    _soundVolume: 0.2
   _failureSound:
     _audioClip: {fileID: 8300000, guid: 44719ba28941248429dd1fb9da41346c, type: 3}
     _soundVolume: 0.15

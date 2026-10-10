@@ -112,7 +112,7 @@ namespace Project
             FlashColor(Color.white, _flashColorTo, _flashDuration);
         }
         
-        private void FlashRed()
+        public void FlashRed()
         {
             FlashColor(Color.red, _flashColorTo, _flashDuration);
         }
