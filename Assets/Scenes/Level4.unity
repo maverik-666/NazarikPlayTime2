@@ -565,6 +565,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1363342693}
     m_Modifications:
+    - target: {fileID: 6961649839703776123, guid: f896287375f1ee240b68288d1ec6cb8a, type: 3}
+      propertyPath: _crossFadeDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7218528804239404689, guid: f896287375f1ee240b68288d1ec6cb8a, type: 3}
       propertyPath: m_Name
       value: Audio Managers
@@ -1915,10 +1919,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -990297715, guid: 5d3e153bb0ef784488fd9fb4a6308a00, type: 3}
-    - target: {fileID: 7964537596076151179, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8026253125193772519, guid: 850a9c3163f1f324082ee5949fbd7fe6, type: 3}
       propertyPath: m_SizeDelta.y
       value: 82

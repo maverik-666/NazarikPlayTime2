@@ -34,6 +34,9 @@ namespace Project
         [SerializeField]
         private GameObject _cat;
 
+        [SerializeField]
+        private GameObject[] _wires;
+        
         [Header("Level Buttons")]
         [SerializeField]
         private LevelButton[] _levelButtons;
@@ -74,14 +77,12 @@ namespace Project
             
             foreach (var levelButton in _levelButtons)
             {
-                levelButton.Init(OnLevelSelect, _progress.IsLevelUnlocked(levelButton.Level));
+                levelButton.Init(OnLevelSelect, _progress.IsLevelUnlocked(levelButton.Level), _progress.IsLevelUnlocked(levelButton.Level+1));
             }
             
             _isInitialized = true;
         }
-
-     
-
+        
         private void HideInstant()
         {
             _logo.Rect.anchoredPosition += Vector2.right * -_slideOffset;
@@ -95,6 +96,11 @@ namespace Project
 
         private void DefineCharacter()
         {
+            foreach (var wire in _wires)
+            {
+                wire.SetActive(false);
+            }
+            
             if (_progress.IsLevelUnlocked(2) && Random.value > 0.9f)
             {
                 _cat.SetActive(true);
@@ -105,13 +111,21 @@ namespace Project
             {
                 _cat.SetActive(false);
 
-                if (_progress.IsLevelUnlocked(6))
+                if (_progress.IsLevelUnlocked(5) && !_progress.IsLevelUnlocked(6))
                 {
                     _piano.SetActive(true);
                     _kris.SetActive(false);
                 }
                 else
-                { 
+                {
+                    if (_progress.IsLevelUnlocked(6))
+                    {
+                        foreach (var wire in _wires)
+                        {
+                            wire.SetActive(true);
+                        }
+                    }
+                    
                     _piano.SetActive(false);
                     _kris.SetActive(true);
                 }

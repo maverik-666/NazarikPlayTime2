@@ -97,28 +97,9 @@ namespace Project
 
         private void OnPlayClick()
         {
-            if (_selected.Level == 4 || _selected.Level == 5)
-            {
-                SoundManager.Instance.Play(_playSound);
-                Crash();
-            }
-            else
-            {
-                MusicManager.Instance.Stop();
-                SoundManager.Instance.Play(_playSound);
-                _levelLoader.LoadLevel(_selected.Level);
-            }
-        }
-
-        private void Crash()
-        {
-            _title.SetText(_crashTitle);
-            _description.SetText(_crashDescription);
-
-            DOTween.KillAll();
-            DOTween.Sequence()
-                .AppendInterval(0.05f)
-                .AppendCallback(Application.Quit);
+            MusicManager.Instance.Stop();
+            SoundManager.Instance.Play(_playSound);
+            _levelLoader.LoadLevel(_selected.Level);
         }
 
 #if UNITY_EDITOR

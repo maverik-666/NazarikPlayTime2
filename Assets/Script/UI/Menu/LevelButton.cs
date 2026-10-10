@@ -31,6 +31,9 @@ namespace Project
         
         [SerializeField]
         private CanvasGroup _highlightLocked;
+
+        [SerializeField]
+        private GameObject _checkMark;
         
         [Header("Fly")]
         [SerializeField]
@@ -70,7 +73,7 @@ namespace Project
 
         public string Description => _description;
 
-        public void Init(Action<LevelButton> selectAction, bool isUnlocked)
+        public void Init(Action<LevelButton> selectAction, bool isUnlocked, bool isPassed)
         {
             _selectAction = selectAction;
             _highlightLocked.alpha = 0;
@@ -83,6 +86,8 @@ namespace Project
             
             HideInstant();
 
+            _checkMark.SetActive(isPassed);
+            
             _isInitialized = true;
         }
 

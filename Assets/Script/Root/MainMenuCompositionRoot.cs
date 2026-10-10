@@ -26,6 +26,7 @@ namespace Project
             
             var progress = GetComponentInChildren<Progress>(true);
             progress.Init();
+            _progress = progress;
             
             GetComponentInChildren<MainMenu>(true).Init(levelLoader, progress);
 
@@ -51,7 +52,7 @@ namespace Project
         {
             _loadingScreen.Hide();
 
-            if (_progress.IsLevelUnlocked(6))
+            if (_progress.IsLevelUnlocked(5) && !_progress.IsLevelUnlocked(6))
             {
                 MusicManager.Instance.PlayMusic(_endGameMusic.AudioClip, _endGameMusic.Volume);
             }

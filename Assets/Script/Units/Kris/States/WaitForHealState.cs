@@ -34,7 +34,10 @@ namespace Project
 
         public void Enter()
         {
-            _timer.Start(_healCooldown);
+            if (_timer.IsStopped)
+            {
+                _timer.Start(_healCooldown);
+            }
         }
 
         public void UpdateState()
@@ -61,7 +64,6 @@ namespace Project
 
         public void Exit()
         {
-            _timer.Reset();
         }
 
         public void Dispose() { }

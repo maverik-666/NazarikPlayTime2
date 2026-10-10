@@ -47,15 +47,7 @@ namespace Project
           
             _isInitialized = true;
         }
-
-        private void OnGUI()
-        {
-            if (GUI.Button(new Rect(0,Screen.height-50, 50, 50), "Play"))
-            {
-                Play();
-            }
-        }
-
+        
         public void Play()
         {
             _darkness.DOMove(_endPos.position, _moveDuration)
