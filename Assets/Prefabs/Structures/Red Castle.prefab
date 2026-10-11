@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Structure
   _heathPoints: 100
-  _team: 1
-  _enemyTeam: 2
+  _team: 0
+  _enemyTeam: 1
   _direction: -1
+  _properties: 1
 --- !u!114 &9202951359268294453
 MonoBehaviour:
   m_ObjectHideFlags: 0

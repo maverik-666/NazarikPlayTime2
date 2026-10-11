@@ -20,7 +20,7 @@ namespace Project
         private int _direction = 1;
         
         [SerializeField]
-        private DamageableProperty _properties = DamageableProperty.None;
+        private DamageableProperty _properties = DamageableProperty.Normal;
         
         private Health _health;
 

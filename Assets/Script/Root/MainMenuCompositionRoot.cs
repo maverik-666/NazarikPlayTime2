@@ -15,6 +15,8 @@ namespace Project
         
         private void Awake()
         {
+            Application.targetFrameRate = 120;
+            
             GetComponentInChildren<MusicManager>(true).Init();
             GetComponentInChildren<SoundManager>(true).Init();
             

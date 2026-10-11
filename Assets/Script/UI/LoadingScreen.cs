@@ -40,7 +40,8 @@ namespace Project
             _fadeTween?.Kill();
             _fadeTween = _canvasGroup.DOFade(0, 0.3f)
                 .SetUpdate(true)
-                .SetEase(Ease.OutSine);
+                .SetEase(Ease.OutSine)
+                .SetLink(gameObject, LinkBehaviour.KillOnDestroy);
         }
 
 #if UNITY_EDITOR

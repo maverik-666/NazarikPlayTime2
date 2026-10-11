@@ -30,10 +30,10 @@ namespace Project
         private int _heathPoints = 50;
 
         [SerializeField]
-        private int[] _knockPoints = { 0 };
+        private int[] _knockPoints;
         
         [SerializeField]
-        private DamageableProperty _properties = DamageableProperty.None;
+        private DamageableProperty _properties = DamageableProperty.Normal;
 
         
         private Health _health;
@@ -92,11 +92,11 @@ namespace Project
             _stateMachine.AddState(prepareAttack);
             
             var idleState = GetComponentInChildren<IdleState>();
-            idleState.Init("Idle", this, damageableRegistry, prepareAttack, "Move", DamageableProperty.None, _stateMachine);
+            idleState.Init("Idle", this, damageableRegistry, prepareAttack, "Move", DamageableProperty.Normal, _stateMachine);
             _stateMachine.AddState(idleState);
             
             var moveState = GetComponentInChildren<MoveForwardState>();
-            moveState.Init("Move", this, damageableRegistry, prepareAttack, "Idle", DamageableProperty.None, _stateMachine);
+            moveState.Init("Move", this, damageableRegistry, prepareAttack, "Idle", DamageableProperty.Normal, _stateMachine);
             _stateMachine.AddState(moveState);
 
             var takeDamageState = GetComponentInChildren<TakeDamageState>();

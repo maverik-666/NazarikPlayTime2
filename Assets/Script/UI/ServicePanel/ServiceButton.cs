@@ -47,7 +47,7 @@ namespace Project
             _frameLit.alpha = 0;
             UpdateState();
 
-            _text.text = $"{_service.Price}";
+            _text.text = $"{_service.Price.ToString()}";
             
             _button.onClick.AddListener(OnClick);
             _isInitialized = true;

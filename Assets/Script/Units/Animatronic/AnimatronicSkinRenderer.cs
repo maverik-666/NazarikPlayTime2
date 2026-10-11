@@ -10,7 +10,7 @@ namespace Project
         private SpriteRenderer _shadow;
         
         [SerializeField]
-        private ParticleSystem _dieParticle;
+        private VFXSource _dieVfx;
 
         [SerializeField]
         private float _tiltRotation = 30f;
@@ -61,6 +61,8 @@ namespace Project
 
             SoundManager.Instance.Play(_spawnSound.GetRandomSound());
             
+            _dieVfx.Init();
+            
             _isInitialized = true;
         }
 
@@ -110,7 +112,7 @@ namespace Project
         {
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
-            _dieParticle.Play();
+            _dieVfx.Play();
             SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }
 

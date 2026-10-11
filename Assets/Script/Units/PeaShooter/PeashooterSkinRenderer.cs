@@ -7,9 +7,9 @@ namespace Project
     {
         [SerializeField]
         private SpriteRenderer _shadow;
-        
+
         [SerializeField]
-        private ParticleSystem _dieParticle;
+        private VFXSource _dieVfx;
 
         [SerializeField]
         private float _tiltRotation = 30f;
@@ -48,10 +48,14 @@ namespace Project
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteFlasher = new SpriteFlasher(gameObject, _spriteRenderer);
             
+            _dieVfx.Init();
+            
             _stateMachine.StateEntered += OnStateEntered;
-            _isInitialized = true;
             
             SoundManager.Instance.Play(_plantSound);
+            
+            _isInitialized = true;
+            
         }
 
         private void OnStateEntered(IState state)
@@ -98,7 +102,7 @@ namespace Project
         {
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
-            _dieParticle.Play();
+            _dieVfx.Play();
             SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }
 

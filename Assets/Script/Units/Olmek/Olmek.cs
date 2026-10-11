@@ -22,7 +22,7 @@ namespace Project
         private float _jumpOffScreenDelay = 3;
         
         [SerializeField]
-        private DamageableProperty _properties = DamageableProperty.None;
+        private DamageableProperty _properties = DamageableProperty.Normal;
 
         
         private Team _team = Team.Red;
@@ -67,7 +67,7 @@ namespace Project
         {
             Attack();
             
-            _cameraMover.Shake(0.3f, 3);
+            _cameraMover.Shake(0.3f, 1);
             _damageableRegistry.Add(this);
             DOTween.Sequence()
                 .SetLink(gameObject, LinkBehaviour.KillOnDestroy)

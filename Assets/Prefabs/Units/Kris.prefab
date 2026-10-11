@@ -9842,7 +9842,7 @@ MonoBehaviour:
   _poseDuration: 20
   _healCooldown: 5
   _heathPoints: 1000
-  _properties: 0
+  _properties: 1
 --- !u!1 &3500160191158516608
 GameObject:
   m_ObjectHideFlags: 0

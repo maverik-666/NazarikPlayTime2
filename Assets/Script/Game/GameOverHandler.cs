@@ -21,7 +21,8 @@ namespace Project
         private ServiceButtonPanel _serviceButtonPanel;
         private GameOverMenu _gameOverMenu;
         private Progress _progress;
-        
+
+        private bool _isGameOvered = false;
         private bool _isInitialized = false;
 
         public void Init(
@@ -50,6 +51,13 @@ namespace Project
         
         private void EnemyWin()
         {
+            if (_isGameOvered)
+            {
+                return;
+            }
+            
+            _isGameOvered = true;
+            
             _timeSpeedHandler.StopTime();
             _cameraMover.LockAt(_playerStructure.Position, 2);
             _serviceButtonPanel.Hide();
@@ -59,6 +67,13 @@ namespace Project
 
         private void PlayerWin()
         {
+            if (_isGameOvered)
+            {
+                return;
+            }
+
+            _isGameOvered = true;
+            
             _timeSpeedHandler.StopTime();
             _cameraMover.LockAt(_enemyStructure.Position, 2);
             _serviceButtonPanel.Hide();

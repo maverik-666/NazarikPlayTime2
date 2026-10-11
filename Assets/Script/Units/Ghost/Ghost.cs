@@ -70,15 +70,15 @@ namespace Project
             _stateMachine = GetComponentInChildren<StateMachine>();
 
             var attackState = GetComponentInChildren<SingleAttackState>();
-            attackState.Init("Attack", this, 0.15f, _visionDistance, "Idle", damageableRegistry, DamageableProperty.None, _stateMachine);
+            attackState.Init("Attack", this, 0.15f, _visionDistance, "Idle", damageableRegistry, DamageableProperty.Normal, _stateMachine);
             _stateMachine.AddState(attackState);
 
             var idleState = GetComponentInChildren<IdleState>();
-            idleState.Init("Idle", this, damageableRegistry, attackState, "Move", DamageableProperty.None, _stateMachine);
+            idleState.Init("Idle", this, damageableRegistry, attackState, "Move", DamageableProperty.Normal, _stateMachine);
             _stateMachine.AddState(idleState);
 
             var moveState = GetComponentInChildren<MoveForwardState>();
-            moveState.Init("Move", this, damageableRegistry, attackState, "Idle", DamageableProperty.None, _stateMachine);
+            moveState.Init("Move", this, damageableRegistry, attackState, "Idle", DamageableProperty.Normal, _stateMachine);
             _stateMachine.AddState(moveState);
             
             var dieState = GetComponentInChildren<DieState>();

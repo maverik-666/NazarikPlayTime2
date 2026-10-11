@@ -40,7 +40,7 @@ namespace Project
 
         private void UpdateText()
         {
-            _text.text = $"{Mathf.CeilToInt(_currentValue)}";
+            _text.text = $"{Mathf.CeilToInt(_currentValue).ToString()}";
         }
         
 #if UNITY_EDITOR

@@ -15,6 +15,7 @@ namespace Project
     public enum DamageableProperty
     {
         None = 0,
-        Intangible = 1 << 0,
+        Normal = 1 << 0,
+        Intangible = 1 << 1,
     }
 }

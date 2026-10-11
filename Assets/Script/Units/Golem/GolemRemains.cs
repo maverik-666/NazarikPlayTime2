@@ -10,7 +10,7 @@ namespace Project
         private int _heathPoints = 50;
         
         [SerializeField]
-        private DamageableProperty _properties = DamageableProperty.None;
+        private DamageableProperty _properties = DamageableProperty.Normal;
         
         private Team _team = Team.Red;
         

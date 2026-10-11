@@ -65,6 +65,8 @@ namespace Project
             _levelInfoPresenter = GetComponentInChildren<LevelInfoPresenter>(true);
             _levelInfoPresenter.Init(levelLoader);
             
+            GetComponentInChildren<SoundMenu>(true).Init();
+            
             _logo.Init(OnClickLogo);
             _playButton.Init(OnPlayClick);
             _quitButton.Init(OnQuitClick);

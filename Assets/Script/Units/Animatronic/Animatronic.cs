@@ -18,7 +18,7 @@ namespace Project
         private float _summonDuration;
         
         [SerializeField]
-        private DamageableProperty _properties = DamageableProperty.None;
+        private DamageableProperty _properties = DamageableProperty.Normal;
         
         private Health _health;
         private Team _team;

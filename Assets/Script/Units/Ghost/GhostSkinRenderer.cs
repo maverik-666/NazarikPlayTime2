@@ -6,18 +6,14 @@ namespace Project
 
     public class GhostSkinRenderer : MonoBehaviour
     {
-        private static readonly int _levelId = Shader.PropertyToID("_Level");
-        private static readonly int _saturationColorId = Shader.PropertyToID("_SaturationColor");
-        private static readonly int _saturationPhaseId = Shader.PropertyToID("_SaturationPhase");
-        
         [SerializeField]
         private SpriteRenderer _shadow;
         
         [SerializeField]
-        private ParticleSystem _attackParticle;
+        private VFXSource _attackVfx;
 
         [SerializeField]
-        private ParticleSystem _dieParticle;
+        private VFXSource _dieVfx;
 
         [Header("Shaders")]
         [SerializeField]
@@ -34,8 +30,8 @@ namespace Project
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
         private StateMachine _stateMachine;
-        
-        private MaterialPropertyBlock _propBlock;
+
+        private SpriteFlasher _spriteFlasher;
         private Tween _flashTween;
         private Sequence _flySeq;
         
@@ -47,7 +43,7 @@ namespace Project
             _stateMachine = stateMachine;
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _propBlock = new MaterialPropertyBlock();
+            _spriteFlasher = new SpriteFlasher(gameObject, _spriteRenderer);
             
             _stateMachine.StateEntered += OnStateEntered;
             
@@ -67,6 +63,8 @@ namespace Project
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                 .SetEase(Ease.OutSine);
 
+            _attackVfx.Init();
+            _dieVfx.Init();
             
             _isInitialized = true;
         }
@@ -95,47 +93,28 @@ namespace Project
         private void Attack()
         {
             FlashWhite();
-            _attackParticle.Play();
+            _attackVfx.Play();
         }
 
         private void Die()
         {
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
-            _dieParticle.Play();
+            _dieVfx.Play();
             
             SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }
 
         private void FlashWhite()
         {
-            FlashColor(Color.white, _flashColorTo, _flashDuration);
+            _spriteFlasher.FlashColor(Color.white, _flashColorTo, _flashDuration);
         }
         
         public void FlashRed()
         {
-            FlashColor(Color.red, _flashColorTo, _flashDuration);
+            _spriteFlasher.FlashColor(Color.red, _flashColorTo, _flashDuration);
         }
         
-        private void FlashColor(Color color, float maxValue, float duration)
-        {
-            _spriteRenderer.GetPropertyBlock(_propBlock);
-            _propBlock.SetColor(_saturationColorId, color);
-            _spriteRenderer.SetPropertyBlock(_propBlock);
-
-            _flashTween?.Kill();
-            _flashTween = DOVirtual.Float(0f, maxValue, duration, SetFillPhase)
-                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
-                .SetLoops(2, LoopType.Yoyo);
-
-            void SetFillPhase(float phase)
-            {
-                _spriteRenderer.GetPropertyBlock(_propBlock);
-                _propBlock.SetFloat(_saturationPhaseId, phase);
-                _spriteRenderer.SetPropertyBlock(_propBlock);
-            }
-        }
-
         private void OnDestroy()
         {
             _stateMachine.StateEntered -= OnStateEntered;

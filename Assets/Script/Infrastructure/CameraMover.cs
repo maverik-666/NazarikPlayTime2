@@ -167,7 +167,11 @@ public class CameraMover : MonoBehaviour
     {
         float maxFromHeight = _boundsHeight * 0.5f;
         float maxFromWidth = _boundsWidth * 0.5f / _camera.aspect;
-        float effectiveMax = Mathf.Min(_maxZoom, maxFromHeight, maxFromWidth);
+
+        float min = Mathf.Min(maxFromWidth, maxFromHeight);
+        min = Mathf.Min(_maxZoom, min);
+
+        float effectiveMax = min;
         return Mathf.Clamp(size, _minZoom, effectiveMax);
     }
 

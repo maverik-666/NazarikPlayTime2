@@ -42,7 +42,7 @@ namespace Project
 
         private void UpdateHealthText()
         {
-            _healthText.text = $"{_health.Current}/{_health.Max}";
+            _healthText.text = $"{_health.Current.ToString()}/{_health.Max.ToString()}";
         }
 
         public void Die()

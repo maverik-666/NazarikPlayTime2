@@ -80,7 +80,7 @@ namespace Project
                 }
             }
 
-            _cameraMover.Shake(0.3f, 3);
+            _cameraMover.Shake(0.3f, 1);
             _stateMachine.SetState(_afterAttackStateId);
         }
         

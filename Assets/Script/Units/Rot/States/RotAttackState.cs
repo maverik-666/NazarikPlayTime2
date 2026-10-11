@@ -11,6 +11,7 @@ namespace Project
         private string _id;
         
         private IAttacker _attacker;
+        private IUnit _unit;
         private IStateMachine _stateMachine;
         private UnitRegistry _unitRegistry;
 
@@ -26,15 +27,16 @@ namespace Project
         public string ID => _id;
         public bool CanAttack => !_isOnCooldown;
 
-        public void Init(string id, IAttacker attacker, Tentacle tentacle, float attackDistance, string afterAttackStateId, UnitRegistry unitRegistry, IStateMachine stateMachine)
+        public void Init(string id, IAttacker attacker, IUnit unit, Tentacle tentacle, float attackDistance, string afterAttackStateId, UnitRegistry unitRegistry, IStateMachine stateMachine)
         {
             _id = id;
             _attacker = attacker;
+            _unit = unit;
 
             _tentacle = tentacle;
             _attackDistance = attackDistance;
             _afterAttackStateId = afterAttackStateId;
-
+            
             _playerStructure = this.Resolve<PlayerStructure>().Structure;
 
             _unitRegistry = unitRegistry;
@@ -83,11 +85,14 @@ namespace Project
 
         private void Consume()
         {
+            Debug.Log("Consume", _target.transform.gameObject);
+            
             if (_target.IsDead)
             {
                 return;
             }
-            
+
+            _unit.SetInvincible(true);
             _target.transform.DOScale(0, 0.5f)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                 .SetEase(Ease.OutSine)
@@ -97,6 +102,7 @@ namespace Project
         private void AfterConsume()
         {
             _target.InstantDeath();
+            _unit.SetInvincible(false);
             _stateMachine.SetState("Idle");
         }
         
@@ -143,7 +149,7 @@ namespace Project
                    && distance <= _attackDistance
                    && unit.Team == _attacker.EnemyTeam
                    && unit.Type == DamageableType.Unit
-                   && !unit.Properties.HasFlag(DamageableProperty.Intangible);
+                   && (unit.Properties & DamageableProperty.Intangible) == DamageableProperty.None;
         }
 
         public void Exit()

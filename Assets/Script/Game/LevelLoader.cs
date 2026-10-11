@@ -1,5 +1,6 @@
 namespace Project
 {
+    using DG.Tweening;
     using UnityEngine;
     using UnityEngine.SceneManagement;
 
@@ -26,6 +27,7 @@ namespace Project
 
         private void RestartCurrentAfterAnimation()
         {
+            DOTween.KillAll();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
@@ -36,6 +38,7 @@ namespace Project
 
         private void LoadMainMenuAfterAnimation()
         {
+            DOTween.KillAll();
             SceneManager.LoadScene(MainMenuName);
         }
 
@@ -44,9 +47,10 @@ namespace Project
             _levelToLoad = level;
             _loadingScreen.Show(LoadLevelAfterAnimation);
         }
-        
+
         private void LoadLevelAfterAnimation()
         {
+            DOTween.KillAll();
             SceneManager.LoadScene(_levelToLoad);
         }
         

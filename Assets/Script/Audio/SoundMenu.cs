@@ -29,6 +29,25 @@ namespace Project
             _musicSlider.onValueChanged.AddListener(OnMusicVolumeChange);
             _soundSlider.onValueChanged.AddListener(OnSoundVolumeChange);
         }
+        
+        private void Start()
+        {
+#if UNITY_EDITOR
+            if (!_isInitialized)
+            {
+                Debug.LogError($"{GetType().Name} not initialized", this);
+            }
+#endif
+            
+            float musicVolume = PlayerPrefs.GetFloat("Music", 0.5f);
+            float soundVolume = PlayerPrefs.GetFloat("Sound", 0.5f);
+            
+            _musicSlider.value = musicVolume;
+            _soundSlider.value = soundVolume;
+            
+            SetMixerVolume(_musicMixer, "MusicVolume", musicVolume);
+            SetMixerVolume(_soundMixer, "SoundVolume", soundVolume);
+        }
 
         private void OnMusicVolumeChange(float volume)
         {
@@ -51,25 +70,6 @@ namespace Project
         {
             _musicSlider.onValueChanged.RemoveListener(OnMusicVolumeChange);
             _soundSlider.onValueChanged.RemoveListener(OnSoundVolumeChange);
-        }
-        
-        private void Start()
-        {
-#if UNITY_EDITOR
-            if (!_isInitialized)
-            {
-                Debug.LogError($"{GetType().Name} not initialized", this);
-            }
-#endif
-            
-            float musicVolume = PlayerPrefs.GetFloat("Music", 0.5f);
-            float soundVolume = PlayerPrefs.GetFloat("Sound", 0.5f);
-            
-            _musicSlider.value = musicVolume;
-            _soundSlider.value = soundVolume;
-            
-            SetMixerVolume(_musicMixer, "MusicVolume", musicVolume);
-            SetMixerVolume(_soundMixer, "SoundVolume", soundVolume);
         }
     }
 }

@@ -104,7 +104,7 @@ namespace Project
                    && !damageable.CanNotTakeDamage
                    && damageable.Team == _attacker.EnemyTeam 
                    && distance <= _attackDistance
-                   && _allowedProperties.HasFlag(damageable.Properties);
+                   && (_allowedProperties & damageable.Properties) != DamageableProperty.None;
         }
 
         public void Exit()

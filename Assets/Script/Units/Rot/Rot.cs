@@ -30,7 +30,7 @@ namespace Project
         private int _knockDamage = 25;
         
         [SerializeField]
-        private DamageableProperty _properties = DamageableProperty.None;
+        private DamageableProperty _properties = DamageableProperty.Normal;
         
         private Health _health;
         private Team _team;
@@ -78,7 +78,7 @@ namespace Project
             tentacle.Init();
 
             var attackState = GetComponentInChildren<RotAttackState>();
-            attackState.Init("Attack", this, tentacle, _attackDistance, "Idle", unitRegistry, _stateMachine);
+            attackState.Init("Attack", this, this, tentacle, _attackDistance, "Idle", unitRegistry, _stateMachine);
             _stateMachine.AddState(attackState);
             
             var prepareAttack = GetComponentInChildren<PrepareAttackState>();
@@ -86,11 +86,11 @@ namespace Project
             _stateMachine.AddState(prepareAttack);
             
             var idleState = GetComponentInChildren<IdleState>();
-            idleState.Init("Idle", this, damageableRegistry, prepareAttack, "Move", DamageableProperty.None, _stateMachine);
+            idleState.Init("Idle", this, damageableRegistry, prepareAttack, "Move", DamageableProperty.Normal, _stateMachine);
             _stateMachine.AddState(idleState);
             
             var moveState = GetComponentInChildren<MoveForwardState>();
-            moveState.Init("Move", this, damageableRegistry, prepareAttack, "Idle", DamageableProperty.None, _stateMachine);
+            moveState.Init("Move", this, damageableRegistry, prepareAttack, "Idle", DamageableProperty.Normal, _stateMachine);
             _stateMachine.AddState(moveState);
 
             var takeDamageState = GetComponentInChildren<TakeDamageState>();

@@ -82,7 +82,7 @@ namespace Project
             
             foreach (var damageable in _damageableRegistry.Items)
             { 
-                if (damageable.Team != _targetTeam || !_allowedTypes.HasFlag(damageable.Type))
+                if (damageable.Team != _targetTeam || ((_allowedTypes & damageable.Type) == DamageableType.None))
                     continue;
 
                 float distance = Vector2.Distance(damageable.Position, position);

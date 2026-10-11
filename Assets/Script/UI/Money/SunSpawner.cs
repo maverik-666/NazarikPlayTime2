@@ -1,5 +1,6 @@
 namespace Project
 {
+    using System.Collections.Generic;
     using UnityEngine;
 
     [DisallowMultipleComponent]
@@ -25,11 +26,12 @@ namespace Project
         [SerializeField]
         private bool _autoPickup = true;
         
-        private Camera _camera; 
+        private Camera _camera;
         private MoneyCounter _moneyCounter;
         private MoneyCounterView _moneyCounterView;
-        
+
         private Timer _timer;
+        private readonly Queue<Sun> _pool = new Queue<Sun>();
         private bool _isInitialized = false;
 
         public void Init(Camera camera, MoneyCounter moneyCounter, MoneyCounterView moneyCounterView)
@@ -38,8 +40,28 @@ namespace Project
             _moneyCounter = moneyCounter;
             _moneyCounterView = moneyCounterView;
             
+            PrepareSuns();
+            
             _timer = new Timer();
             _isInitialized = true;
+        }
+
+
+        private void PrepareSuns()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                var sun = CreateSun();
+                sun.gameObject.SetActive(false);
+                _pool.Enqueue(sun);
+            }
+        }
+
+        private Sun CreateSun()
+        {
+            var sun = Instantiate(_sunPf, transform); 
+            sun.Init(_camera, OnPickup, ReturnToPool);
+            return sun;
         }
 
         public void Update()
@@ -57,12 +79,21 @@ namespace Project
         {
             var offset = Random.insideUnitSphere;
             offset.Scale(_spawnBoxExtents);
-            var position =  transform.position + offset;
+            var position = transform.position + offset;
             float fallHeight = Random.Range(_fallHeightRange.x, _fallHeightRange.y);
-            
-            var sun = Instantiate(_sunPf, position, Quaternion.identity, transform);
-            sun.Init(_camera, OnPickup, fallHeight);
 
+            Sun sun;
+            if (_pool.Count > 0)
+            {
+                sun = _pool.Dequeue();
+            }
+            else
+            {
+                sun = CreateSun();
+            }
+            
+            sun.StartFlyFrom(position, fallHeight);
+            sun.gameObject.SetActive(true);
 
 #if UNITY_EDITOR
             if (_autoPickup)
@@ -73,10 +104,15 @@ namespace Project
         }
 
         private void OnPickup(Sun sun)
-        { 
+        {
             _moneyCounter.Add(_moneyPerSun);
-            
             sun.MoveTo(_moneyCounterView.IconCenter);
+        }
+
+        private void ReturnToPool(Sun sun)
+        {
+            sun.gameObject.SetActive(false);
+            _pool.Enqueue(sun);
         }
 
 #if UNITY_EDITOR

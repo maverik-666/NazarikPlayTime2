@@ -10,10 +10,10 @@ namespace Project
         private SpriteRenderer _shadow;
         
         [SerializeField]
-        private ParticleSystem _attackParticle;
+        private VFXSource _attackVfx;
 
         [SerializeField]
-        private ParticleSystem _dieParticle;
+        private VFXSource _dieVfx;
 
         [SerializeField]
         private float _tiltRotation = 30f;
@@ -52,6 +52,9 @@ namespace Project
             
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteFlasher = new SpriteFlasher(gameObject, _spriteRenderer);
+            
+            _attackVfx.Init();
+            _dieVfx.Init();
             
             _stateMachine.StateEntered += OnStateEntered;
             _isInitialized = true;
@@ -97,7 +100,7 @@ namespace Project
         private void Attack()
         {
             FlashWhite();
-            _attackParticle.Play();
+            _attackVfx.Play();
         }
 
 
@@ -121,7 +124,7 @@ namespace Project
         {
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
-            _dieParticle.Play();
+            _dieVfx.Play();
             
             SoundManager.Instance.Play(_deathSound.GetRandomSound());
         }

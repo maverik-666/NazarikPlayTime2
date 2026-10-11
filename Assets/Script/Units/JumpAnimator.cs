@@ -3,17 +3,11 @@ namespace Project
     using System;
     using UnityEngine;
 
-    [Serializable]
     public class JumpAnimator
     {
-        [SerializeField]
-        private float[] _heights = { 0.25f, 0.125f, 0.05f };
-        
-        [SerializeField]
-        private float[] _durations = { 0.50f, 0.35f, 0.25f };
-        
-        [SerializeField]
-        private float _xDistance = 1f;
+        private static readonly float[] Heights = { 0.25f, 0.125f, 0.05f };
+        private static readonly float[] Durations = { 0.50f, 0.35f, 0.25f };
+        private static readonly float XDistance = 1f;
         
         private readonly Transform _transform;
 
@@ -41,8 +35,8 @@ namespace Project
             _onComplete = onComplete;
 
             _totalDuration = 0f;
-            _totalX = _xDistance * direction;
-            foreach (float duration in _durations)
+            _totalX = XDistance * direction;
+            foreach (float duration in Durations)
             {
                 _totalDuration += duration;
             }
@@ -69,13 +63,13 @@ namespace Project
         private float GetBounceY(float t)
         {
             float jumpStart = 0f;
-            for (int i = 0; i < _durations.Length; i++)
+            for (int i = 0; i < Durations.Length; i++)
             {
-                float jumpEnd = jumpStart + _durations[i];
+                float jumpEnd = jumpStart + Durations[i];
                 if (t < jumpEnd)
                 {
-                    float tNorm = (t - jumpStart) / _durations[i];
-                    return _heights[i] * 4f * tNorm * (1f - tNorm);
+                    float tNorm = (t - jumpStart) / Durations[i];
+                    return Heights[i] * 4f * tNorm * (1f - tNorm);
                 }
                 jumpStart = jumpEnd;
             }

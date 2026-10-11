@@ -52,7 +52,7 @@ namespace Project
             return !enemy.IsDead 
                    && enemy.Team == _idler.EnemyTeam
                    && Mathf.Abs(enemy.Position.x - _idler.Position.x) <= _idler.VisionDistance            
-                   && _allowedProperties.HasFlag(enemy.Properties);
+                   && (_allowedProperties & enemy.Properties) != DamageableProperty.None;
         }
 
 

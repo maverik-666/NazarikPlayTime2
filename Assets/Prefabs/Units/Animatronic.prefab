@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8736998595581744456}
   - {fileID: 8155672732246900512}
   - {fileID: 5443839352619452416}
-  - {fileID: 6685935478345788107}
+  - {fileID: 7515630247680177819}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3993586021441715661
@@ -51,7 +51,52 @@ MonoBehaviour:
   _waitDuration: 25
   _heathPoints: 75
   _summonDuration: 4
-  _properties: 0
+  _properties: 1
+--- !u!1 &2809584789253148231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7515630247680177819}
+  - component: {fileID: 4876782199913448918}
+  m_Layer: 0
+  m_Name: Soul VFX Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7515630247680177819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809584789253148231}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7484929, y: -0, z: -0, w: 0.66314286}
+  m_LocalPosition: {x: -0.21875, y: 0.32937706, z: -0.018825507}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767558189574402644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4876782199913448918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809584789253148231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f9b0d19e6b41b29224dc970e89a394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.VFXSource
+  _vfxId: {fileID: 11400000, guid: e44f59fbbeda2924f973033e53c02747, type: 2}
 --- !u!1 &4539971602745553208
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.AnimatronicSkinRenderer
   _shadow: {fileID: 4555103588184220840}
-  _dieParticle: {fileID: 7766231209723825605}
+  _dieVfx: {fileID: 4876782199913448918}
   _tiltRotation: 30
   _flashColorTo: 0.4
   _flashDuration: 0.15
@@ -457,78 +502,3 @@ MonoBehaviour:
   _baseValueOn: {fileID: 8155672732246900512}
   _addedValue: -1
   _layerId: 
---- !u!1001 &7048203359015291561
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6767558189574402644}
-    m_Modifications:
-    - target: {fileID: 727064983094314860, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 727064983094314860, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.21875
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.32937706
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.018825507
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.66314286
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7484929
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -96.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088922706473926092, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_Name
-      value: SoulVFX
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
---- !u!4 &6685935478345788107 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-  m_PrefabInstance: {fileID: 7048203359015291561}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7766231209723825605 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 727064983094314860, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-  m_PrefabInstance: {fileID: 7048203359015291561}
-  m_PrefabAsset: {fileID: 0}

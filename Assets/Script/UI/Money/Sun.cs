@@ -6,78 +6,85 @@ namespace Project
 
     public class Sun : MonoBehaviour
     {
-        [SerializeField] 
+        [SerializeField]
         private Transform _aura;
 
         [SerializeField]
         private CanvasGroup _canvasGroup;
-        
+
         [SerializeField]
         private float _rotationSpeed = 20;
 
         [SerializeField]
         private float _fallSpeed = 1;
-        
+
         [SerializeField]
         private float _moveToTargetSpeed = 1;
 
         [SerializeField]
         private SingleSoundData _clickSound;
-        
+
         private float _initialYPosition = 0;
         private float _fallHeight = 0;
         private State _state;
-        
+
         private Tween _fadeTween = null;
         private bool _isShown = false;
 
         private Camera _camera;
         private Transform _uiTarget;
         private float _initialDistance;
-        
+
         private Action<Sun> _clickAction = null;
+        private Action<Sun> _disposeAction = null;
         private Clickable _clickable = null;
-        
+
         private bool _isInitialized = false;
 
         private enum State
         {
             Falling, MovingToTarget, None
         }
-        
-        public void Init(Camera camera, Action<Sun> clickAction, float fallHeight)
-        { 
-            _clickAction = clickAction;
-            
-            _initialYPosition = transform.position.y;
-            _fallHeight = fallHeight;
 
+        public void Init(Camera camera, Action<Sun> clickAction, Action<Sun> disposeAction)
+        {
             _camera = camera;
+            _disposeAction = disposeAction;
+            _clickAction = clickAction;
+
             GetComponentInChildren<Canvas>().worldCamera = camera;
             _clickable = GetComponentInChildren<Clickable>(true);
             _clickable.Init(OnClick);
 
+            _isInitialized = true;
+        }
+
+        public void StartFlyFrom(Vector3 position, float fallHeight)
+        {
+            transform.position = position;
+            _initialYPosition = position.y;
+            _fallHeight = fallHeight;
+
             _canvasGroup.alpha = 0;
-            
+
             Show();
 
             _state = State.Falling;
-            _isInitialized = true;
         }
 
         public void OnClick()
         {
             _clickable.SetInteractable(false);
             _state = State.None;
-            
+
             _fadeTween?.Kill();
             _canvasGroup.alpha = 1;
-            
+
             SoundManager.Instance.Play(_clickSound);
-            
+
             _clickAction?.Invoke(this);
         }
-        
+
         private void Update()
         {
             _aura.Rotate(Vector3.forward, _rotationSpeed * Time.deltaTime);
@@ -87,7 +94,7 @@ namespace Project
                Fall();
             }
             else if (_state == State.MovingToTarget)
-            { 
+            {
                 MoveToTarget();
             }
         }
@@ -95,7 +102,7 @@ namespace Project
         private void Fall()
         {
             transform.Translate(Vector3.down * (_fallSpeed * Time.deltaTime));
-            
+
             if (_isShown && _initialYPosition - transform.position.y > _fallHeight)
             {
                 Hide();
@@ -113,10 +120,10 @@ namespace Project
                 _canvasGroup.DOFade(0,0.15f)
                     .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                     .OnComplete(Dispose);
-                
+
                 return;
             }
-            
+
             var direction = (targetPosition - transform.position).normalized;
             float t = Mathf.InverseLerp(-1, _initialDistance, distance);
 
@@ -139,7 +146,7 @@ namespace Project
 
         public void Hide()
         {
-            _isShown = false; 
+            _isShown = false;
             _fadeTween = _canvasGroup.DOFade(0, 0.5f)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                 .OnComplete(Dispose);
@@ -149,7 +156,7 @@ namespace Project
         {
             _state = State.MovingToTarget;
             _uiTarget = uiTarget;
-            
+
             var targetPosition = CalcWorldPosition(_uiTarget.position);
             _initialDistance = Vector3.Distance(transform.position, targetPosition);
         }
@@ -157,9 +164,10 @@ namespace Project
         private void Dispose()
         {
             _clickable.SetInteractable(false);
-            Destroy(gameObject);
+            _fadeTween?.Kill();
+            _disposeAction?.Invoke(this);
         }
-        
+
 #if UNITY_EDITOR
         private void Start()
         {

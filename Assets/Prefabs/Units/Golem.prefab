@@ -33,8 +33,8 @@ Transform:
   - {fileID: 8736998595581744456}
   - {fileID: 8155672732246900512}
   - {fileID: 5443839352619452416}
-  - {fileID: 3906200421379427764}
-  - {fileID: 6685935478345788107}
+  - {fileID: 4529696383861976732}
+  - {fileID: 2206423594083609175}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1095252912582482729
@@ -57,6 +57,7 @@ MonoBehaviour:
   _visionDistance: 0.75
   _heathPoints: 500
   _knockPoints: 32000000
+  _properties: 1
 --- !u!1 &4539971602745553208
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,8 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.GolemSkinRenderer
   _shadow: {fileID: 4555103588184220840}
-  _attackParticle: {fileID: 4631814356919725721}
-  _dieParticle: {fileID: 7766231209723825605}
+  _attackVfx: {fileID: 4250538384564154843}
+  _dieVfx: {fileID: 8350947078756479451}
   _tiltRotation: 30
   _flashColorTo: 0.4
   _flashDuration: 0.15
@@ -219,6 +220,51 @@ MonoBehaviour:
   _baseValueOn: {fileID: 6767558189574402644}
   _addedValue: 0
   _layerId: 
+--- !u!1 &4603343587810768859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4529696383861976732}
+  - component: {fileID: 4250538384564154843}
+  m_Layer: 0
+  m_Name: Attack VFX Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4529696383861976732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603343587810768859}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767558189574402644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4250538384564154843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603343587810768859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f9b0d19e6b41b29224dc970e89a394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.VFXSource
+  _vfxId: {fileID: 11400000, guid: 036fcfa3b38478340be1ab552239ae0f, type: 2}
 --- !u!1 &6339566913096609678
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,145 +527,48 @@ MonoBehaviour:
   _baseValueOn: {fileID: 8155672732246900512}
   _addedValue: -1
   _layerId: 
---- !u!1001 &2027870652382982893
-PrefabInstance:
+--- !u!1 &8318848064436509847
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6767558189574402644}
-    m_Modifications:
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7160616793447823875, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-      propertyPath: m_Name
-      value: WaveVFX
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
---- !u!4 &3906200421379427764 stripped
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2206423594083609175}
+  - component: {fileID: 8350947078756479451}
+  m_Layer: 0
+  m_Name: Soul VFX Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2206423594083609175
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3031464657383030617, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-  m_PrefabInstance: {fileID: 2027870652382982893}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4631814356919725721 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6657431869408877684, guid: d883ee99d9f8dde4cb121a9553081b45, type: 3}
-  m_PrefabInstance: {fileID: 2027870652382982893}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7048203359015291561
-PrefabInstance:
   m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318848064436509847}
   serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6767558189574402644}
-    m_Modifications:
-    - target: {fileID: 727064983094314860, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 727064983094314860, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.03953357
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.66314286
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7484929
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -96.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088922706473926092, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-      propertyPath: m_Name
-      value: SoulVFX
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
---- !u!4 &6685935478345788107 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4402560523731279970, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-  m_PrefabInstance: {fileID: 7048203359015291561}
+  m_LocalRotation: {x: -0.7484929, y: -0, z: -0, w: 0.66314286}
+  m_LocalPosition: {x: 0, y: 0.5, z: -0.03953357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767558189574402644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8350947078756479451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &7766231209723825605 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 727064983094314860, guid: 3a6e57cec2022a542b29b54463782713, type: 3}
-  m_PrefabInstance: {fileID: 7048203359015291561}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318848064436509847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f9b0d19e6b41b29224dc970e89a394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.VFXSource
+  _vfxId: {fileID: 11400000, guid: e44f59fbbeda2924f973033e53c02747, type: 2}

@@ -12,7 +12,7 @@ namespace Project
         private SpriteRenderer _shadow;
         
         [SerializeField]
-        private ParticleSystem _fallParticle;
+        private VFXSource _fallVfx;
 
         [SerializeField]
         private float _fallDuration = 2;
@@ -46,6 +46,9 @@ namespace Project
             _spriteFlasher = new SpriteFlasher(gameObject, _spriteRenderer);
             _spriteRenderer.enabled = false;
             _shadow.enabled = false;
+            
+            _fallVfx.Init();
+            
             _isInitialized = true;
         }
 
@@ -71,6 +74,7 @@ namespace Project
         private void FlashWhite()
         {
             _spriteFlasher.FlashColor(Color.white, _flashColorTo, _flashDuration);
+            _fallVfx.Play();
         }
 
         private void PlayLandSound()

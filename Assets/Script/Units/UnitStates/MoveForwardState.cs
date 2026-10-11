@@ -61,7 +61,7 @@ namespace Project
             return !enemy.IsDead 
                    && enemy.Team == _mover.EnemyTeam
                    && Mathf.Abs(distance) <= _mover.VisionDistance
-                   && _allowedProperties.HasFlag(enemy.Properties);
+                   && (_allowedProperties & enemy.Properties) != DamageableProperty.None;
         }
 
         private void FoundEnemy()

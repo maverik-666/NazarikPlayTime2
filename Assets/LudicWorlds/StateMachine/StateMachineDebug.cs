@@ -4,6 +4,7 @@ namespace LudicWorlds
 
     public class StateMachineDebug : MonoBehaviour
     {
+#if UNITY_EDITOR
         private StateMachine _stateMachine;
         private string _currentStateID = "none";
         private string _previousStateID = "none";
@@ -19,7 +20,7 @@ namespace LudicWorlds
             _previousStateID = _stateMachine.PreviousState?.ID ?? "none";
         }
 
-#if UNITY_EDITOR
+
         private void OnDrawGizmos()
         {
             UnityEditor.Handles.Label(

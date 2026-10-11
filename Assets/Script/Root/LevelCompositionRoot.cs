@@ -49,6 +49,8 @@ namespace Project
                 clouds.Init();
             }
             
+            GetComponentInChildren<VFXPlayerRegistry>(true).Init();
+            
             var moneyCounter = GetComponentInChildren<MoneyCounter>(true);
             var moneyCounterView = GetComponentInChildren<MoneyCounterView>(true);
 

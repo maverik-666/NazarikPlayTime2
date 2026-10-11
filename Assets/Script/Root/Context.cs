@@ -31,14 +31,14 @@ namespace Project
 
             if (children.Length > 1)
             {
-                Debug.LogError($"Only 1 instance of {typeof(T).Name} is expected, but {children.Length} instances are found", this);
+                Debug.LogError($"Only 1 instance of {nameof(T)} is expected, but {children.Length.ToString()} instances are found", this);
                 return default;
             }
 
             T child = children[0];
             if (child == null || child.Equals(null))
             {
-                Debug.LogError($"Instance of {typeof(T).Name} is null", this);
+                Debug.LogError($"Instance of {nameof(T)} is null", this);
                 return default;
             }
 
@@ -55,14 +55,14 @@ namespace Project
         {
             if (transform.parent == null)
             {
-                Debug.LogError($"No binding found for {typeof(T).Name}", this);
+                Debug.LogError($"No binding found for {nameof(T)}", this);
                 return default;
             }
 
             Context parentContext = transform.parent.GetComponentInParent<Context>();
             if (parentContext == null)
             {
-                Debug.LogError($"No binding found for {typeof(T).Name}", this);
+                Debug.LogError($"No binding found for {nameof(T)}", this);
                 return default;
             }
 

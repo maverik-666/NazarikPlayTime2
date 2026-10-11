@@ -112,7 +112,7 @@ namespace Project
 
         private AudioSource CreateSource()
         {
-            var go = new GameObject($"SFX_{_pool.Count}");
+            var go = new GameObject($"SFX_{_pool.Count.ToString()}");
             go.transform.SetParent(_root, false);
             var s = go.AddComponent<AudioSource>();
             s.playOnAwake = false;

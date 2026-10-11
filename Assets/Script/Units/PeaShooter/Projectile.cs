@@ -1,5 +1,6 @@
 namespace Project
 {
+    using System;
     using DG.Tweening;
     using UnityEngine;
 
@@ -15,35 +16,52 @@ namespace Project
 
         [SerializeField]
         private float _hitDistance = 0.1f;
-        
+
+        [SerializeField]
+        private float _maxTravelDistance = 30f;
+
         [SerializeField]
         private ParticleSystem _hitParticle;
-        
+
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
-        
+
         [Header("Sounds")]
         [SerializeField]
         private RandomSoundData _hitSound;
-        
+
         private Team _enemyTeam;
         private float _direction;
-
+        private float _traveledDistance;
+        private Action<Projectile> _returnToPool;
+        
         private DamageableRegistry _damageableRegistry;
-
+        private Vector2 _lastPosition;
+        
         private bool _isDepleted = false;
         private bool _isInitialized = false;
-        
-        public Vector2 Position => transform.position;
 
-        public void Init(Team enemyTeam, float direction, DamageableRegistry damageableRegistry)
+        public Vector2 Position => transform.position;
+        
+
+        public void Init( DamageableRegistry damageableRegistry, Action<Projectile> returnToPool)
+        {
+            _damageableRegistry = damageableRegistry;
+            _returnToPool = returnToPool;
+            
+            _isInitialized = true;
+        }
+
+        public void StartFly(Team enemyTeam, float direction)
         {
             _enemyTeam = enemyTeam;
             _direction = direction;
             
-            _damageableRegistry = damageableRegistry;
-            
-            _isInitialized = true;
+            _isDepleted = false;
+            _traveledDistance = 0f;
+            _spriteRenderer.enabled = true;
+
+            _lastPosition = Position;
         }
 
         public void Update()
@@ -52,14 +70,20 @@ namespace Project
             {
                 return;
             }
-            
+
+            if (_traveledDistance >= _maxTravelDistance)
+            {
+                _returnToPool(this);
+                return;
+            }
+
             if (TryFindTarget(out var target))
             {
                 target.TakeDamage(_attack);
                 Hit();
             }
             else
-            { 
+            {
                 Move();
             }
         }
@@ -86,13 +110,17 @@ namespace Project
 
         private bool IsAttackable(IDamageable damageable, out float distance)
         {
-            float delta = damageable.Position.x - Position.x;
-
+            float damageablePosX = damageable.Position.x;
+            float delta = damageablePosX - _lastPosition.x;
+            float deltaCurrent = damageablePosX - Position.x;
+            
+            bool isFlyThrough = delta * deltaCurrent < 0;
+            
             distance = Mathf.Abs(delta) + damageable.Radius * -Mathf.Sign(delta);
             
             return !damageable.IsDead 
                    && damageable.Team == _enemyTeam 
-                   && distance <= _hitDistance;
+                   && (distance <= _hitDistance || isFlyThrough);
         }
 
         private void Hit()
@@ -100,23 +128,22 @@ namespace Project
             _isDepleted = true;
             _spriteRenderer.enabled = false;
             _hitParticle.Play();
-            
+
             SoundManager.Instance.Play(_hitSound.GetRandomSound());
-            
+
             var seq = DOTween.Sequence();
-            seq.SetLink(gameObject, LinkBehaviour.KillOnDestroy);
+            seq.SetLink(gameObject, LinkBehaviour.KillOnDisable);
             seq.AppendInterval(2);
-            seq.AppendCallback(DestroySelf);
-        }
-        
-        private void DestroySelf()
-        {
-            Destroy(gameObject);
+            seq.AppendCallback(() => _returnToPool(this));
         }
 
         private void Move()
         {
-            transform.position += Vector3.right * (_direction * _speed * Time.deltaTime);
+            _lastPosition = Position;
+            
+            float delta = _direction * _speed * Time.deltaTime;
+            transform.position += Vector3.right * delta;
+            _traveledDistance += Mathf.Abs(delta);
         }
 
 #if UNITY_EDITOR

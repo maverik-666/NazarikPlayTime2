@@ -26,7 +26,7 @@ namespace Project
 
         public void UnlockLevel(int level)
         {
-            PlayerPrefs.SetString($"Level{level}", 1.ToString());
+            PlayerPrefs.SetString($"Level{level.ToString()}", 1.ToString());
         }
         
         public bool IsLevelUnlocked(int level)
@@ -36,7 +36,7 @@ namespace Project
                 return true;
             }
             
-            return PlayerPrefs.HasKey($"Level{level}");
+            return PlayerPrefs.HasKey($"Level{level.ToString()}");
         }
         
 #if UNITY_EDITOR
