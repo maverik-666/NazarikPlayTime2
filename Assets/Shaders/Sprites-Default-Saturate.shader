@@ -5,6 +5,11 @@ Shader "Sprites/Default Saturate" {
 		_SaturationColor ("Saturation Tint", Color) = (1,1,1,1)
 		_SaturationPhase ("Saturation Phase", Range(0.0, 1.0)) = 0.0
 		_SaturationIntensity ("Saturation Intensity", Range(0, 30)) = 5.0
+		[HideInInspector] _Stencil ("Stencil ID", Float) = 0
+		[HideInInspector] _StencilComp ("Stencil Comparison", Float) = 8
+		[HideInInspector] _StencilOp ("Stencil Operation", Float) = 0
+		[HideInInspector] _StencilWriteMask ("Stencil Write Mask", Float) = 255
+		[HideInInspector] _StencilReadMask ("Stencil Read Mask", Float) = 255
 	}
 
 	SubShader {
@@ -14,6 +19,14 @@ Shader "Sprites/Default Saturate" {
 			"RenderType"="Transparent"
 			"PreviewType"="Plane"
 			"CanUseSpriteAtlas"="True"
+		}
+
+		Stencil {
+			Ref [_Stencil]
+			Comp [_StencilComp]
+			Pass [_StencilOp]
+			ReadMask [_StencilReadMask]
+			WriteMask [_StencilWriteMask]
 		}
 
 		Cull Off
